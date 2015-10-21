@@ -12,6 +12,7 @@ public class PrintCompany {
         System.out.println("Company Contact Info: ");
     }
     
-    // Joel älskar att pulla....
+    // Joel ï¿½lskar att pulla....
+    // snuskmums
 
 }
