@@ -1,23 +1,24 @@
 package entry;
 
 import companies.MyCompany;
-import managers.CompanyManage;
-import managers.MeetingManage;
-import managers.PersonManage;
+import managers.ObjectManage;
 
+/**
+ * Associate objects are stored in the company object.
+ * Using the object manage to reach all manage options.
+ */
 public class Program {
-	//All created associate objects are stored in the company object.
-	
-	// Skapa factory istället (interface)
-	PersonManage personManage = new PersonManage();
-	CompanyManage companyManage = new CompanyManage();
-	MeetingManage meetingManage = new MeetingManage();
+    // TODO Skapa factory istället (interface)
 
-	public void runProgram() {
+    ObjectManage objectManage = new ObjectManage();
 
-		MyCompany saab = new MyCompany("Saab", null);
+    public void runProgram() {
+        // For testing purposes.
+        MyCompany saab = new MyCompany("Saab", null);
+        saab.addEmployee(objectManage.getPersonManage().createAssociate(0, null, null, saab, null, null));
+        saab.addBusinessAssociate(objectManage.getPersonManage().createAssociate(0, null, null, null, null, null));
+        objectManage.getMeetingManage().addParticipant(null, null);
+        // Test stop
+    }
 
-		saab.addEmployee(personManage.createAssociate(0, null, null, saab, null, null));
-		saab.addBusinessAssociate(personManage.createAssociate(0, null, null, null, null, null));
-	}
 }
