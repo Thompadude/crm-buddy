@@ -2,6 +2,6 @@ package printers;
 
 public interface PrintManage {
 
-    public void printInfo();
+    public <T>void printContactInfo(T t);
 
 }

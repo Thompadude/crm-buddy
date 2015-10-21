@@ -42,5 +42,9 @@ public class Company {
     public ArrayList<Associate> getBusinessAssociates() {
         return businessAssociates;
     }
+    
+    public void addEmployee(Associate associate) {
+    	employees.add(associate);
+    }
 
 }
