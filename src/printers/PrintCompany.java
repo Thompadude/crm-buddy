@@ -11,5 +11,7 @@ public class PrintCompany {
     public void printContactInfo(Company company) {
         System.out.println("Company Contact Info: ");
     }
+    
+    // Joel älskar att pulla....
 
 }
