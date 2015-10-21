@@ -20,20 +20,23 @@ public class Meeting {
         this.endDate = endDate;
     }
 
-    public void setJournal(Journal journal, ArrayList<String> protocol) {
-        Journal tempJournal = new Journal(this.topic, protocol);
-        this.journal = tempJournal;
-    }
-
     public Journal getJournal() {
         return journal;
     }
 
-    public ArrayList<Associate> getParticipants() {
+    public void setJournal(Journal journal) {
+		this.journal = journal;
+	}
+
+	public ArrayList<Associate> getParticipants() {
         return participants;
     }
 
-    public String getTopic() {
+    public void setParticipants(ArrayList<Associate> participants) {
+		this.participants = participants;
+	}
+
+	public String getTopic() {
         return topic;
     }
 
@@ -44,9 +47,4 @@ public class Meeting {
     public LocalDate getEndDate() {
         return this.endDate;
     }
-
-    public void addParticipants(Associate participant) {
-        participants.add(participant);
-    }
-
 }

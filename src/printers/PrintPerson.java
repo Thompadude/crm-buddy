@@ -14,7 +14,7 @@ public class PrintPerson implements PrintManage {
 
 	//for future sub-classes, input else if instanceof
 	@Override
-	public <T> void printContactInfo(T t) {
+	public <T> void printInfo(T t) {
 		if(t instanceof Associate) {
 			System.out.println(((Associate) t).getName() + " Contact Info: ");
 			System.out.println("Email: " + ((Associate) t).getContactInfo().getEmail());

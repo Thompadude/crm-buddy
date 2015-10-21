@@ -1,35 +1,26 @@
 package printers;
 
-import companies.Company;
+import companies.MyCompany;
 import persons.Associate;
 
 public class PrintCompany implements PrintManage {
 
-	public void printName(Company company) {
+	public void printName(MyCompany company) {
 		System.out.println("Company Name: " + company.getName());
 	}
-
-	// public void printContactInfo(Company company) {
-	// System.out.println("Company Contact Info: ");
-	// System.out.println("Email: " + company.getContactInfo().getEmail());
-	// System.out.println("Phone Number: " +
-	// company.getContactInfo().getPhoneNumber());
-	// System.out.println("Address: " + company.getContactInfo().getAddress());
-	// }
-
-	public void printEmployees(Company company) {
+	public void printEmployees(MyCompany company) {
 		for (Associate employee : company.getEmployees()) {
 			System.out.println("Birthday: " + employee.getBirthday() + ", Name: " + employee.getName());
 		}
 	}
 
 	@Override
-	public <T> void printContactInfo(T t) {
-		if (t instanceof Company) {
-			System.out.println(((Company) t).getName() + " Contact Info: ");
-			System.out.println("Email: " + ((Company) t).getContactInfo().getEmail());
-			System.out.println("Phone Number: " + ((Company) t).getContactInfo().getPhoneNumber());
-			System.out.println("Address: " + ((Company) t).getContactInfo().getAddress());
+	public <T> void printInfo(T t) {
+		if (t instanceof MyCompany) {
+			System.out.println(((MyCompany) t).getName() + " Contact Info: ");
+			System.out.println("Email: " + ((MyCompany) t).getContactInfo().getEmail());
+			System.out.println("Phone Number: " + ((MyCompany) t).getContactInfo().getPhoneNumber());
+			System.out.println("Address: " + ((MyCompany) t).getContactInfo().getAddress());
 		}
 	}
 
