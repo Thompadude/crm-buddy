@@ -1,9 +1,10 @@
 package companies;
 
 import persons.Associate;
-import persons.ContactInfo;
 
 import java.util.ArrayList;
+
+import contactInfo.ContactInfo;
 
 public class MyCompany extends Company {
 

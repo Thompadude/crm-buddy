@@ -1,6 +1,7 @@
 package persons;
 
 import companies.MyCompany;
+import contactInfo.ContactInfo;
 import companies.Meeting;
 
 import java.time.LocalDate;
@@ -15,9 +16,9 @@ public class Associate extends Person {
     //  För att kunna lista vilka möten en person har varit på samt för att undvika dubbelbokning.
     private ArrayList<Meeting> meetings;
 
-    public Associate(int id, String name, LocalDate birthday, MyCompany company,
+    public Associate(int id, String name, LocalDate birthDate, MyCompany company,
                      String position, ContactInfo contactInfo) {
-        super(id, name, birthday);
+        super(id, name, birthDate);
         this.company = company;
         this.position = position;
         this.contactInfo = contactInfo;

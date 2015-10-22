@@ -1,6 +1,5 @@
-package persons;
+package contactInfo;
 
-// TODO Denna klass ska ej ligga i personspaketet
 
 public class ContactInfo {
 

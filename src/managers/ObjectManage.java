@@ -8,6 +8,7 @@ public class ObjectManage {
     CompanyManage companyManage = new CompanyManage();
     MeetingManage meetingManage = new MeetingManage();
     PersonManage personManage = new PersonManage();
+    ContactInfoManage contactInfoManage = new ContactInfoManage();
 
     public CompanyManage getCompanyManage() {
         return companyManage;
@@ -19,6 +20,10 @@ public class ObjectManage {
 
     public PersonManage getPersonManage() {
         return personManage;
+    }
+    
+    public ContactInfoManage getContactInfoManage() {
+    	return contactInfoManage;
     }
 
 }

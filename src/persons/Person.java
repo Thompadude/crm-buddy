@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Person {
 
-    LocalDate birthday;
+    LocalDate birthDate;
     // TODO Vi måste fixa ID-påplusning! Eventuellt i en factory!
     private int id;
     private String name;
@@ -15,7 +15,7 @@ public class Person {
         this.name = name;
         // this.birthday = birthday;
         // TODO fixa Birthday(inte hard-coded)
-        this.birthday = LocalDate.of(1983, 12, 11);
+        this.birthDate = LocalDate.of(1983, 12, 11);
     }
 
     public String getName() {
@@ -24,7 +24,7 @@ public class Person {
 
     public LocalDate getBirthday() {
         // Eventuellt override toString efter önskad formatering.
-        return birthday;
+        return birthDate;
     }
 
 }

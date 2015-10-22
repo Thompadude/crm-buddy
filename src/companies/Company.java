@@ -1,6 +1,6 @@
 package companies;
 
-import persons.ContactInfo;
+import contactInfo.ContactInfo;
 
 public class Company {
 
