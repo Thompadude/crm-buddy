@@ -3,7 +3,7 @@ package printers;
 import companies.MyCompany;
 import persons.Associate;
 
-public class PrintCompany implements PrintManage {
+public class PrintCompany implements Printable {
 
 	public void printName(MyCompany company) {
 		System.out.println("Company Name: " + company.getName());

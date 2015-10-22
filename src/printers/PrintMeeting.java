@@ -1,11 +1,8 @@
 package printers;
 
-import java.util.ArrayList;
-
 import companies.Meeting;
-import persons.Associate;
 
-public class PrintMeeting implements PrintManage {
+public class PrintMeeting implements Printable {
 
 	@Override
 	public <T> void printInfo(T t) {

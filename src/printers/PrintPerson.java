@@ -2,7 +2,7 @@ package printers;
 
 import persons.*;
 
-public class PrintPerson implements PrintManage {
+public class PrintPerson implements Printable {
 
 	public <T extends Person> void printName(T person) {
 		System.out.println("Name: " + person.getName());
