@@ -1,28 +1,39 @@
 package printers;
 
-import persons.*;
+import persons.Associate;
+import persons.Person;
+
+import java.util.ArrayList;
 
 public class PrintPerson implements Printable {
 
-	public <T extends Person> void printName(T person) {
-		System.out.println("Name: " + person.getName());
-	}
+    public <T extends Person> void printName(T person) {
+        System.out.println("Name: " + person.getName());
+    }
 
-	public <T extends Person> void printBirthday(T person) {
-		System.out.println("Birthday: " + person.getBirthday());
-	}
+    public <T extends Person> void printBirthday(T person) {
+        System.out.println("Birthday: " + person.getBirthday());
+    }
 
-	//for future sub-classes, input else if instanceof
-	@Override
-	public <T> void printInfo(T t) {
-		if(t instanceof Associate) {
-			System.out.println(((Associate) t).getName() + " Contact Info: ");
-			System.out.println("Email: " + ((Associate) t).getContactInfo().getEmail());
-			System.out.println("Phone Number: " + ((Associate) t).getContactInfo().getPhoneNumber());
-			System.out.println("Address: " + ((Associate) t).getContactInfo().getAddress());
-		}
-	}
+    //for future sub-classes, input else if instanceof
+    @Override
+    public <T> void printInfo(T t) {
+        if (t instanceof Associate) {
+            System.out.println(((Associate) t).getName() + " Contact Info: ");
+            System.out.println("Email: " + ((Associate) t).getContactInfo().getEmail());
+            System.out.println("Phone Number: " + ((Associate) t).getContactInfo().getPhoneNumber());
+            System.out.println("Address: " + ((Associate) t).getContactInfo().getAddress());
+        }
+    }
 
-	// TODO fixa print för family.
+    public void printPersonList(ArrayList<Associate> associates) {
+        int lister = 0;
+        for (Associate person : associates) {
+            System.out.println((lister+1) + "[ " + person.getCompany().getName() + " ]\t" + person.getName());
+            lister++;
+        }
+    }
+
+    // TODO fixa print för family.
 
 }

@@ -1,5 +1,6 @@
 package persons;
 
+import companies.Company;
 import companies.MyCompany;
 import contactInfo.ContactInfo;
 import companies.Meeting;
@@ -10,13 +11,13 @@ import java.util.ArrayList;
 public class Associate extends Person {
 
     private ContactInfo contactInfo;
-    private MyCompany company;
+    private Company company;
     private String position;
     private ArrayList<String> tags;
     //  För att kunna lista vilka möten en person har varit på samt för att undvika dubbelbokning.
     private ArrayList<Meeting> meetings;
 
-    public Associate(int id, String name, LocalDate birthDate, MyCompany company,
+    public Associate(int id, String name, LocalDate birthDate, Company company,
                      String position, ContactInfo contactInfo) {
         super(id, name, birthDate);
         this.company = company;
@@ -28,7 +29,7 @@ public class Associate extends Person {
         return contactInfo;
     }
 
-    public MyCompany getCompany() {
+    public Company getCompany() {
         return company;
     }
 
