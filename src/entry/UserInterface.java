@@ -1,8 +1,8 @@
 package entry;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.ConsoleHandler;
 
 import companies.*;
 import managers.ObjectManage;
@@ -11,6 +11,7 @@ import menysystem.*;
 import persons.Associate;
 
 public class UserInterface {
+
 	Scanner stringScanner = new Scanner(System.in);
 	Scanner intScanner = new Scanner(System.in);
 	ObjectManage objectManage = new ObjectManage();

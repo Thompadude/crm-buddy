@@ -14,7 +14,7 @@ public class PersonManage {
         int id = 0;
         System.out.print("Enter name: ");
         String name = stringScanner.nextLine();
-        LocalDate birthDate = setBirthDate(intScanner);
+        LocalDate birthDate = setBirthDate();
         Company tempCompany = new Company(myCompany.getName(), myCompany.getContactInfo());
         System.out.print("Please enter position: ");
         String position = stringScanner.nextLine();
@@ -26,7 +26,7 @@ public class PersonManage {
         int id = 0;
         System.out.print("Enter name: ");
         String name = stringScanner.nextLine();
-        LocalDate birthDate = setBirthDate(intScanner);
+        LocalDate birthDate = setBirthDate();
         Company company = objManage.companyManage.createCompany(objManage, stringScanner);
         System.out.print("Please enter position: ");
         String position = stringScanner.nextLine();
@@ -34,15 +34,52 @@ public class PersonManage {
         return new Associate(id, name, birthDate, company, position, contactInfo);
     }
 
-
-
-    public LocalDate setBirthDate(Scanner intScanner) {
-        System.out.print("Enter birthyear(YYYY): ");
-        int year = intScanner.nextInt();
-        System.out.print("Enter month(MM): ");
-        int month = intScanner.nextInt();
-        System.out.print("Enter day(DD): ");
-        int day = intScanner.nextInt();
+    public LocalDate setBirthDate() {
+        Scanner intScanner;
+        int year, month, day;
+        String wrongInput = "Wrong input. Please use correct format: ";
+        System.out.print("Enter birth year (YYYY): ");
+        while (true) {
+            try {
+                intScanner = new Scanner(System.in);
+                year = intScanner.nextInt();
+                while (year < 1000 || year > 9999) {
+                    System.out.print(wrongInput);
+                    year = intScanner.nextInt();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.print(wrongInput);
+            }
+        }
+        System.out.print("Enter birth month (MM): ");
+        while (true) {
+            try {
+                intScanner = new Scanner(System.in);
+                month = intScanner.nextInt();
+                while (month < 1 || month > 12) {
+                    System.out.print(wrongInput);
+                    month = intScanner.nextInt();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.print(wrongInput);
+            }
+        }
+        System.out.print("Enter birth day (DD): ");
+        while (true) {
+            try {
+                intScanner = new Scanner(System.in);
+                day = intScanner.nextInt();
+                while (day < 1 || day > 31) {
+                    System.out.print(wrongInput);
+                    day = intScanner.nextInt();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.print(wrongInput);
+            }
+        }
         return LocalDate.of(year, month, day);
     }
 
