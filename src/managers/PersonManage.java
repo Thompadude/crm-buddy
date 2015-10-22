@@ -1,6 +1,7 @@
 package managers;
 
 import companies.Company;
+import companies.MyCompany;
 import contactInfo.ContactInfo;
 import persons.Associate;
 
@@ -9,7 +10,19 @@ import java.util.Scanner;
 
 public class PersonManage {
 
-    public Associate createAssociate(ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
+    public Associate createEmployee(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
+        int id = 0;
+        System.out.print("Enter name: ");
+        String name = stringScanner.nextLine();
+        LocalDate birthDate = setBirthDate(intScanner);
+        Company tempCompany = new Company(myCompany.getName(), myCompany.getContactInfo());
+        System.out.print("Please enter position: ");
+        String position = stringScanner.nextLine();
+        ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
+        return new Associate(id, name, birthDate, tempCompany, position, contactInfo);
+    }
+
+    public Associate createBusinessAssociate(ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         int id = 0;
         System.out.print("Enter name: ");
         String name = stringScanner.nextLine();
@@ -20,6 +33,8 @@ public class PersonManage {
         ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
         return new Associate(id, name, birthDate, company, position, contactInfo);
     }
+
+
 
     public LocalDate setBirthDate(Scanner intScanner) {
         System.out.print("Enter birthyear(YYYY): ");

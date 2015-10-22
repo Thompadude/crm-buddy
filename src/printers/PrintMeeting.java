@@ -26,7 +26,7 @@ public class PrintMeeting implements Printable {
 			System.out.println("Participants: ");
 			printParticipants(((Meeting)t));
 			
-			System.out.println("Protokoll :");
+			System.out.println("Protocol :");
 			printProtocol(((Meeting)t));
 			
 		}

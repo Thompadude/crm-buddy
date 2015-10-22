@@ -1,7 +1,6 @@
 package entry;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import companies.Company;
@@ -9,7 +8,6 @@ import companies.Meeting;
 import companies.MyCompany;
 import contactInfo.ContactInfo;
 import managers.ObjectManage;
-import managers.PersonManage;
 import managers.PrintManage;
 import persons.Associate;
 
@@ -38,23 +36,12 @@ public class UserInterface {
 			String input = stringScanner.nextLine();
 			switch (input) {
 			case "1":
-				// Associate tempEmployee =
-				// objectManage.getPersonManage().createAssociate(objectManage,
-				// stringScanner, intScanner);
-				Company tempcomp = new Company(null, null);
-				ContactInfo tempcont = new ContactInfo(null, null, null);
-				Associate test = new Associate(8, "test a", LocalDate.of(1931, 2, 23), tempcomp, "chef", tempcont);
-				myCompany.addEmployee(test);
-				myCompany.addEmployee(test);
+				Associate tempEmployee = objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner, intScanner);
+				myCompany.addEmployee(tempEmployee);
 				break;
 			case "2":
-				// Associate tempBusinessAssociate =
-				// objectManage.getPersonManage().createAssociate(objectManage,
-				// stringScanner, intScanner);
-				Company temp2comp = new Company(null, null);
-				ContactInfo temp2cont = new ContactInfo(null, null, null);
-				Associate test2 = new Associate(8, "test a", LocalDate.of(1931, 2, 23), temp2comp, "chef", temp2cont);
-				myCompany.addBusinessAssociate(test2);
+				Associate tempBusinessAssociate = objectManage.getPersonManage().createBusinessAssociate(objectManage, stringScanner, intScanner);
+				myCompany.addBusinessAssociate(tempBusinessAssociate);
 				break;
 			case "3":
 				Meeting tempMeeting = objectManage.getMeetingManage().createMeeting(myCompany, objectManage,
