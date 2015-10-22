@@ -1,8 +1,18 @@
 package printers;
 
+import java.util.ArrayList;
+
 import companies.Meeting;
 
 public class PrintMeeting implements Printable {
+	
+	public void printMeetingList(ArrayList<Meeting> meetings) {
+		System.out.println("Date\tTopic");
+		for(Meeting meeting : meetings) {
+			System.out.println(meeting.getStartDate() + " - " + meeting.getEndDate() +
+								"   " + meeting.getTopic());
+		}
+	}
 
 	@Override
 	public <T> void printInfo(T t) {

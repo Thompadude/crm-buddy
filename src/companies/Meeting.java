@@ -2,7 +2,7 @@ package companies;
 
 import persons.Associate;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Meeting {
@@ -10,10 +10,10 @@ public class Meeting {
     private Journal journal;
     private ArrayList<Associate> participants;
     private String topic;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
-    public Meeting(String topic, ArrayList<Associate> participants, LocalDate startDate, LocalDate endDate) {
+    public Meeting(String topic, ArrayList<Associate> participants, LocalDateTime startDate, LocalDateTime endDate) {
         this.topic = topic;
         this.participants = participants;
         this.startDate = startDate;
@@ -40,11 +40,11 @@ public class Meeting {
         return topic;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return this.startDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return this.endDate;
     }
 }

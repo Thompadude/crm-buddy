@@ -25,6 +25,10 @@ public class MyCompany extends Company {
 		return meetings;
 	}
 
+	public void createMeetings() {
+		this.meetings = new ArrayList<Meeting>();
+	}
+
 	public ArrayList<Associate> getEmployees() {
 		return employees;
 	}

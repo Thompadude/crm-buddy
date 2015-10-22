@@ -6,6 +6,7 @@ import contactInfo.ContactInfo;
 import companies.Meeting;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Associate extends Person {
@@ -51,7 +52,7 @@ public class Associate extends Person {
         return meetings;
     }
 
-    public boolean isAvailableForMeeting(LocalDate preferedStartDate) {
+    public boolean isAvailableForMeeting(LocalDateTime preferedStartDate) {
         // TODO kod här för att kolla om personen är ledig eller inte (Kolla sin egna arraylist av meetings)
         for (Meeting meeting : meetings) {
             if (preferedStartDate.isBefore(meeting.getEndDate()) && preferedStartDate.isAfter(meeting.getStartDate())) {
