@@ -15,7 +15,7 @@ public class Program {
     public void runProgram(MyCompany myCompany) {
 
         UserInterface userInterface = new UserInterface();
-        userInterface.menuChoice(myCompany);
+        userInterface.mainMenu(myCompany);
 
     }
 
