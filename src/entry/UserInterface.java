@@ -21,11 +21,18 @@ public class UserInterface {
 	Menu subMenuAssociate = new ConsoleMenu();
 	Menu subMenuMeeting = new ConsoleMenu();
 	ArrayList<String> menuAlternatives;
-	
-	
-	
+
+	private void welcomeText() {
+		System.out.println("\n\t*************************************************\t\t\n\t*"
+				+ "\t\t\t\t\t\t\t\t\t\t\t\t*\n\t*\t\t\tWELCOME to CRM Buddy 2.0\t\t\t*"
+				+ "\n\t*\t\t\t\t\t\t\t\t\t\t\t\t*\n\t************************************************"
+				+ "*\n\n\t\t\tPress ENTER to continue...");
+		stringScanner.nextLine();
+	}
+
 	public void mainMenu(MyCompany myCompany) {
-		menu.setMenuTitle("Welcome to CRM");
+		welcomeText();
+		menu.setMenuTitle("Main Menu");
 
 		menuAlternatives = new ArrayList<String>();
 		menuAlternatives.add("Create employee");
@@ -36,14 +43,14 @@ public class UserInterface {
 		menuAlternatives.add("Edit/view meeting");
 
 		int input = 0;
-				
+
 		do {
 			menu.printMenu(menuAlternatives);
 			input = menu.getInput(intScanner);
 			mainSwitch(input, myCompany);
 		} while (input != menuAlternatives.size() + 1);
 	}
-	
+
 	public void subMenuEmployee(MyCompany myCompany) {
 		menu.setMenuTitle("Edit and View Employee");
 
@@ -57,7 +64,7 @@ public class UserInterface {
 		menuAlternatives.add("Back to main menu");
 
 		int input = 0;
-		
+
 		do {
 			menu.printMenu(menuAlternatives);
 			input = menu.getInput(intScanner);
@@ -65,7 +72,7 @@ public class UserInterface {
 			} while (input != menuAlternatives.size() + 1);
 
 	}
-	
+
 	public void subMenuBusinessAssociate(MyCompany myCompany) {
 		menu.setMenuTitle("Edit and View Business associate");
 
@@ -79,7 +86,7 @@ public class UserInterface {
 		menuAlternatives.add("Back to main menu");
 
 		int input = 0;
-		
+
 		do {
 			menu.printMenu(menuAlternatives);
 			input = menu.getInput(intScanner);
@@ -87,7 +94,7 @@ public class UserInterface {
 			} while (input != menuAlternatives.size() + 1);
 
 	}
-	
+
 	public void subMenuMeeting(MyCompany myCompany) {
 		menu.setMenuTitle("Edit and View Meeting");
 
@@ -101,7 +108,7 @@ public class UserInterface {
 		menuAlternatives.add("Back to main menu");
 
 		int input = 0;
-		
+
 		do {
 			menu.printMenu(menuAlternatives);
 			input = menu.getInput(intScanner);
@@ -109,7 +116,7 @@ public class UserInterface {
 			} while (input != menuAlternatives.size() + 1);
 
 	}
-	
+
 	public void mainSwitch(int input, MyCompany myCompany) {
 		switch (input) {
 		case 1:
@@ -138,7 +145,7 @@ public class UserInterface {
 			break;
 		}
 	}
-	
+
 	public void subMenuEmployeeSwitch(int input, MyCompany myCompany) {
 		switch (input) {
 		case 1:
@@ -167,7 +174,7 @@ public class UserInterface {
 			break;
 		}
 	}
-	
+
 	public void subMenuBusinessSwitch(int input, MyCompany myCompany) {
 		switch (input) {
 		case 1:
@@ -196,7 +203,7 @@ public class UserInterface {
 			break;
 		}
 	}
-	
+
 	public void subMenuMeetingSwitch(int input, MyCompany myCompany) {
 		switch (input) {
 		case 1:
@@ -257,7 +264,7 @@ public class UserInterface {
 	}
 
 	public void editAndViewBusinessAssociation(int input, MyCompany myCompany) {
-		
+
 		if (myCompany.getBusinessAssociates() == null) {
 			System.out.println("You dont have any business associets yet");
 			System.out.println("Press any key to continue...");
