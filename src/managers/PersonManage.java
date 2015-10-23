@@ -5,6 +5,7 @@ import companies.MyCompany;
 import contactInfo.ContactInfo;
 import persons.Associate;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -35,6 +36,7 @@ public class PersonManage {
     }
 
     public LocalDate setBirthDate() {
+        LocalDate localDate = null;
         Scanner intScanner;
         int year, month, day;
         String wrongInput = "Wrong input. Please use correct format: ";
@@ -66,21 +68,29 @@ public class PersonManage {
                 System.out.print(wrongInput);
             }
         }
-        System.out.print("Enter birth day (DD): ");
         while (true) {
-            try {
-                intScanner = new Scanner(System.in);
-                day = intScanner.nextInt();
-                while (day < 1 || day > 31) {
-                    System.out.print(wrongInput);
+            while (true) {
+                try {
+                    System.out.print("Enter birth day (DD): ");
+                    intScanner = new Scanner(System.in);
                     day = intScanner.nextInt();
+                    while (day < 1 || day > 31) {
+                        System.out.print(wrongInput);
+                        day = intScanner.nextInt();
+                    }
+                    break;
+                } catch (Exception e) {
+                    System.out.print(wrongInput);
                 }
+            }
+            try {
+                localDate = LocalDate.of(year, month, day);
                 break;
-            } catch (Exception e) {
-                System.out.print(wrongInput);
+            } catch (DateTimeException e) {
+                System.out.println(e);
             }
         }
-        return LocalDate.of(year, month, day);
+        return localDate;
     }
 
 }
