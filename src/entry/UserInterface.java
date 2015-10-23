@@ -1,6 +1,5 @@
 package entry;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,6 +8,7 @@ import managers.ObjectManage;
 import managers.PrintManage;
 import menysystem.*;
 import persons.Associate;
+import printers.PrintPerson;
 
 public class UserInterface {
 
@@ -38,9 +38,9 @@ public class UserInterface {
 		menuAlternatives.add("Create employee");
 		menuAlternatives.add("Create business contact");
 		menuAlternatives.add("Create meeting");
-		menuAlternatives.add("Edit/view employee");
-		menuAlternatives.add("Edit/view business contact");
-		menuAlternatives.add("Edit/view meeting");
+		menuAlternatives.add("Manage employee");
+		menuAlternatives.add("Manage business contact");
+		menuAlternatives.add("Manage meeting");
 
 		int input = 0;
 
@@ -51,31 +51,41 @@ public class UserInterface {
 		} while (input != menuAlternatives.size() + 1);
 	}
 
-	public void subMenuEmployee(MyCompany myCompany) {
+	public void subMenuEmployee(int choice, MyCompany myCompany) {
+		Associate currentPerson = myCompany.getEmployees().get(choice);
+		
 		menu.setMenuTitle("Edit and View Employee");
-
+		printManage.getPrintPerson().printInfo(currentPerson);
 		menuAlternatives = new ArrayList<String>();
-		menuAlternatives.add("1");
-		menuAlternatives.add("2");
-		menuAlternatives.add("3");
-		menuAlternatives.add("4");
-		menuAlternatives.add("5");
-		menuAlternatives.add("6");
+		menuAlternatives.add("Edit name");
+		menuAlternatives.add("Edit birthdate");
+		menuAlternatives.add("Edit address");
+		menuAlternatives.add("Edit e-mail");
+		menuAlternatives.add("Edit phonenumber");
+		menuAlternatives.add("Edit familymembers");
+		menuAlternatives.add("Edit position");
 		menuAlternatives.add("Back to main menu");
 
 		int input = 0;
 
 		do {
-			menu.printMenu(menuAlternatives);
-			input = menu.getInput(intScanner);
-			subMenuEmployeeSwitch(input, myCompany);
-			} while (input != menuAlternatives.size() + 1);
+			if (myCompany.getEmployees() == null) {
+				System.out.println("You dont have any employees yet");
+				System.out.println("Press any key to continue...");
+				stringScanner.nextLine();
+			} else {
+				menu.printMenu(menuAlternatives);
+				input = menu.getInput(intScanner);
+				subMenuEmployeeSwitch(input, myCompany, currentPerson);
+			}
+		} while (input != menuAlternatives.size() + 1);
 
 	}
 
-	public void subMenuBusinessAssociate(MyCompany myCompany) {
+	public void subMenuBusinessAssociate(int choice, MyCompany myCompany) {
+		Associate currentPerson = myCompany.getEmployees().get(choice);
+		
 		menu.setMenuTitle("Edit and View Business associate");
-
 		menuAlternatives = new ArrayList<String>();
 		menuAlternatives.add("bizznizz");
 		menuAlternatives.add("bizznizz");
@@ -90,8 +100,8 @@ public class UserInterface {
 		do {
 			menu.printMenu(menuAlternatives);
 			input = menu.getInput(intScanner);
-			subMenuEmployeeSwitch(input, myCompany);
-			} while (input != menuAlternatives.size() + 1);
+			subMenuBusinessSwitch(input, myCompany);
+		} while (input != menuAlternatives.size() + 1);
 
 	}
 
@@ -113,7 +123,7 @@ public class UserInterface {
 			menu.printMenu(menuAlternatives);
 			input = menu.getInput(intScanner);
 			subMenuMeetingSwitch(input, myCompany);
-			} while (input != menuAlternatives.size() + 1);
+		} while (input != menuAlternatives.size() + 1);
 
 	}
 
@@ -129,13 +139,25 @@ public class UserInterface {
 			createMeeting(myCompany);
 			break;
 		case 4:
+			if(removeOrView(input) == 1) {
+				removeEmployee(myCompany);
+			} else {
 			editAndViewEmployee(input, myCompany);
+			}
 			break;
 		case 5:
+			if(removeOrView(input) == 1) {
+				removeBusinessAssociate(myCompany);
+			} else {
 			editAndViewBusinessAssociation(input, myCompany);
+			}
 			break;
 		case 6:
+			if(removeOrView(input) == 1) {
+				removeEmployee(myCompany);
+			} else {
 			editAndViewMeeting(myCompany);
+			}
 			break;
 		case 7:
 			System.out.println("Saving and logging off");
@@ -146,27 +168,37 @@ public class UserInterface {
 		}
 	}
 
-	public void subMenuEmployeeSwitch(int input, MyCompany myCompany) {
+	public void subMenuEmployeeSwitch(int input, MyCompany myCompany, Associate currentPerson) {
 		switch (input) {
 		case 1:
-			System.out.println("testar case 1");
+			System.out.println("Edit name");
+			//currentPerson.setName();
 			break;
 		case 2:
-			System.out.println("testar case 2");
+			System.out.println("Edit birthdate");
+			//currentPerson.setBirthDate();
 			break;
 		case 3:
-			System.out.println("testar case 3");
+			System.out.println("Edit address");
+			//currentPerson.setAdress();
 			break;
 		case 4:
-			System.out.println("testar case 4");
+			System.out.println("Edit e-mail");
+			//currentPerson.setEmail();
 			break;
 		case 5:
-			System.out.println("testar case 5");
+			System.out.println("Edit phone number");
+			//currentPerson.setPhonenumber();
 			break;
 		case 6:
-			System.out.println("testar case 6");
+			System.out.println("Edit familymembers");
+			//currentPerson.setFamilymembers();
 			break;
 		case 7:
+			System.out.println("Edit position");
+			//currentPerson.setPosition();
+			break;
+		case 8:
 			mainMenu(myCompany);
 			break;
 		default:
@@ -233,8 +265,6 @@ public class UserInterface {
 		}
 	}
 
-
-
 	public void createEmployee(MyCompany myCompany) {
 		Associate tempEmployee = objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner,
 				intScanner);
@@ -257,26 +287,71 @@ public class UserInterface {
 		myCompany.getMeetings().add(tempMeeting);
 	}
 
-	public void editAndViewEmployee(int input, MyCompany myCompany) {
-		subMenuEmployee(myCompany);
+	public void editAndViewEmployee(int choice, MyCompany myCompany) {
+		if (myCompany.getEmployees() == null) {
+			System.out.println("You dont have any employees yet");
+			System.out.println("Press any key to continue...");
+			stringScanner.nextLine();
+		} else {
 		printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
-		// TODO magic
+		System.out.print("Please choose employee: ");
+		choice = intScanner.nextInt()-1;
+		subMenuEmployee(choice, myCompany);
+		}
 	}
 
-	public void editAndViewBusinessAssociation(int input, MyCompany myCompany) {
+	public void editAndViewBusinessAssociation(int choice, MyCompany myCompany) {
 
 		if (myCompany.getBusinessAssociates() == null) {
 			System.out.println("You dont have any business associets yet");
 			System.out.println("Press any key to continue...");
 			stringScanner.nextLine();
 		} else {
-		printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
+			printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
+			System.out.print("Please choose business associate: ");
+			choice = intScanner.nextInt()-1;
+			subMenuBusinessAssociate(choice, myCompany);
 		}
 		// TODO magic
 	}
 
 	public void editAndViewMeeting(MyCompany myCompany) {
-		// subMenuMeeting();
+		if (myCompany.getMeetings() == null) {
+			System.out.println("You dont have any meetings yet");
+			System.out.println("Press any key to continue...");
+			stringScanner.nextLine();
+		} else {
 		printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
+		}
 	}
+	
+	public void removeEmployee(MyCompany myCompany) {
+		if (myCompany.getEmployees() == null) {
+			System.out.println("You dont have any employees yet");
+			System.out.println("Press any key to continue...");
+			stringScanner.nextLine();
+		} else {
+		System.out.println("Employee removed");
+		}
+	}
+	
+	public void removeBusinessAssociate(MyCompany myCompany) {
+		if (myCompany.getBusinessAssociates() == null) {
+			System.out.println("You dont have any business associates yet");
+			System.out.println("Press any key to continue...");
+			stringScanner.nextLine();
+		} else {
+		System.out.println("Business associate removed");
+		}
+	}
+	
+	public int removeOrView(int input) {
+		System.out.println("1. Remove");
+		System.out.println("2. Edit and View");
+		System.out.print("Choose option: ");
+		input = intScanner.nextInt();
+		return input;
+	}
+	
+	
 }
