@@ -2,18 +2,17 @@ package entry;
 
 import companies.MyCompany;
 import contactInfo.ContactInfo;
-import managers.ObjectManage;
+
 import java.util.Scanner;
 
 /**
- * Associate objects are stored in the company object.
- * Using the object manage to reach all manage options.
+ * Out customer "MyCompany" is hard coded depending on who want to use the program.
+ * All other objects are stored in the MyCompany object.
  */
 public class Program {
     // TODO Skapa factory ist�llet (interface)
 
-    Scanner reader = new Scanner (System.in);
-    ObjectManage objectManage = new ObjectManage();
+    Scanner reader = new Scanner(System.in);
     String companyName = "Apple Computers Inc.";
     String email = "apple@apple.com";
     String streetAddress = "Pear Street";

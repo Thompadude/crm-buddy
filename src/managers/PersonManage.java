@@ -33,33 +33,36 @@ public class PersonManage {
         System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
-
-        // Här håller Thompa på att greja. Funkar inte bra, än.
-
-        Company company = null;
-        System.out.println("Do you want to add " + name + " to a existing company or create a new one?");
-        System.out.println("1. Existing");
+        System.out.println("\nDo you want to add " + name + " to a existing company or create a new one?");
+        System.out.println("\n1. Existing");
         System.out.println("2. Create New");
+        System.out.print("\nChoose an option: ");
         ConsoleMenu consoleMenu = new ConsoleMenu();
         int input = consoleMenu.catchInputMismatchException(intScanner);
+        Company company;
         if (input == 1) {
             PrintManage printManage = new PrintManage();
             printManage.getPrintCompany().printListOfAllCompanies(myCompany);
-            System.out.print("Choose company ID: ");
-            input = consoleMenu.catchInputMismatchException(intScanner);
-            company = myCompany.getBusinessAssociates().get(input).getCompany();
+            System.out.print("\nChoose company ID: ");
+            while (true) {
+                input = consoleMenu.catchInputMismatchException(intScanner) - 1;
+                if (input >= myCompany.getAssociatedCompanies().size()) {
+                    System.out.print("Wrong input. Try again: ");
+                } else {
+                    company = myCompany.getAssociatedCompanies().get(input);
+                    break;
+                }
+            }
         } else {
             company = objManage.companyManage.createCompany(myCompany, objManage, stringScanner, name);
+            myCompany.addAssociatedCompany(company);
         }
         System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
         return new Associate(id, name, birthDate, company, position, contactInfo);
-
-
-
     }
 
     public LocalDate setBirthDate() {
-        LocalDate localDate = null;
+        LocalDate localDate;
         Scanner intScanner;
         int year, month, day;
         String wrongInput = "Wrong input. Please use correct format: ";

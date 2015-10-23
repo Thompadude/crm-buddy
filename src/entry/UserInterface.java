@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import companies.*;
+import contactInfo.ContactInfo;
 import managers.ObjectManage;
 import managers.PrintManage;
 import menysystem.*;
@@ -124,6 +125,22 @@ public class UserInterface {
 	}
 
 	public void mainSwitch(int input, MyCompany myCompany) {
+
+		// todo FOR TESTING PURPOSES. DELETE THESE!
+		myCompany.addEmployee(new Associate(0, "Kalle Kula", LocalDate.now(), myCompany, "Boss", new ContactInfo("boss@boss.com", "Boss Street", "Boss123")));
+		myCompany.addEmployee(new Associate(0, "Johan Falk", LocalDate.now(), myCompany, "Hemlig Polis", new ContactInfo("joahn@falk.com", "Göteborg", "911")));
+		myCompany.addEmployee(new Associate(0, "Snygg-Lisa", LocalDate.now(), myCompany, "Fluffer", new ContactInfo("xxx@com.com", "Bajsgatan", "112")));
+
+		Company telia = new Company("Telia", new ContactInfo("telia@telia.com", "Teliagatan", "031-123456789"));
+		Company volvo = new Company("Volvo", new ContactInfo("volvo@volvo.com", "Volvogatan", "031-321654987"));
+		myCompany.addAssociatedCompany(telia);
+		myCompany.addAssociatedCompany(volvo);
+
+		myCompany.addBusinessAssociate(new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123")));
+		myCompany.addBusinessAssociate(new Associate(0, "Räven", LocalDate.now(), telia, "Hund", new ContactInfo("hund@räv.com", "Skogen", "Saknar telefonnummer")));
+		myCompany.addBusinessAssociate(new Associate(0, "Bös-Gubenn", LocalDate.now(), volvo, "Bösare", new ContactInfo("bös@bös.bös", "Bösgatan", "Nej")));
+		// todo END TESTING. DELETE THESE!
+
 		switch (input) {
 		case 1:
 			Associate tempEmployee = objectManage.getPersonManage().createEmployee(myCompany, objectManage,
