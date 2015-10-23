@@ -27,4 +27,21 @@ public class Person {
         return birthDate;
     }
 
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setFamily(FamilyMembers family) {
+		this.family = family;
+	}
+   
+
 }

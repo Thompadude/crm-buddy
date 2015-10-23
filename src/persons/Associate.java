@@ -47,6 +47,10 @@ public class Associate extends Person {
             this.tags.add(tag);
         }
     }
+    
+    public void setPosition(String position){
+    	this.position = position;
+    }
 
     public ArrayList<Meeting> getMeetings() {
         return meetings;

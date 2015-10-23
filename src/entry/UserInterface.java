@@ -1,5 +1,6 @@
 package entry;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -171,32 +172,39 @@ public class UserInterface {
 	public void subMenuEmployeeSwitch(int input, MyCompany myCompany, Associate currentPerson) {
 		switch (input) {
 		case 1:
-			System.out.println("Edit name");
-			//currentPerson.setName();
+			System.out.print("Set new name: ");
+			String name = stringScanner.nextLine();
+			currentPerson.setName(name);
 			break;
 		case 2:
-			System.out.println("Edit birthdate");
-			//currentPerson.setBirthDate();
+			LocalDate birthDate = objectManage.getPersonManage().setBirthDate();
+			currentPerson.setBirthDate(birthDate);
 			break;
 		case 3:
-			System.out.println("Edit address");
-			//currentPerson.setAdress();
+			System.out.print("Set new address: ");
+			String address = stringScanner.nextLine();
+			currentPerson.getContactInfo().setAddress(address);
 			break;
 		case 4:
-			System.out.println("Edit e-mail");
-			//currentPerson.setEmail();
+			System.out.print("Set new email: ");
+			String email = stringScanner.nextLine();
+			email = objectManage.getContactInfoManage().setEmail(email, stringScanner);
+			currentPerson.getContactInfo().setEmail(email);
 			break;
 		case 5:
-			System.out.println("Edit phone number");
-			//currentPerson.setPhonenumber();
+			System.out.print("Set new phone number: ");
+			String phoneNumber = stringScanner.nextLine();
+			currentPerson.getContactInfo().setPhoneNumber(phoneNumber);
+			
 			break;
 		case 6:
 			System.out.println("Edit familymembers");
-			//currentPerson.setFamilymembers();
+			//currentPerson.setFamilymembers(); GÖR DENNA
 			break;
 		case 7:
 			System.out.println("Edit position");
-			//currentPerson.setPosition();
+			String position = stringScanner.nextLine();
+			currentPerson.setPosition(position);
 			break;
 		case 8:
 			mainMenu(myCompany);
@@ -352,6 +360,4 @@ public class UserInterface {
 		input = intScanner.nextInt();
 		return input;
 	}
-	
-	
 }
