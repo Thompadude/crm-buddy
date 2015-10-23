@@ -38,7 +38,7 @@ public class PrintPerson implements Printable {
     public void printPersonList(ArrayList<Associate> associates) {
         int lister = 0;
         for (Associate person : associates) {
-            System.out.println((lister + 1) + "[ " + person.getCompany().getName() + " ]\t" + person.getName());
+            System.out.println((lister + 1) + ". [" + person.getCompany().getName() + "] " + person.getName());
             lister++;
         }
     }

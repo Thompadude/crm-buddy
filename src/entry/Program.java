@@ -21,7 +21,7 @@ public class Program {
     MyCompany myCompany = new MyCompany(companyName, new ContactInfo(email, streetAddress, phoneNumber));
 
     public void runProgram() {
-        welcomeText();
+//        welcomeText();
         UserInterface userInterface = new UserInterface();
         userInterface.mainMenu(myCompany);
 

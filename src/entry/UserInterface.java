@@ -38,6 +38,7 @@ public class UserInterface {
 		menuAlternatives.add("Manage employee");
 		menuAlternatives.add("Manage business contact");
 		menuAlternatives.add("Manage meeting");
+		menuAlternatives.add("Save & Quit system");
 
 		int input = 0;
 
@@ -45,7 +46,7 @@ public class UserInterface {
 			menu.printMenu(menuAlternatives);
 			input = menu.getInput(intScanner);
 			mainSwitch(input, myCompany);
-		} while (input != menuAlternatives.size() + 1);
+		} while (input != menuAlternatives.size());
 	}
 
 	public void subMenuEmployee(int choice, MyCompany myCompany) {
