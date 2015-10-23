@@ -13,25 +13,26 @@ public class PersonManage {
 
     public Associate createEmployee(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         int id = 0;
-        System.out.print("Enter name: ");
+        System.out.print("\nYou have chosen to create a new employee.\nEnter name: ");
         String name = stringScanner.nextLine();
         LocalDate birthDate = setBirthDate();
         Company tempCompany = new Company(myCompany.getName(), myCompany.getContactInfo());
         System.out.print("Please enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
+        System.out.println();
         return new Associate(id, name, birthDate, tempCompany, position, contactInfo);
     }
 
     public Associate createBusinessAssociate(ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         int id = 0;
-        System.out.print("Enter name: ");
+        System.out.print("\nYou have chosen to create a new business associate.\nEnter name: ");
         String name = stringScanner.nextLine();
         LocalDate birthDate = setBirthDate();
-        Company company = objManage.companyManage.createCompany(objManage, stringScanner);
         System.out.print("Please enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
+        Company company = objManage.companyManage.createCompany(objManage, stringScanner, name);
         return new Associate(id, name, birthDate, company, position, contactInfo);
     }
 
