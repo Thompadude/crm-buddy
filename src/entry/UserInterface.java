@@ -138,7 +138,7 @@ public class UserInterface {
 			myCompany.addEmployee(tempEmployee);
 			break;
 		case 2:
-			Associate tempBusinessAssociate = objectManage.getPersonManage().createBusinessAssociate(objectManage,
+			Associate tempBusinessAssociate = objectManage.getPersonManage().createBusinessAssociate(myCompany, objectManage,
 					stringScanner, intScanner);
 			myCompany.addBusinessAssociate(tempBusinessAssociate);
 			break;
