@@ -25,16 +25,9 @@ public class UserInterface {
 	Menu subMenuMeeting = new ConsoleMenu();
 	ArrayList<String> menuAlternatives;
 
-	private void welcomeText() {
-		System.out.println("\n\t*************************************************\t\t\n\t*"
-				+ "\t\t\t\t\t\t\t\t\t\t\t\t*\n\t*\t\t\tWELCOME to CRM Buddy 2.0\t\t\t*"
-				+ "\n\t*\t\t\t\t\t\t\t\t\t\t\t\t*\n\t************************************************"
-				+ "*\n\n\t\t\tPress ENTER to continue...");
-		stringScanner.nextLine();
-	}
 
 	public void mainMenu(MyCompany myCompany) {
-		welcomeText();
+
 		menu.setMenuTitle("Main Menu");
 
 		menuAlternatives = new ArrayList<String>();
