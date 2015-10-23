@@ -17,10 +17,10 @@ public class PersonManage {
         String name = stringScanner.nextLine();
         LocalDate birthDate = setBirthDate();
         Company tempCompany = new Company(myCompany.getName(), myCompany.getContactInfo());
-        System.out.print("Please enter position: ");
+        System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
-        System.out.println();
+        System.out.println("\nNew employee " + name + " created!\n");
         return new Associate(id, name, birthDate, tempCompany, position, contactInfo);
     }
 
@@ -29,10 +29,11 @@ public class PersonManage {
         System.out.print("\nYou have chosen to create a new business associate.\nEnter name: ");
         String name = stringScanner.nextLine();
         LocalDate birthDate = setBirthDate();
-        System.out.print("Please enter position: ");
+        System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
         Company company = objManage.companyManage.createCompany(objManage, stringScanner, name);
+        System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
         return new Associate(id, name, birthDate, company, position, contactInfo);
     }
 
