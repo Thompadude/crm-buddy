@@ -11,6 +11,7 @@ public class MyCompany extends Company {
 	private ArrayList<Meeting> meetings;
 	private ArrayList<Associate> employees;
 	private ArrayList<Associate> businessAssociates;
+	private ArrayList<Associate> pastContacts;
 
 	public MyCompany(String name, ContactInfo contactInfo) {
 		// TODO i UI:t måste temporär ContactInfo skapas och skickas in i
@@ -35,6 +36,16 @@ public class MyCompany extends Company {
 
 	public ArrayList<Associate> getBusinessAssociates() {
 		return businessAssociates;
+	}
+
+	public ArrayList<Associate> getPastContacts(){
+
+		return this.pastContacts;
+	}
+
+	public void addPastContact(Associate contact){
+
+		this.pastContacts.add(contact);
 	}
 
 	public void addEmployee(Associate associate) {

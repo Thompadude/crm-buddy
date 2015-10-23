@@ -8,7 +8,7 @@ public class Person {
     // TODO Vi måste fixa ID-påplusning! Eventuellt i en factory!
     private int id;
     private String name;
-    private FamilyMember family;
+    private FamilyMembers family;
 
     public Person(int id, String name, LocalDate birthday) {
         this.id = id;

@@ -9,7 +9,7 @@ public class Main {
         String companyName = "Apple Computers Inc.";
         String email = "apple@apple.com";
         String streetAddress = "Pear Street";
-        String phoneNumber = "Ett telenr";
+        String phoneNumber = "A phone number";
 
         MyCompany myCompany = new MyCompany(companyName, new ContactInfo(email, streetAddress, phoneNumber));
 
