@@ -24,8 +24,22 @@ public class ConsoleMenu implements Menu {
 	}
 	@Override
 	public int getInput(Scanner intScanner) {
+		int i = 0;
 		System.out.print("Please choose an option: ");
-		int i = intScanner.nextInt();
+		i = catchInputMismatchException(intScanner);
 		return i;
+	}
+	
+	// Denna metod ska flyttas någonstans
+	public int catchInputMismatchException(Scanner intScanner) {
+		while(true) {
+			try {
+				intScanner = new Scanner(System.in);
+				int input = intScanner.nextInt();
+				return input;
+			} catch (Exception ex) {
+				System.out.print("Wrong input. Enter a new number: ");
+			}
+		}
 	}
 }

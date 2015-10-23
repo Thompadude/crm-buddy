@@ -42,6 +42,12 @@ public class Person {
 	public void setFamily(FamilyMembers family) {
 		this.family = family;
 	}
+
+	public FamilyMembers getFamily() {
+		return family;
+	}
+	
+	
    
 
 }

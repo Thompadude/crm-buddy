@@ -20,6 +20,10 @@ public class FamilyMembers {
 
 		this.children = children;
 	}
+	
+	public void createChildrenArray(){
+		this.children = new ArrayList<Person>();
+	}
 
 	public void setCompanion (Person companion) {
 

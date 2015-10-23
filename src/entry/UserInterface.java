@@ -9,6 +9,8 @@ import managers.ObjectManage;
 import managers.PrintManage;
 import menysystem.*;
 import persons.Associate;
+import persons.FamilyMembers;
+import persons.Person;
 import printers.PrintPerson;
 
 public class UserInterface {
@@ -54,7 +56,7 @@ public class UserInterface {
 
 	public void subMenuEmployee(int choice, MyCompany myCompany) {
 		Associate currentPerson = myCompany.getEmployees().get(choice);
-		
+
 		menu.setMenuTitle("Edit and View Employee");
 		printManage.getPrintPerson().printInfo(currentPerson);
 		menuAlternatives = new ArrayList<String>();
@@ -85,7 +87,7 @@ public class UserInterface {
 
 	public void subMenuBusinessAssociate(int choice, MyCompany myCompany) {
 		Associate currentPerson = myCompany.getEmployees().get(choice);
-		
+
 		menu.setMenuTitle("Edit and View Business associate");
 		menuAlternatives = new ArrayList<String>();
 		menuAlternatives.add("bizznizz");
@@ -131,33 +133,43 @@ public class UserInterface {
 	public void mainSwitch(int input, MyCompany myCompany) {
 		switch (input) {
 		case 1:
-			createEmployee(myCompany);
+			Associate tempEmployee = objectManage.getPersonManage().createEmployee(myCompany, objectManage,
+					stringScanner, intScanner);
+			myCompany.addEmployee(tempEmployee);
 			break;
 		case 2:
-			createBusinessAssociate(myCompany);
+			Associate tempBusinessAssociate = objectManage.getPersonManage().createBusinessAssociate(objectManage,
+					stringScanner, intScanner);
+			myCompany.addBusinessAssociate(tempBusinessAssociate);
 			break;
 		case 3:
-			createMeeting(myCompany);
+			Meeting tempMeeting = objectManage.getMeetingManage().createMeeting(myCompany, objectManage, stringScanner,
+					intScanner);
+			if (myCompany.getMeetings() == null) {
+				myCompany.createMeetings();
+			}
+
+			myCompany.getMeetings().add(tempMeeting);
 			break;
 		case 4:
-			if(removeOrView(input) == 1) {
+			if (removeOrView(input) == 1) {
 				removeEmployee(myCompany);
 			} else {
-			editAndViewEmployee(input, myCompany);
+				editAndViewEmployee(input, myCompany);
 			}
 			break;
 		case 5:
-			if(removeOrView(input) == 1) {
+			if (removeOrView(input) == 1) {
 				removeBusinessAssociate(myCompany);
 			} else {
-			editAndViewBusinessAssociation(input, myCompany);
+				editAndViewBusinessAssociation(input, myCompany);
 			}
 			break;
 		case 6:
-			if(removeOrView(input) == 1) {
+			if (removeOrView(input) == 1) {
 				removeEmployee(myCompany);
 			} else {
-			editAndViewMeeting(myCompany);
+				editAndViewMeeting(myCompany);
 			}
 			break;
 		case 7:
@@ -195,11 +207,11 @@ public class UserInterface {
 			System.out.print("Set new phone number: ");
 			String phoneNumber = stringScanner.nextLine();
 			currentPerson.getContactInfo().setPhoneNumber(phoneNumber);
-			
+
 			break;
 		case 6:
 			System.out.println("Edit familymembers");
-			//currentPerson.setFamilymembers(); GÖR DENNA
+			addOrViewFamily(currentPerson);
 			break;
 		case 7:
 			System.out.println("Edit position");
@@ -273,38 +285,16 @@ public class UserInterface {
 		}
 	}
 
-	public void createEmployee(MyCompany myCompany) {
-		Associate tempEmployee = objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner,
-				intScanner);
-		myCompany.addEmployee(tempEmployee);
-	}
-
-	public void createBusinessAssociate(MyCompany myCompany) {
-		Associate tempBusinessAssociate = objectManage.getPersonManage().createBusinessAssociate(objectManage,
-				stringScanner, intScanner);
-		myCompany.addBusinessAssociate(tempBusinessAssociate);
-	}
-
-	public void createMeeting(MyCompany myCompany) {
-		Meeting tempMeeting = objectManage.getMeetingManage().createMeeting(myCompany, objectManage, stringScanner,
-				intScanner);
-		if (myCompany.getMeetings() == null) {
-			myCompany.createMeetings();
-		}
-
-		myCompany.getMeetings().add(tempMeeting);
-	}
-
 	public void editAndViewEmployee(int choice, MyCompany myCompany) {
 		if (myCompany.getEmployees() == null) {
 			System.out.println("You dont have any employees yet");
 			System.out.println("Press any key to continue...");
 			stringScanner.nextLine();
 		} else {
-		printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
-		System.out.print("Please choose employee: ");
-		choice = intScanner.nextInt()-1;
-		subMenuEmployee(choice, myCompany);
+			printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
+			System.out.print("Please choose employee: ");
+			choice = intScanner.nextInt() - 1;
+			subMenuEmployee(choice, myCompany);
 		}
 	}
 
@@ -317,7 +307,7 @@ public class UserInterface {
 		} else {
 			printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
 			System.out.print("Please choose business associate: ");
-			choice = intScanner.nextInt()-1;
+			choice = intScanner.nextInt() - 1;
 			subMenuBusinessAssociate(choice, myCompany);
 		}
 		// TODO magic
@@ -329,35 +319,90 @@ public class UserInterface {
 			System.out.println("Press any key to continue...");
 			stringScanner.nextLine();
 		} else {
-		printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
+			printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
 		}
 	}
-	
+
 	public void removeEmployee(MyCompany myCompany) {
 		if (myCompany.getEmployees() == null) {
 			System.out.println("You dont have any employees yet");
 			System.out.println("Press any key to continue...");
 			stringScanner.nextLine();
 		} else {
-		System.out.println("Employee removed");
+			System.out.println("Employee removed");
 		}
 	}
-	
+
 	public void removeBusinessAssociate(MyCompany myCompany) {
 		if (myCompany.getBusinessAssociates() == null) {
 			System.out.println("You dont have any business associates yet");
 			System.out.println("Press any key to continue...");
 			stringScanner.nextLine();
 		} else {
-		System.out.println("Business associate removed");
+			System.out.println("Business associate removed");
 		}
 	}
-	
+
 	public int removeOrView(int input) {
-		System.out.println("1. Remove");
-		System.out.println("2. Edit and View");
-		System.out.print("Choose option: ");
-		input = intScanner.nextInt();
+		boolean wrongChoice = false;
+		do {
+			System.out.println("1. Remove");
+			System.out.println("2. Edit and View");
+			System.out.print("Choose option: ");
+			input = menu.getInput(intScanner);
+			if (input != 1 && input != 2) {
+				System.out.println("Wrong choice. Try again.");
+				wrongChoice = true;
+			}
+		} while (wrongChoice);
+
 		return input;
+	}
+
+	public void addOrViewFamily(Associate currentPerson) {
+		boolean failedInput = true;
+
+		if (currentPerson.getFamily() == null) {
+			FamilyMembers family = new FamilyMembers();
+		}
+		do {
+			System.out.println("1. Add companion");
+			System.out.println("2. Add child");
+			System.out.println("3. Edit and View");
+			System.out.print("Choose option: ");
+			int input = intScanner.nextInt();
+
+			if (input == 1) {
+				System.out.print("Enter name: ");
+				String name = stringScanner.nextLine();
+				LocalDate birthDate = objectManage.getPersonManage().setBirthDate();
+
+				Person companion = new Person(1, name, birthDate);
+
+				currentPerson.getFamily().setCompanion(companion);
+
+				failedInput = false;
+			} else if (input == 2) {
+				System.out.print("Enter name: ");
+				String name = stringScanner.nextLine();
+				LocalDate birthDate = objectManage.getPersonManage().setBirthDate();
+
+				if (currentPerson.getFamily().getChildren() == null) {
+					currentPerson.getFamily().createChildrenArray();
+				}
+
+				Person child = new Person(2, name, birthDate);
+				currentPerson.getFamily().addChild(child);
+
+				failedInput = false;
+			} else if (input == 3) {
+
+				failedInput = false;
+			} else {
+
+				System.out.println("Wrong input, try again.");
+
+			}
+		} while (failedInput);
 	}
 }
