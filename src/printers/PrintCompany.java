@@ -1,5 +1,6 @@
 package printers;
 
+import companies.Company;
 import companies.MyCompany;
 import persons.Associate;
 
@@ -18,17 +19,38 @@ public class PrintCompany implements Printable {
     }
 
     public void printListOfAllCompanies(MyCompany myCompany) {
-        if (!(myCompany.getBusinessAssociates() == null)) {
-            for (int i = 0; i < myCompany.getBusinessAssociates().size(); i++) {
-                ArrayList<String> companyNameAlreadyPrinted = new ArrayList<>();
-                String companyNameToPrint;
-                companyNameToPrint = myCompany.getBusinessAssociates().get(i).getCompany().getName();
-                if (!companyNameToPrint.equals(companyNameAlreadyPrinted)) {
-                    System.out.println(companyNameToPrint);
-                    companyNameAlreadyPrinted.add(companyNameToPrint);
-                }
+        ArrayList<String> checkIfCompanyAlreadyPrinted = new ArrayList<>();
+        // Metoden trasig. Ska lagas.
+
+        boolean print = true;
+        System.out.println("Company ID\tName");
+        for (int i = 0; i<myCompany.getBusinessAssociates().size(); i++) {
+
+            if (!checkIfCompanyAlreadyPrinted.equals(myCompany.getBusinessAssociates().get(i).getCompany().getName())) {
+                System.out.println(i + "\t" + myCompany.getBusinessAssociates().get(i).getCompany().getName());
+                checkIfCompanyAlreadyPrinted.add(myCompany.getBusinessAssociates().get(i).getCompany().getName());
             }
+
+
         }
+
+//        boolean print = true;
+//        ArrayList<Company> tempCompanies = new ArrayList<>();
+//        if (!(myCompany.getBusinessAssociates() == null)) {
+//            for (int i = 0; i < myCompany.getBusinessAssociates().size(); i++) {
+//                Company companyToPrint = myCompany.getBusinessAssociates().get(i).getCompany();
+//                for (int j = 0; j < tempCompanies.size(); j++) {
+//                    if (tempCompanies.get(j).equals(companyToPrint)) {
+//                        print = false;
+//                        break;
+//                    }
+//                }
+//                if (print) {
+//                    System.out.println(i + ". " + companyToPrint.getName());
+//                    tempCompanies.add(companyToPrint);
+//                }
+//            }
+//        }
     }
 
     @Override
