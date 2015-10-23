@@ -17,6 +17,7 @@ public class Associate extends Person {
     private ArrayList<String> tags;
     //  För att kunna lista vilka möten en person har varit på samt för att undvika dubbelbokning.
     private ArrayList<Meeting> meetings;
+    private ArrayList<FamilyMember> familyMembers;
 
     public Associate(int id, String name, LocalDate birthDate, Company company,
                      String position, ContactInfo contactInfo) {
@@ -42,18 +43,26 @@ public class Associate extends Person {
         return tags;
     }
 
-    public void setTags(String... tags) {
-        for (String tag : tags) {
-            this.tags.add(tag);
-        }
+//    public void setTags(String... tags) {
+//        for (String tag : tags) {
+//            this.tags.add(tag);
+//        }
+//    }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
     }
-    
+
     public void setPosition(String position){
     	this.position = position;
     }
 
     public ArrayList<Meeting> getMeetings() {
         return meetings;
+    }
+
+    public void setMeetings(ArrayList<Meeting> meetings) {
+        this.meetings = meetings;
     }
 
     public boolean isAvailableForMeeting(LocalDateTime preferedStartDate) {
@@ -66,4 +75,11 @@ public class Associate extends Person {
         return true;
     }
 
+    public ArrayList<FamilyMember> getFamilyMembers() {
+        return familyMembers;
+    }
+
+    public void setFamilyMembers(ArrayList<FamilyMember> familyMembers) {
+        this.familyMembers = familyMembers;
+    }
 }

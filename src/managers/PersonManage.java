@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class PersonManage {
 
-    public Associate createEmployee(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
+    public Associate createEmployee(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner) {
         int id = 0;
         System.out.print("\nYou have chosen to create a new employee.\nEnter name: ");
         String name = stringScanner.nextLine();
@@ -20,7 +20,7 @@ public class PersonManage {
         Company tempCompany = new Company(myCompany.getName(), myCompany.getContactInfo());
         System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
-        ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
+        ContactInfo contactInfo = objManage.getContactInfoManage().createContactInfo(stringScanner);
         System.out.println("\nNew employee " + name + " created!\n");
         return new Associate(id, name, birthDate, tempCompany, position, contactInfo);
     }
@@ -32,7 +32,7 @@ public class PersonManage {
         LocalDate birthDate = setBirthDate();
         System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
-        ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
+        ContactInfo contactInfo = objManage.getContactInfoManage().createContactInfo(stringScanner);
         System.out.println("\nDo you want to add " + name + " to a existing company or create a new one?");
         System.out.println("\n1. Existing");
         System.out.println("2. Create New");
@@ -54,7 +54,7 @@ public class PersonManage {
                 }
             }
         } else {
-            company = objManage.companyManage.createCompany(myCompany, objManage, stringScanner, name);
+            company = objManage.getCompanyManage().createCompany(myCompany, objManage, stringScanner, name);
             myCompany.addAssociatedCompany(company);
         }
         System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");

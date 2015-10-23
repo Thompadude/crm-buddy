@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class CompanyManage {
 
-    public Company createCompany(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, String businessAssociate) {
+    protected Company createCompany(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, String businessAssociate) {
         System.out.print("\nPlease enter some information about the company where " + businessAssociate + " works.\nName: ");
         String desiredCompanyName = stringScanner.nextLine();
         if (!(myCompany.getBusinessAssociates() == null)) {

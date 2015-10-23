@@ -6,11 +6,11 @@ import persons.Associate;
 
 public class PrintCompany implements Printable {
 
-    public void printName(MyCompany company) {
+    protected void printName(MyCompany company) {
         System.out.println("Company Name: " + company.getName());
     }
 
-    public void printEmployees(MyCompany company) {
+    protected void printEmployees(MyCompany company) {
         for (Associate employee : company.getEmployees()) {
             System.out.println("Birthday: " + employee.getBirthday() + ", Name: " + employee.getName());
         }

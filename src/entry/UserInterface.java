@@ -10,7 +10,8 @@ import managers.PrintManage;
 import menysystem.ConsoleMenu;
 import menysystem.Menu;
 import persons.Associate;
-import persons.FamilyMembers;
+import persons.Family;
+import persons.FamilyMember;
 import persons.Person;
 
 import java.time.LocalDate;
@@ -30,6 +31,8 @@ public class UserInterface {
     Menu subMenuMeeting = new ConsoleMenu();
     ArrayList<String> menuAlternatives;
 
+    int input;
+
     public void mainMenu(MyCompany myCompany) {
 
         menu.setMenuTitle("Main Menu");
@@ -42,8 +45,6 @@ public class UserInterface {
         menuAlternatives.add("Manage business contact");
         menuAlternatives.add("Manage meeting");
         menuAlternatives.add("Save & Quit system");
-
-        int input = 0;
 
         do {
             menu.printMenu(menuAlternatives);
@@ -66,8 +67,6 @@ public class UserInterface {
         menuAlternatives.add("Edit familymembers");
         menuAlternatives.add("Edit position");
         menuAlternatives.add("Back to main menu");
-
-        int input = 0;
 
         do {
             if (myCompany.getEmployees() == null) {
@@ -96,8 +95,6 @@ public class UserInterface {
         menuAlternatives.add("bizznizz");
         menuAlternatives.add("Back to main menu");
 
-        int input = 0;
-
         do {
             menu.printMenu(menuAlternatives);
             input = menu.getInput(intScanner);
@@ -118,8 +115,6 @@ public class UserInterface {
         menuAlternatives.add("meeting");
         menuAlternatives.add("Back to main menu");
 
-        int input = 0;
-
         do {
             menu.printMenu(menuAlternatives);
             input = menu.getInput(intScanner);
@@ -138,7 +133,6 @@ public class UserInterface {
         myCompany.addEmployee(new Associate(0, "Snygg-Lisa", LocalDate.now(), myCompany, "Fluffer", new ContactInfo("xxx@com.com", "Bajsgatan", "112")));
         myCompany.addEmployee(new Associate(0, "Snygg-Lisa", LocalDate.now(), myCompany, "Fluffer", new ContactInfo("xxx@com.com", "Bajsgatan", "112")));
 
-
         Company telia = new Company("Telia", new ContactInfo("telia@telia.com", "Teliagatan", "031-123456789"));
         Company volvo = new Company("Volvo", new ContactInfo("volvo@volvo.com", "Volvogatan", "031-321654987"));
         myCompany.addAssociatedCompany(telia);
@@ -151,7 +145,7 @@ public class UserInterface {
         myCompany.addBusinessAssociate(new Associate(0, "Bös-Gubenn", LocalDate.now(), volvo, "Bösare", new ContactInfo("bös@bös.bös", "Bösgatan", "Nej")));
         myCompany.addBusinessAssociate(new Associate(0, "Bös-Gubenn", LocalDate.now(), volvo, "Bösare", new ContactInfo("bös@bös.bös", "Bösgatan", "Nej")));
 
-        Associate associateA = new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate associateA = new Associate(0, "TESTA DENNA FÖR FAMILJ", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
         Associate associateB = new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
         Associate associateC = new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
         Associate associateD = new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
@@ -159,6 +153,33 @@ public class UserInterface {
         Associate associateF = new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
         Associate associateG = new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
         Associate associateH = new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+
+        myCompany.addEmployee(associateA);
+
+        ArrayList<FamilyMember> familyMembers = new ArrayList<>();
+        FamilyMember frugan = new FamilyMember(0, "Lisa", LocalDate.now(), Family.SPOUSE);
+        FamilyMember ungen = new FamilyMember(0, "Unge", LocalDate.now(), Family.CHILD);
+        FamilyMember ungenb = new FamilyMember(0, "Unge2", LocalDate.now(), Family.CHILD);
+        FamilyMember ungenbb = new FamilyMember(0, "Unge3", LocalDate.now(), Family.CHILD);
+        FamilyMember ungenbbb = new FamilyMember(0, "Unge4", LocalDate.now(), Family.CHILD);
+        FamilyMember ungenbbbb = new FamilyMember(0, "Unge5", LocalDate.now(), Family.CHILD);
+
+        familyMembers.add(frugan);
+        familyMembers.add(ungen);
+        familyMembers.add(ungenb);
+        familyMembers.add(ungenbb);
+        familyMembers.add(ungenbbb);
+        familyMembers.add(ungenbbbb);
+
+        associateA.setFamilyMembers(familyMembers);
+
+//        String[] testaTagsARrray = {"bösa", "näsa", "apa"};
+        ArrayList<String> testaTagsARrray = new ArrayList<>();
+        testaTagsARrray.add("jhej");
+        testaTagsARrray.add("asfasdfasf");
+        testaTagsARrray.add("adasdasd");
+
+        associateA.setTags(testaTagsARrray);
 
         Associate businessAssA = new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
         Associate businessAssB = new Associate(0, "Davoda", LocalDate.now(), telia, "Skurk", new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
@@ -179,23 +200,39 @@ public class UserInterface {
         tempEmployeee.add(associateG);
         tempEmployeee.add(associateH);
 
-        Meeting meetingA = new Meeting("topic", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
+        LocalDateTime startDate = LocalDateTime.of(2015,10,10,10,10);
+        LocalDateTime endDate = LocalDateTime.of(2015,12,10,10,10);
+        LocalDateTime testDate = LocalDateTime.of(2015,9,10,10,10);
+
+        Meeting meetingA = new Meeting("topic", tempEmployeee, startDate, endDate);
         Meeting meetingB = new Meeting("topic", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
         Meeting meetingC = new Meeting("topic", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
         Meeting meetingD = new Meeting("topic", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
         Meeting meetingE = new Meeting("topic", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
+        ArrayList<Meeting> arrayListAvMeetings = new ArrayList<>();
+        arrayListAvMeetings.add(meetingA);
+        arrayListAvMeetings.add(meetingB);
+        arrayListAvMeetings.add(meetingC);
+        arrayListAvMeetings.add(meetingD);
+        arrayListAvMeetings.add(meetingE);
         myCompany.createMeetings();
         myCompany.getMeetings().add(meetingA);
         myCompany.getMeetings().add(meetingB);
         myCompany.getMeetings().add(meetingC);
         myCompany.getMeetings().add(meetingD);
         myCompany.getMeetings().add(meetingE);
+        associateA.setMeetings(arrayListAvMeetings);
+
+        // todo DENNA FUNKAR!
+        boolean test = associateA.isAvailableForMeeting(testDate);
+        System.out.println(test);
         // todo END TESTING. DELETE THESE!
 
+        int choice;
         switch (input) {
             case 1:
                 Associate tempEmployee = objectManage.getPersonManage().createEmployee(myCompany, objectManage,
-                        stringScanner, intScanner);
+                        stringScanner);
                 myCompany.addEmployee(tempEmployee);
                 break;
             case 2:
@@ -213,24 +250,35 @@ public class UserInterface {
                 myCompany.getMeetings().add(tempMeeting);
                 break;
             case 4:
-                if (removeOrView(input) == 1) {
+                choice = removeOrView();
+                if (choice == 1) {
                     removeEmployee(myCompany);
                 } else {
                     editAndViewEmployee(input, myCompany);
                 }
                 break;
             case 5:
-                if (removeOrView(input) == 1) {
+                choice = removeOrView();
+                if (choice == 1) {
                     removeBusinessAssociate(myCompany);
                 } else {
                     editAndViewBusinessAssociation(input, myCompany);
                 }
                 break;
             case 6:
-                if (removeOrView(input) == 1) {
+                choice = removeOrView();
+                if (choice == 1) {
                     // TODO här skall ett möte tas bort
-                } else {
+                    System.out.println("Här ska vi koda hur ett möte tas bort");
+                    break;
+                }
+                if (choice == 2) {
                     editAndViewMeeting(myCompany);
+                    break;
+                }
+                if (choice == 3) {
+                    mainMenu(myCompany);
+                    break;
                 }
                 break;
             case 7:
@@ -272,7 +320,7 @@ public class UserInterface {
                 break;
             case 6:
                 System.out.println("Edit familymembers");
-                addOrViewFamily(currentPerson);
+//                addOrViewFamily(currentPerson);
                 break;
             case 7:
                 System.out.println("Edit position");
@@ -354,7 +402,7 @@ public class UserInterface {
         } else {
             printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
             System.out.print("Please choose employee: ");
-            choice = intScanner.nextInt() - 1;
+            choice = menu.getInput(intScanner)-1;
             subMenuEmployee(choice, myCompany);
         }
     }
@@ -368,7 +416,7 @@ public class UserInterface {
         } else {
             printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
             System.out.print("Please choose business associate: ");
-            choice = intScanner.nextInt() - 1;
+            choice = menu.getInput(intScanner)-1;
             subMenuBusinessAssociate(choice, myCompany);
         }
         // TODO magic
@@ -382,7 +430,7 @@ public class UserInterface {
         } else {
             printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
             System.out.print("Choose meeting: ");
-            int input = menu.getInput(intScanner) - 1;
+            input = menu.getInput(intScanner) - 1;
             Meeting currentMeeting = myCompany.getMeetings().get(input);
             printManage.getPrintMeeting().printInfo(currentMeeting);
             System.out.print("Do you want to create a journal? (1)Yes/(2)No: ");
@@ -447,43 +495,43 @@ public class UserInterface {
         }
     }
 
-    public int removeOrView(int input) {
+    public int removeOrView() {
         boolean wrongChoice = false;
         do {
             System.out.println("1. Remove");
             System.out.println("2. Edit and View");
+            System.out.println("3. Go Back");
             System.out.print("Choose option: ");
             input = menu.getInput(intScanner);
-            if (input != 1 && input != 2) {
+            if (input < 1 && input > 3) {
                 System.out.println("Wrong choice. Try again.");
                 wrongChoice = true;
             }
         } while (wrongChoice);
-
         return input;
     }
 
-    public void addOrViewFamily(Associate currentPerson) {
+ /*   public void addOrViewFamily(Associate currentPerson) {
         boolean failedInput = true;
 
-        if (currentPerson.getFamily() == null) {
-            FamilyMembers family = new FamilyMembers();
+        if (currentPerson.getFamilyMembers() == null) {
+            FamilyMember family = new FamilyMember();
         }
         do {
             System.out.println("1. Add companion");
             System.out.println("2. Add child");
             System.out.println("3. Edit and View");
             System.out.print("Choose option: ");
-            int input = intScanner.nextInt();
+            input = menu.getInput(intScanner);
 
             if (input == 1) {
                 System.out.print("Enter name: ");
                 String name = stringScanner.nextLine();
                 LocalDate birthDate = objectManage.getPersonManage().setBirthDate();
 
-                Person companion = new Person(1, name, birthDate);
+                FamilyMember companion = new FamilyMember(1, name, birthDate);
 
-                currentPerson.getFamily().setCompanion(companion);
+                currentPerson.getFamilyMembers().add(companion);
 
                 failedInput = false;
             } else if (input == 2) {
@@ -508,5 +556,5 @@ public class UserInterface {
 
             }
         } while (failedInput);
-    }
+    }*/
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PrintMeeting implements Printable {
 
-	
+
 	public void printMeetingList(ArrayList<Meeting> meetings) {
 		System.out.println("Date\t\t    Topic");
 		System.out.println("----\t\t    -----");
@@ -38,8 +38,8 @@ public class PrintMeeting implements Printable {
 		}
 		
 	}
-	
-	public void printParticipants(Meeting meeting){
+
+	protected void printParticipants(Meeting meeting){
 		
 		for(int i=0; i<meeting.getParticipants().size(); i++){
 			
@@ -48,12 +48,12 @@ public class PrintMeeting implements Printable {
 			}
 			
 				System.out.print("[" + meeting.getParticipants().get(i).getCompany().getName() + "]" +
-									meeting.getParticipants().get(i).getName() + ", ");
+						meeting.getParticipants().get(i).getName() + ", ");
 		}
 		
 	}
-	
-	public void printProtocol(Meeting meeting){
+
+	protected void printProtocol(Meeting meeting){
 		for (String protocol : meeting.getJournal().getProtocol()) {
 			System.out.println("* " + protocol);
 		}

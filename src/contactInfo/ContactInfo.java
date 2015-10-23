@@ -3,9 +3,9 @@ package contactInfo;
 
 public class ContactInfo {
 
-    String email;
-    String address;
-    String phoneNumber;
+    private String email;
+    private String address;
+    private String phoneNumber;
 
     public ContactInfo(String email, String address, String phoneNumber) {
         this.email = email;

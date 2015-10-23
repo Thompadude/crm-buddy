@@ -1,6 +1,7 @@
 package persons;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Person {
 
@@ -8,7 +9,6 @@ public class Person {
     // TODO Vi måste fixa ID-påplusning! Eventuellt i en factory!
     private int id;
     private String name;
-    private FamilyMembers family;
 
     public Person(int id, String name, LocalDate birthday) {
         this.id = id;
@@ -39,13 +39,13 @@ public class Person {
 		this.name = name;
 	}
 
-	public void setFamily(FamilyMembers family) {
-		this.family = family;
-	}
-
-	public FamilyMembers getFamily() {
-		return family;
-	}
+//	public void setFamily(FamilyMember family) {
+//		this.family = family;
+//	}
+//
+//	public FamilyMember getFamily() {
+//		return family;
+//	}
 	
 	
    

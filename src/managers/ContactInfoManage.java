@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class ContactInfoManage {
 
-    public ContactInfo createContactInfo(Scanner stringScanner) {
+    protected ContactInfo createContactInfo(Scanner stringScanner) {
         System.out.print("Enter email: ");
         String email = stringScanner.nextLine();
         email = setEmail(email, stringScanner);
@@ -16,11 +16,9 @@ public class ContactInfoManage {
         String phoneNumber = stringScanner.nextLine();
         return new ContactInfo(email, address, phoneNumber);
     }
-    
+
     public String setEmail(String email, Scanner stringScanner){
-    	
-    	
-    	while (!email.contains("@")) {
+        while (!email.contains("@")) {
             System.out.print("That's not a valid email address. Please include an \"@\": ");
             email = stringScanner.nextLine();
         }

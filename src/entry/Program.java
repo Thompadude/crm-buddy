@@ -20,11 +20,14 @@ public class Program {
 
     MyCompany myCompany = new MyCompany(companyName, new ContactInfo(email, streetAddress, phoneNumber));
 
-    public void runProgram() {
-//        welcomeText();
+    protected void runProgram() {
+        //TODO Load File
+
+        welcomeText();
         UserInterface userInterface = new UserInterface();
         userInterface.mainMenu(myCompany);
 
+        //TODO Save File
     }
 
     private void welcomeText() {

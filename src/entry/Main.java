@@ -1,13 +1,8 @@
 package entry;
 
-import companies.MyCompany;
-import contactInfo.ContactInfo;
-
 public class Main {
+
     public static void main(String[] args) {
-
-
-
         Program program = new Program();
         program.runProgram();
     }
