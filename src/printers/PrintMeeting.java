@@ -9,7 +9,7 @@ public class PrintMeeting implements Printable {
 	public void printMeetingList(ArrayList<Meeting> meetings) {
 		System.out.println("Date\tTopic");
 		for(Meeting meeting : meetings) {
-			System.out.println(meeting.getStartDate() + " - " + meeting.getEndDate() +
+			System.out.println(meeting.getStartDate() +
 								"   " + meeting.getTopic());
 		}
 	}
