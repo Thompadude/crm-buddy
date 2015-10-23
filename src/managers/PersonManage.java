@@ -3,6 +3,7 @@ package managers;
 import companies.Company;
 import companies.MyCompany;
 import contactInfo.ContactInfo;
+import menysystem.ConsoleMenu;
 import persons.Associate;
 
 import java.time.DateTimeException;
@@ -32,9 +33,29 @@ public class PersonManage {
         System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
-        Company company = objManage.companyManage.createCompany(myCompany, objManage, stringScanner, name);
+
+        // Här håller Thompa på att greja. Funkar inte bra, än.
+
+        Company company = null;
+        System.out.println("Do you want to add " + name + " to a existing company or create a new one?");
+        System.out.println("1. Existing");
+        System.out.println("2. Create New");
+        ConsoleMenu consoleMenu = new ConsoleMenu();
+        int input = consoleMenu.catchInputMismatchException(intScanner);
+        if (input == 1) {
+            PrintManage printManage = new PrintManage();
+            printManage.getPrintCompany().printListOfAllCompanies(myCompany);
+            System.out.print("Choose company ID: ");
+            input = consoleMenu.catchInputMismatchException(intScanner);
+            company = myCompany.getBusinessAssociates().get(input).getCompany();
+        } else {
+            company = objManage.companyManage.createCompany(myCompany, objManage, stringScanner, name);
+        }
         System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
         return new Associate(id, name, birthDate, company, position, contactInfo);
+
+
+
     }
 
     public LocalDate setBirthDate() {

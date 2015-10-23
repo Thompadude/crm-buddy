@@ -1,10 +1,11 @@
 package printers;
 
-import java.util.ArrayList;
-
 import companies.Meeting;
 
+import java.util.ArrayList;
+
 public class PrintMeeting implements Printable {
+
 	
 	public void printMeetingList(ArrayList<Meeting> meetings) {
 		System.out.println("Date\t\t    Topic");
