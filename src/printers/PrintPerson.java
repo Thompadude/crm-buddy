@@ -1,5 +1,6 @@
 package printers;
 
+import companies.Meeting;
 import persons.Associate;
 import persons.Person;
 
@@ -20,16 +21,24 @@ public class PrintPerson implements Printable {
     public <T> void printInfo(T t) {
         if (t instanceof Associate) {
             System.out.println(((Associate) t).getName() + " Contact Info: ");
-            System.out.println("Email: " + ((Associate) t).getContactInfo().getEmail());
-            System.out.println("Phone Number: " + ((Associate) t).getContactInfo().getPhoneNumber());
-            System.out.println("Address: " + ((Associate) t).getContactInfo().getAddress());
+            System.out.println("- Email: " + ((Associate) t).getContactInfo().getEmail());
+            System.out.println("- Phone Number: " + ((Associate) t).getContactInfo().getPhoneNumber());
+            System.out.println("- Address: " + ((Associate) t).getContactInfo().getAddress());
+            System.out.println("- Company: " + ((Associate) t).getCompany());
+            System.out.println("- Tags: " + ((Associate) t).getTags());
+            if (!(((Associate) t).getMeetings() == null)) {
+                System.out.println("- Meetings Planned");
+                for (Meeting meetings : ((Associate) t).getMeetings()) {
+                    System.out.println("Topic: " + meetings.getTopic());
+                }
+            }
         }
     }
 
     public void printPersonList(ArrayList<Associate> associates) {
         int lister = 0;
         for (Associate person : associates) {
-            System.out.println((lister+1) + "[ " + person.getCompany().getName() + " ]\t" + person.getName());
+            System.out.println((lister + 1) + "[ " + person.getCompany().getName() + " ]\t" + person.getName());
             lister++;
         }
     }
