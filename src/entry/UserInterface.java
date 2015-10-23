@@ -12,6 +12,7 @@ import persons.Associate;
 import persons.FamilyMembers;
 import persons.Person;
 import printers.PrintPerson;
+import sun.font.CreatedFontTracker;
 
 public class UserInterface {
 
@@ -24,7 +25,6 @@ public class UserInterface {
 	Menu subMenuAssociate = new ConsoleMenu();
 	Menu subMenuMeeting = new ConsoleMenu();
 	ArrayList<String> menuAlternatives;
-
 
 	public void mainMenu(MyCompany myCompany) {
 
@@ -131,8 +131,8 @@ public class UserInterface {
 			myCompany.addEmployee(tempEmployee);
 			break;
 		case 2:
-			Associate tempBusinessAssociate = objectManage.getPersonManage().createBusinessAssociate(myCompany, objectManage,
-					stringScanner, intScanner);
+			Associate tempBusinessAssociate = objectManage.getPersonManage().createBusinessAssociate(myCompany,
+					objectManage, stringScanner, intScanner);
 			myCompany.addBusinessAssociate(tempBusinessAssociate);
 			break;
 		case 3:
@@ -160,7 +160,7 @@ public class UserInterface {
 			break;
 		case 6:
 			if (removeOrView(input) == 1) {
-				removeEmployee(myCompany);
+				// TODO här skall ett möte tas bort
 			} else {
 				editAndViewMeeting(myCompany);
 			}
@@ -313,7 +313,49 @@ public class UserInterface {
 			stringScanner.nextLine();
 		} else {
 			printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
+			System.out.print("Choose meeting: ");
+			int input = menu.getInput(intScanner) - 1;
+			Meeting currentMeeting = myCompany.getMeetings().get(input);
+			printManage.getPrintMeeting().printInfo(currentMeeting);
+			System.out.print("Do you want to create a journal? (1)Yes/(2)No: ");
+			input = menu.getInput(intScanner);
+			if (input != 1 && input != 2) {
+				System.out.println("Wrong choice. Try again.");
+			}
+			if (input == 1) {
+				ArrayList<String> protocol = createProtocol();
+				Journal tempJournal = new Journal(protocol);
+				currentMeeting.setJournal(tempJournal);
+			}
 		}
+	}
+
+	public ArrayList<String> createProtocol() {
+		ArrayList<String> protocol = new ArrayList<String>();
+		int itemCounter = 1;
+		boolean goAgain = true;
+		boolean wrongChoice = false;
+		while (goAgain == true) {
+			System.out.println("Type item number " + itemCounter + " :");
+			protocol.add(stringScanner.nextLine());
+			itemCounter++;
+
+			do {
+				System.out.print("Do you want to add another item? (1)Yes/(2)No: ");
+				int choice = menu.getInput(intScanner);
+
+				if (choice != 1 && choice != 2) {
+					System.out.println("Wrong choice. try again! ");
+					itemCounter--;
+					wrongChoice = true;
+				} else if (choice == 1) {
+					goAgain = true;
+				} else if (choice == 2) {
+					goAgain = false;
+				}
+			} while (wrongChoice);
+		}
+		return protocol;
 	}
 
 	public void removeEmployee(MyCompany myCompany) {

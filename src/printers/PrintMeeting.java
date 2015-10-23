@@ -7,7 +7,8 @@ import companies.Meeting;
 public class PrintMeeting implements Printable {
 	
 	public void printMeetingList(ArrayList<Meeting> meetings) {
-		System.out.println("Date\tTopic");
+		System.out.println("Date\t\t    Topic");
+		System.out.println("----\t\t    -----");
 		for(Meeting meeting : meetings) {
 			System.out.println(meeting.getStartDate() +
 								"   " + meeting.getTopic());
@@ -19,15 +20,19 @@ public class PrintMeeting implements Printable {
 		
 		if( t instanceof Meeting){
 			
-			System.out.print("Date: " + ((Meeting) t).getStartDate().toString() + " - " + 
+			System.out.println("Date: " + ((Meeting) t).getStartDate().toString() + " - " + 
 							((Meeting) t).getEndDate().toString());
-			System.out.println("\t " + ((Meeting) t).getTopic());
+			System.out.println("Topic: " + ((Meeting) t).getTopic());
 			
-			System.out.println("Participants: ");
+			System.out.print("---Participants--- ");
 			printParticipants(((Meeting)t));
-			
-			System.out.println("Protocol :");
-			printProtocol(((Meeting)t));
+			System.out.println("------------------");
+			System.out.println("Journal :");
+			if (((Meeting) t).getJournal() != null) {
+				printProtocol(((Meeting)t));
+			} else {
+				System.out.println("---No journal---");
+			}
 			
 		}
 		
@@ -41,7 +46,8 @@ public class PrintMeeting implements Printable {
 				System.out.println();
 			}
 			
-				System.out.print(meeting.getParticipants().get(i).getName() + ", ");
+				System.out.println("[" + meeting.getParticipants().get(i).getCompany().getName() + "]" +
+									meeting.getParticipants().get(i).getName() + ", ");
 		}
 		
 	}
