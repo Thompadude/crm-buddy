@@ -27,7 +27,7 @@ public class PrintMeeting implements Printable {
 			
 			System.out.print("---Participants--- ");
 			printParticipants(((Meeting)t));
-			System.out.println("------------------");
+			System.out.println("\n------------------");
 			System.out.println("Journal :");
 			if (((Meeting) t).getJournal() != null) {
 				printProtocol(((Meeting)t));
@@ -47,7 +47,7 @@ public class PrintMeeting implements Printable {
 				System.out.println();
 			}
 			
-				System.out.println("[" + meeting.getParticipants().get(i).getCompany().getName() + "]" +
+				System.out.print("[" + meeting.getParticipants().get(i).getCompany().getName() + "]" +
 									meeting.getParticipants().get(i).getName() + ", ");
 		}
 		
