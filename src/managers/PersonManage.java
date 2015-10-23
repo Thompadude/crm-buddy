@@ -24,7 +24,7 @@ public class PersonManage {
         return new Associate(id, name, birthDate, tempCompany, position, contactInfo);
     }
 
-    public Associate createBusinessAssociate(ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
+    public Associate createBusinessAssociate(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         int id = 0;
         System.out.print("\nYou have chosen to create a new business associate.\nEnter name: ");
         String name = stringScanner.nextLine();
@@ -32,7 +32,7 @@ public class PersonManage {
         System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
-        Company company = objManage.companyManage.createCompany(objManage, stringScanner, name);
+        Company company = objManage.companyManage.createCompany(myCompany, objManage, stringScanner, name);
         System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
         return new Associate(id, name, birthDate, company, position, contactInfo);
     }
