@@ -23,8 +23,9 @@ public class UserInterface {
     ArrayList<String> mainMenuAlternatives;
     ArrayList<String> editAndViewPersonMenuAlternatives;
 
-    int userInput;
+    int userInputMenuChoice;
     int userInputPersonChoice;
+    int userInputSubMenuChoice;
     boolean menuOpen;
 
     public void mainMenu(MyCompany myCompany) {
@@ -49,15 +50,14 @@ public class UserInterface {
 
             menu.printMenu(mainMenuAlternatives);
             System.out.print("Choose option: ");
-            userInput = menu.getInput(intScanner);
-            mainMenuSwitch(userInput, myCompany);
-        } while (userInput != mainMenuAlternatives.size());
+            userInputMenuChoice = menu.getInput(intScanner);
+            mainMenuSwitch(userInputMenuChoice, myCompany);
+        } while (userInputMenuChoice != mainMenuAlternatives.size());
     }
 
-    public void mainMenuSwitch(int input, MyCompany myCompany) {
-        int choice;
+    public void mainMenuSwitch(int userInputMenuChoice, MyCompany myCompany) {
 
-        switch (input) {
+        switch (userInputMenuChoice) {
             case 1:
                 myCompany
                         .addEmployee(objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner));
@@ -96,9 +96,9 @@ public class UserInterface {
                     break;
                 }
                 do {
-                    choice = removeOrView();
+                    userInputSubMenuChoice = removeOrView();
 
-                    switch (choice) {
+                    switch (userInputSubMenuChoice) {
                         case 1:
                             userInputPersonChoice = promptUserToChoosePerson(myCompany.getEmployees());
                             removePerson(myCompany, userInputPersonChoice, myCompany.getEmployees());
@@ -130,9 +130,9 @@ public class UserInterface {
                     break;
                 }
                 do {
-                    choice = removeOrView();
+                    userInputSubMenuChoice = removeOrView();
 
-                    switch (choice) {
+                    switch (userInputSubMenuChoice) {
                         case 1:
                             userInputPersonChoice = promptUserToChoosePerson(myCompany.getBusinessAssociates());
                             removePerson(myCompany, userInputPersonChoice, myCompany.getBusinessAssociates());
@@ -161,17 +161,17 @@ public class UserInterface {
                     stringScanner.nextLine();
                     break;
                 }
-                choice = removeOrView();
-                if (choice == 1) {
+                userInputSubMenuChoice = removeOrView();
+                if (userInputSubMenuChoice == 1) {
                     // TODO här skall ett möte tas bort
                     System.out.println("Här ska vi koda hur ett möte tas bort");
                     break;
                 }
-                if (choice == 2) {
+                if (userInputSubMenuChoice == 2) {
                     objectManage.getMeetingManage().editAndViewMeeting(myCompany, intScanner, stringScanner);
                     break;
                 }
-                if (choice == 3) {
+                if (userInputSubMenuChoice == 3) {
                     // this option takes you back to the main menu. Leave blank.
                     break;
                 }
@@ -204,15 +204,15 @@ public class UserInterface {
             subMenu.setMenuTitle("---Edit and View---");
             subMenu.printMenu(editAndViewPersonMenuAlternatives);
             System.out.print("Choose option: ");
-            userInput = menu.getInput(intScanner);
-            editAndViewPersonSwitch(userInput, myCompany, currentPerson);
-        } while (userInput != editAndViewPersonMenuAlternatives.size());
+            userInputSubMenuChoice = menu.getInput(intScanner);
+            editAndViewPersonSwitch(userInputSubMenuChoice, currentPerson);
+        } while (userInputSubMenuChoice != editAndViewPersonMenuAlternatives.size());
 
     }
 
-    public void editAndViewPersonSwitch(int input, MyCompany myCompany, Associate currentPerson) {
+    public void editAndViewPersonSwitch(int userInputSubMenuChoice, Associate currentPerson) {
 
-        switch (input) {
+        switch (userInputSubMenuChoice) {
             case 1:
                 System.out.print("Set new name: ");
                 String name = stringScanner.nextLine();
@@ -279,8 +279,8 @@ public class UserInterface {
         System.out.println("2. Edit and View");
         System.out.println("3. Go Back");
         System.out.print("Choose option: ");
-        userInput = menu.getInput(intScanner);
-        return userInput;
+        userInputMenuChoice = menu.getInput(intScanner);
+        return userInputMenuChoice;
     }
 
 }
