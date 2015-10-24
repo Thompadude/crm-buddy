@@ -5,11 +5,12 @@ package managers;
  */
 public class ObjectManage {
 
-    CompanyManage companyManage = new CompanyManage();
-    MeetingManage meetingManage = new MeetingManage();
-    PersonManage personManage = new PersonManage();
-    ContactInfoManage contactInfoManage = new ContactInfoManage();
-    ErrorManage errorManage = new ErrorManage();
+    private CompanyManage companyManage = new CompanyManage();
+    private MeetingManage meetingManage = new MeetingManage();
+    private PersonManage personManage = new PersonManage();
+    private ContactInfoManage contactInfoManage = new ContactInfoManage();
+    private ErrorManage errorManage = new ErrorManage();
+    private DateManage dateManage = new DateManage();
 
     public CompanyManage getCompanyManage() {
         return companyManage;
@@ -22,13 +23,17 @@ public class ObjectManage {
     public PersonManage getPersonManage() {
         return personManage;
     }
-    
+
     public ContactInfoManage getContactInfoManage() {
-    	return contactInfoManage;
+        return contactInfoManage;
     }
 
-	public ErrorManage getErrorManage() {
-		return errorManage;
-	}
+    public ErrorManage getErrorManage() {
+        return errorManage;
+    }
+
+    public DateManage getDateManage() {
+        return dateManage;
+    }
 
 }

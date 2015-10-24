@@ -1,6 +1,5 @@
 package entry;
 
-import companies.Journal;
 import companies.Meeting;
 import companies.MyCompany;
 import managers.ObjectManage;
@@ -217,7 +216,7 @@ public class UserInterface {
                 currentPerson.setName(name);
                 break;
             case 2:
-                LocalDate birthDate = objectManage.getPersonManage().getBirthDateFromUserInput();
+                LocalDate birthDate = objectManage.getDateManage().getBirthDateFromUserInput();
                 currentPerson.setBirthDate(birthDate);
                 break;
             case 3:
@@ -264,7 +263,6 @@ public class UserInterface {
     }
 
 
-
     public void removeEmployee(MyCompany myCompany) {
         // Här ska en person sparas i past employees och sen raderas!
         System.out.println("Employee removed");
@@ -285,40 +283,4 @@ public class UserInterface {
         return userInput;
     }
 
-	/*
-     * public void addOrViewFamily(Associate currentPerson) { boolean
-	 * failedInput = true;
-	 * 
-	 * if (currentPerson.getFamilyMembers() == null) { FamilyMember family = new
-	 * FamilyMember(); } do { System.out.println("1. Add companion");
-	 * System.out.println("2. Add child"); System.out.println("3. Edit and View"
-	 * ); System.out.print("Choose option: "); input =
-	 * menu.getInput(intScanner);
-	 * 
-	 * if (input == 1) { System.out.print("Enter name: "); String name =
-	 * stringScanner.nextLine(); LocalDate birthDate =
-	 * objectManage.getPersonManage().getBirthDateFromUserInput();
-	 * 
-	 * FamilyMember companion = new FamilyMember(1, name, birthDate);
-	 * 
-	 * currentPerson.getFamilyMembers().add(companion);
-	 * 
-	 * failedInput = false; } else if (input == 2) { System.out.print(
-	 * "Enter name: "); String name = stringScanner.nextLine(); LocalDate
-	 * birthDate = objectManage.getPersonManage().getBirthDateFromUserInput();
-	 * 
-	 * if (currentPerson.getFamily().getChildren() == null) {
-	 * currentPerson.getFamily().createChildrenArray(); }
-	 * 
-	 * Person child = new Person(2, name, birthDate);
-	 * currentPerson.getFamily().addChild(child);
-	 * 
-	 * failedInput = false; } else if (input == 3) {
-	 * 
-	 * failedInput = false; } else {
-	 * 
-	 * System.out.println("Wrong input, try again.");
-	 * 
-	 * } } while (failedInput); }
-	 */
 }

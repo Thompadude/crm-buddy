@@ -24,7 +24,7 @@ public class PrintCompany implements Printable {
         if (!(myCompany.getAssociatedCompanies() == null)) {
             System.out.println();
             for (Company company : myCompany.getAssociatedCompanies()) {
-                System.out.println(lister + " " + company.getName());
+                System.out.println(lister + ". " + company.getName());
                 lister++;
             }
         } else {

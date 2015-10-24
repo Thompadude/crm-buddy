@@ -26,7 +26,7 @@ public class MeetingManage {
 		printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
 		addParticipant(myCompany, intScanner, tempParticipants, myCompany.getEmployees());
 		
-		if (!objManage.errorManage.catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
+		if (!objManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
 			System.out.println("Business associates");
 			printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
 			addParticipant(myCompany, intScanner, tempParticipants, myCompany.getBusinessAssociates());

@@ -21,7 +21,7 @@ public class CompanyManage {
                 }
             }
         }
-        ContactInfo tempContactInfo = objManage.contactInfoManage.createContactInfo(stringScanner);
+        ContactInfo tempContactInfo = objManage.getContactInfoManage().createContactInfo(stringScanner);
         System.out.println();
         return new Company(desiredCompanyName, tempContactInfo);
     }
