@@ -25,10 +25,14 @@ public class MeetingManage {
 		System.out.println("Employees");
 		printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
 		addParticipant(myCompany, intScanner, tempParticipants, myCompany.getEmployees());
-
-		System.out.println("Business associates");
-		printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
-		addParticipant(myCompany, intScanner, tempParticipants, myCompany.getBusinessAssociates());
+		
+		if (!objManage.nullManage.nullCheckArrayList(myCompany.getBusinessAssociates())) {
+			System.out.println("Business associates");
+			printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
+			addParticipant(myCompany, intScanner, tempParticipants, myCompany.getBusinessAssociates());
+		} else {
+			System.out.println("NOTE: No business associates available for this meeting.");
+		}
 
 		System.out.println("Please set the desired start time: ");
 		LocalDateTime startDate = setDateTime(intScanner);
