@@ -16,6 +16,7 @@ public class DateManage {
     private String wrongInput = "Wrong input. Please use correct format: ";
 
     public LocalDate getBirthDateFromUserInput() {
+        hour = 0;
         System.out.println("Enter birth date.");
         LocalDate localDate;
         year = getYearFromUserInput();
@@ -34,6 +35,7 @@ public class DateManage {
     }
 
     public LocalDateTime getPlannedMeetingTimeFromUserInput() {
+        hour = 0;
         LocalDateTime localDateTime;
         year = getYearFromUserInput();
         month = getMonthFromUserInput();
