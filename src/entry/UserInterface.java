@@ -58,20 +58,15 @@ public class UserInterface {
 
         switch (input) {
             case 1:
-                Associate tempEmployee = objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner);
-                myCompany.addEmployee(tempEmployee);
+                myCompany.addEmployee(objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner));
                 break;
             case 2:
-                Associate tempBusinessAssociate = objectManage.getPersonManage().createBusinessAssociate(myCompany, objectManage, stringScanner, intScanner);
-                myCompany.addBusinessAssociate(tempBusinessAssociate);
+                myCompany.addBusinessAssociate(objectManage.getPersonManage().createBusinessAssociate(myCompany, objectManage, stringScanner, intScanner));
                 break;
             case 3:
                 // TODO
-                // Ska det vara möjligt att skapa ett möte om man INTE har en
-                // employee?
-                // Ska det vara möjligt att skapa ett möte OM man har en employee,
+                // Det ska inte vara möjligt att skapa ett möte om man har minst en employee,
                 // men INTE business associate?
-                // Isåfall måste vi ändra regler i create meeting
                 // TODO SLUT
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
                     System.out.println("You dont have any employees yet.");
