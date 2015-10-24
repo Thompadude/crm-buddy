@@ -35,12 +35,12 @@ public class MeetingManage {
 		}
 
 		System.out.println("Please set the desired start time: ");
-		LocalDateTime startDate = setDateTime(intScanner);
+		LocalDateTime startDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
 
 		System.out.println(startDate.toString());
 
 		System.out.println("Please set the desired end time: ");
-		LocalDateTime endDate = setDateTime(intScanner);
+		LocalDateTime endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
 
 		// TODO magic för att lägga till möten i varje deltagare
 
@@ -110,20 +110,6 @@ public class MeetingManage {
 		} while (addMore);
 
 		return protocol;
-	}
-
-	protected LocalDateTime setDateTime(Scanner intScanner) {
-		System.out.print("Enter year: ");
-		int year = intScanner.nextInt();
-		System.out.print("Enter month: ");
-		int month = intScanner.nextInt();
-		System.out.print("Enter day: ");
-		int day = intScanner.nextInt();
-		System.out.print("Enter start hour (24h): ");
-		int hour = intScanner.nextInt();
-		LocalDateTime tempTime = null;
-		tempTime = tempTime.of(year, month, day, hour, 0);
-		return tempTime;
 	}
 
 	public void editAndViewMeeting(MyCompany myCompany, Scanner intScanner, Scanner stringScanner) {
