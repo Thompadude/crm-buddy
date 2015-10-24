@@ -26,7 +26,7 @@ public class MeetingManage {
 		printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
 		addParticipant(myCompany, intScanner, tempParticipants, myCompany.getEmployees());
 		
-		if (!objManage.nullManage.nullCheckArrayList(myCompany.getBusinessAssociates())) {
+		if (!objManage.errorManage.catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
 			System.out.println("Business associates");
 			printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
 			addParticipant(myCompany, intScanner, tempParticipants, myCompany.getBusinessAssociates());
@@ -124,6 +124,37 @@ public class MeetingManage {
 		LocalDateTime tempTime = null;
 		tempTime = tempTime.of(year, month, day, hour, 0);
 		return tempTime;
+	}
+
+	public void editAndViewMeeting(MyCompany myCompany, Scanner intScanner, Scanner stringScanner) {
+		boolean wrongChoice;
+		printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
+		System.out.print("Choose meeting: ");
+		ConsoleMenu menu = new ConsoleMenu();
+		int userInput = menu.getInput(intScanner) - 1;
+		Meeting currentMeeting = myCompany.getMeetings().get(userInput);
+		printManage.getPrintMeeting().printInfo(currentMeeting);
+		do {
+			System.out.print("Do you want to create a journal? (1)Yes/(2)No: ");
+			userInput = menu.getInput(intScanner);
+			switch (userInput) {
+				case 1:
+					ObjectManage objectManage = new ObjectManage();
+					ArrayList<String> protocol = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);
+					Journal tempJournal = new Journal(protocol);
+					currentMeeting.setJournal(tempJournal);
+					wrongChoice = false;
+					break;
+				case 2:
+					// this option takes you back to the main menu. Leave blank.
+					wrongChoice = false;
+					break;
+				default:
+					System.out.println("Wrong choice! Try again!");
+					wrongChoice = true;
+					break;
+			}
+		} while (wrongChoice);
 	}
 
 }

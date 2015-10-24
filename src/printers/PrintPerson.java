@@ -1,14 +1,15 @@
 package printers;
 
 import companies.Meeting;
+import managers.ObjectManage;
 import persons.Associate;
 import persons.Family;
-import persons.FamilyMember;
 import persons.Person;
 
 import java.util.ArrayList;
 
 public class PrintPerson implements Printable {
+
 
     protected <T extends Person> void printName(T person) {
         System.out.println("Name: " + person.getName());
@@ -21,6 +22,7 @@ public class PrintPerson implements Printable {
     //for future sub-classes, input else if instanceof
     @Override
     public <T> void printInfo(T t) {
+        ObjectManage objectManage = new ObjectManage();
         if (t instanceof Associate) {
             System.out.println("\n" + ((Associate) t).getName() + " Contact Info: ");
             System.out.println("- Birthdate: " + ((Associate) t).getBirthday());
@@ -29,21 +31,34 @@ public class PrintPerson implements Printable {
             System.out.println("- Phone Number: " + ((Associate) t).getContactInfo().getPhoneNumber());
             System.out.println("- Company: " + ((Associate) t).getCompany().getName());
             System.out.println("- Position: " + ((Associate) t).getPosition());
-            if (!(((Associate) t).getFamilyMembers() == null)) {
-                for (FamilyMember familyMember : (((Associate) t).getFamilyMembers())) {
-                    if (familyMember.getFamily().equals(Family.SPOUSE)) {
-                        System.out.println("- Spouse: " + familyMember.getName());
+            if (!objectManage.getErrorManage().catchArrayListNullPointerException(((Associate) t).getFamilyMembers())) {
+                System.out.println("\n--- Family ---");
+                for (int i = 0; i < (((Associate) t).getFamilyMembers().size()); i++) {
+                    if (((Associate) t).getFamilyMembers().get(i).getFamily().equals(Family.SPOUSE)) {
+                        if (i == 0) {
+                            System.out.println("- Spouse ");
+                        }
+                        System.out.print(((Associate) t).getFamilyMembers().get(i).getName() + ", born "
+                        + ((Associate) t).getFamilyMembers().get(i).getBirthday());
                     }
-                    if (familyMember.getFamily().equals(Family.CHILD)) {
-                        System.out.println("- Child: " + familyMember.getName());
+
+                }
+                for (int i = 0; i < (((Associate) t).getFamilyMembers().size()); i++) {
+                    if (i == 0) {
+                        System.out.println("\n- Children ");
+                    }
+                    if (((Associate) t).getFamilyMembers().get(i).getFamily().equals(Family.CHILD)) {
+                        System.out.println(((Associate) t).getFamilyMembers().get(i).getName() + ", born "
+                                + ((Associate) t).getFamilyMembers().get(i).getBirthday());
                     }
                 }
+                System.out.println("-------------");
             }
-            if (!(((Associate) t).getTags() == null)) {
-                System.out.println("- Tags: " + ((Associate) t).getTags());
+            if (!objectManage.getErrorManage().catchArrayListNullPointerException(((Associate) t).getTags())) {
+                System.out.println("\n- Tags: " + ((Associate) t).getTags());
             }
-            if (!(((Associate) t).getMeetings() == null)) {
-                System.out.println("- Meetings Planned");
+            if (!objectManage.getErrorManage().catchArrayListNullPointerException(((Associate) t).getMeetings())) {
+                System.out.println("\n- Meetings Planned");
                 for (Meeting meetings : ((Associate) t).getMeetings()) {
                     System.out.println("Start Date: " + meetings.getStartDate()
                             + ". Topic: " + meetings.getTopic());

@@ -8,11 +8,13 @@ public class PrintMeeting implements Printable {
 
 
 	public void printMeetingList(ArrayList<Meeting> meetings) {
-		System.out.println("Date\t\t    Topic");
-		System.out.println("----\t\t    -----");
+		System.out.println("Date\t\t\t\t\t\tTopic");
+		System.out.println("----\t\t\t\t\t\t-----");
+		int lister = 1;
 		for(Meeting meeting : meetings) {
-			System.out.println(meeting.getStartDate() +
+			System.out.println(lister + ". " + meeting.getStartDate() +
 								"   " + meeting.getTopic());
+			lister++;
 		}
 	}
 

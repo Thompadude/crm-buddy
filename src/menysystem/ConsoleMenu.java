@@ -1,10 +1,13 @@
 package menysystem;
 
+import managers.ObjectManage;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConsoleMenu implements Menu {
 
+    ObjectManage objectManage = new ObjectManage();
     protected String menuTitle;
     protected ArrayList<String> menuAlternatives = new ArrayList<String>();
 
@@ -25,20 +28,7 @@ public class ConsoleMenu implements Menu {
 
     @Override
     public int getInput(Scanner intScanner) {
-        return catchInputMismatchException(intScanner);
-    }
-
-    // Denna metod ska flyttas någonstans
-    public int catchInputMismatchException(Scanner intScanner) {
-        while (true) {
-            try {
-                intScanner = new Scanner(System.in);
-                int input = intScanner.nextInt();
-                return input;
-            } catch (Exception ex) {
-                System.out.print("Wrong input. Enter a new number: ");
-            }
-        }
+        return objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
     }
 
 }

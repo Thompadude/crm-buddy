@@ -15,8 +15,7 @@ import java.util.Scanner;
 public class PersonManage {
 
     public Associate createEmployee(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner) {
-        int id = 0;
-        System.out.println("\nYou have chosen to create a new employee.");
+        System.out.println("You have chosen to create a new employee.");
         String name = getNameFromUserInput(stringScanner);
         LocalDate birthDate = getBirthDateFromUserInput();
         Company tempCompany = new Company(myCompany.getName(), myCompany.getContactInfo());
@@ -28,8 +27,7 @@ public class PersonManage {
     }
 
     public Associate createBusinessAssociate(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
-        int id = 0;
-        System.out.print("\nYou have chosen to create a new business associate.");
+        System.out.print("You have chosen to create a new business associate.");
         String name = getNameFromUserInput(stringScanner);
         LocalDate birthDate = getBirthDateFromUserInput();
         System.out.print("Enter position: ");
@@ -39,15 +37,14 @@ public class PersonManage {
         System.out.println("\n1. Existing");
         System.out.println("2. Create New");
         System.out.print("\nChoose an option: ");
-        ConsoleMenu consoleMenu = new ConsoleMenu();
-        int input = consoleMenu.catchInputMismatchException(intScanner);
+        int input = objManage.getErrorManage().catchUserInputMismatchException(intScanner);
         Company company;
         if (input == 1) {
             PrintManage printManage = new PrintManage();
             printManage.getPrintCompany().printListOfAllCompanies(myCompany);
             System.out.print("\nChoose company ID: ");
             while (true) {
-                input = consoleMenu.catchInputMismatchException(intScanner) - 1;
+                input = objManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
                 if (input >= myCompany.getAssociatedCompanies().size()) {
                     System.out.print("Wrong input. Try again: ");
                 } else {
@@ -64,13 +61,13 @@ public class PersonManage {
     }
 
     public FamilyMember createFamilyMember(Scanner stringScanner) {
-        System.out.print("\nYou have chosen to create a new family member.");
+        System.out.println("You have chosen to create a new family member.");
         String name = getNameFromUserInput(stringScanner);
         System.out.println("1. Spouse\n2. Child");
-        System.out.print("Choose if it is your spouse or child:");
-        String familyType = stringScanner.nextLine();
+        System.out.print("Choose if it is your spouse or child: ");
         Family family = null;
         while (family == null) {
+        String familyType = stringScanner.nextLine();
             switch (familyType) {
                 case "1":
                     family = Family.SPOUSE;
