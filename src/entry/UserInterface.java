@@ -1,14 +1,12 @@
 package entry;
 
 import companies.*;
-import contactInfo.ContactInfo;
 import managers.ObjectManage;
 import managers.PrintManage;
 import menysystem.*;
 import persons.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -216,7 +214,7 @@ public class UserInterface {
 			currentPerson.setName(name);
 			break;
 		case 2:
-			LocalDate birthDate = objectManage.getPersonManage().setBirthDate();
+			LocalDate birthDate = objectManage.getPersonManage().getBirthDateFromUserInput();
 			currentPerson.setBirthDate(birthDate);
 			break;
 		case 3:
@@ -322,7 +320,7 @@ public class UserInterface {
 	 * 
 	 * if (input == 1) { System.out.print("Enter name: "); String name =
 	 * stringScanner.nextLine(); LocalDate birthDate =
-	 * objectManage.getPersonManage().setBirthDate();
+	 * objectManage.getPersonManage().getBirthDateFromUserInput();
 	 * 
 	 * FamilyMember companion = new FamilyMember(1, name, birthDate);
 	 * 
@@ -330,7 +328,7 @@ public class UserInterface {
 	 * 
 	 * failedInput = false; } else if (input == 2) { System.out.print(
 	 * "Enter name: "); String name = stringScanner.nextLine(); LocalDate
-	 * birthDate = objectManage.getPersonManage().setBirthDate();
+	 * birthDate = objectManage.getPersonManage().getBirthDateFromUserInput();
 	 * 
 	 * if (currentPerson.getFamily().getChildren() == null) {
 	 * currentPerson.getFamily().createChildrenArray(); }

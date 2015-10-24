@@ -1,21 +1,15 @@
 package persons;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Person {
 
     LocalDate birthDate;
-    // TODO Vi måste fixa ID-påplusning! Eventuellt i en factory!
-    private int id;
     private String name;
 
-    public Person(int id, String name, LocalDate birthday) {
-        this.id = id;
+    public Person(String name, LocalDate birthday) {
         this.name = name;
-        // this.birthday = birthday;
-        // TODO fixa Birthday(inte hard-coded)
-        this.birthDate = LocalDate.of(1983, 12, 11);
+        this.birthDate = birthday;
     }
 
     public String getName() {
@@ -23,31 +17,18 @@ public class Person {
     }
 
     public LocalDate getBirthday() {
-        // Eventuellt override toString efter önskad formatering.
         return birthDate;
     }
 
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
-	}
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-//	public void setFamily(FamilyMember family) {
-//		this.family = family;
-//	}
-//
-//	public FamilyMember getFamily() {
-//		return family;
-//	}
-	
-	
-   
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

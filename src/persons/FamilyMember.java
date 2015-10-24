@@ -6,8 +6,8 @@ public class FamilyMember extends Person {
 
     private Family family;
 
-    public FamilyMember(int id, String name, LocalDate birthday, Family family) {
-        super(id, name, birthday);
+    public FamilyMember(String name, LocalDate birthday, Family family) {
+        super(name, birthday);
         this.family = family;
     }
 

@@ -1,9 +1,8 @@
 package persons;
 
 import companies.Company;
-import companies.MyCompany;
-import contactInfo.ContactInfo;
 import companies.Meeting;
+import contactInfo.ContactInfo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,13 +14,13 @@ public class Associate extends Person {
     private Company company;
     private String position;
     private ArrayList<String> tags;
-    //  För att kunna lista vilka möten en person har varit på samt för att undvika dubbelbokning.
+    // TODO För att kunna lista vilka möten en person har varit på samt för att undvika dubbelbokning.
     private ArrayList<Meeting> meetings;
     private ArrayList<FamilyMember> familyMembers;
 
-    public Associate(int id, String name, LocalDate birthDate, Company company,
+    public Associate(String name, LocalDate birthDate, Company company,
                      String position, ContactInfo contactInfo) {
-        super(id, name, birthDate);
+        super(name, birthDate);
         this.company = company;
         this.position = position;
         this.contactInfo = contactInfo;
@@ -43,18 +42,19 @@ public class Associate extends Person {
         return tags;
     }
 
-//    public void setTags(String... tags) {
-//        for (String tag : tags) {
-//            this.tags.add(tag);
-//        }
-//    }
+/*    public void setTags(String... tags) {
+        for (String tag : tags) {
+            this.tags.add(tag);
+        }
+    }
+*/
 
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
 
-    public void setPosition(String position){
-    	this.position = position;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public ArrayList<Meeting> getMeetings() {
@@ -66,7 +66,6 @@ public class Associate extends Person {
     }
 
     public boolean isAvailableForMeeting(LocalDateTime preferedStartDate) {
-        // TODO kod här för att kolla om personen är ledig eller inte (Kolla sin egna arraylist av meetings)
         for (Meeting meeting : meetings) {
             if (preferedStartDate.isBefore(meeting.getEndDate()) && preferedStartDate.isAfter(meeting.getStartDate())) {
                 return false;
@@ -82,4 +81,5 @@ public class Associate extends Person {
     public void setFamilyMembers(ArrayList<FamilyMember> familyMembers) {
         this.familyMembers = familyMembers;
     }
+
 }

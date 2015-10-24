@@ -5,6 +5,8 @@ import companies.MyCompany;
 import contactInfo.ContactInfo;
 import menysystem.ConsoleMenu;
 import persons.Associate;
+import persons.Family;
+import persons.FamilyMember;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -14,22 +16,22 @@ public class PersonManage {
 
     public Associate createEmployee(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner) {
         int id = 0;
-        System.out.print("\nYou have chosen to create a new employee.\nEnter name: ");
-        String name = stringScanner.nextLine();
-        LocalDate birthDate = setBirthDate();
+        System.out.println("\nYou have chosen to create a new employee.");
+        String name = getNameFromUserInput(stringScanner);
+        LocalDate birthDate = getBirthDateFromUserInput();
         Company tempCompany = new Company(myCompany.getName(), myCompany.getContactInfo());
         System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.getContactInfoManage().createContactInfo(stringScanner);
         System.out.println("\nNew employee " + name + " created!\n");
-        return new Associate(id, name, birthDate, tempCompany, position, contactInfo);
+        return new Associate(name, birthDate, tempCompany, position, contactInfo);
     }
 
     public Associate createBusinessAssociate(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         int id = 0;
-        System.out.print("\nYou have chosen to create a new business associate.\nEnter name: ");
-        String name = stringScanner.nextLine();
-        LocalDate birthDate = setBirthDate();
+        System.out.print("\nYou have chosen to create a new business associate.");
+        String name = getNameFromUserInput(stringScanner);
+        LocalDate birthDate = getBirthDateFromUserInput();
         System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.getContactInfoManage().createContactInfo(stringScanner);
@@ -58,10 +60,35 @@ public class PersonManage {
             myCompany.addAssociatedCompany(company);
         }
         System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
-        return new Associate(id, name, birthDate, company, position, contactInfo);
+        return new Associate(name, birthDate, company, position, contactInfo);
     }
 
-    public LocalDate setBirthDate() {
+    public FamilyMember createFamilyMember(Scanner stringScanner) {
+        System.out.print("\nYou have chosen to create a new family member.");
+        String name = getNameFromUserInput(stringScanner);
+        System.out.println("1. Spouse\n2. Child");
+        System.out.print("Choose if it is your spouse or child:");
+        String familyType = stringScanner.nextLine();
+        Family family = null;
+        while (family == null) {
+            switch (familyType) {
+                case "1":
+                    family = Family.SPOUSE;
+                    break;
+                case "2":
+                    family = Family.CHILD;
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    break;
+            }
+        }
+        LocalDate localDate = getBirthDateFromUserInput();
+        FamilyMember familyMember = new FamilyMember(name, localDate, family);
+        return familyMember;
+    }
+
+    public LocalDate getBirthDateFromUserInput() {
         LocalDate localDate;
         Scanner intScanner;
         int year, month, day;
@@ -117,6 +144,11 @@ public class PersonManage {
             }
         }
         return localDate;
+    }
+
+    private String getNameFromUserInput(Scanner stringScanner) {
+        System.out.print("Enter name: ");
+        return stringScanner.nextLine();
     }
 
 }
