@@ -26,7 +26,7 @@ public class TestKlassREMOVE {
                 new ContactInfo("xxx@com.com", "Bajsgatan", "112")));
         myCompany.addEmployee(new Associate("Erik", LocalDate.now(), myCompany, "Fluffer",
                 new ContactInfo("xxx@com.com", "Bajsgatan", "112")));
-        myCompany.addEmployee(new Associate("Filip", LocalDate.now(), myCompany, "Fluffer",
+        myCompany.addEmployee(new Associate("Johan Falk", LocalDate.now(), myCompany, "Fluffer",
                 new ContactInfo("xxx@com.com", "Bajsgatan", "112")));
 
         Company telia = new Company("Telia", new ContactInfo("telia@telia.com", "Teliagatan", "031-123456789"));
