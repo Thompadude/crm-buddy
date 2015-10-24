@@ -17,7 +17,7 @@ public class MeetingManage {
     public Meeting createMeeting(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         ArrayList<Associate> tempParticipants = new ArrayList<>();
 
-        System.out.print("Please enter the topic of the meeting: ");
+        System.out.print("Enter the topic of the meeting: ");
         String topic = stringScanner.nextLine();
 
         System.out.println("Employees");
@@ -35,7 +35,7 @@ public class MeetingManage {
         /**
          * Prompt user to input a start date of the meeting.
          */
-        System.out.println("Please set the desired start time: ");
+        System.out.println("Set the desired start time: ");
         LocalDateTime startDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
         System.out.println(startDate.toString());
 
@@ -43,10 +43,10 @@ public class MeetingManage {
          * Prompt user to input an end date of the meeting.
          * Restart if user tries to put in an end date before a start date.
          */
-        System.out.println("Please set the desired end time: ");
+        System.out.println("Set the desired end time: ");
         LocalDateTime endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
         if (endDate.isBefore(startDate)) {
-            System.out.println("The meeting ends before is begins. Enter correct date.");
+            System.out.println("The meeting ends before it begins. Enter correct date.");
             endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
         }
 
@@ -59,7 +59,7 @@ public class MeetingManage {
         int input;
         boolean exitInput;
         do {
-            System.out.print("Please add person (press 0 for exit): ");
+            System.out.print("Add person (press 0 for exit): ");
             input = intScanner.nextInt() - 1;
             if (input < myCompany.getEmployees().size()) {
                 tempParticipants.add(currentArrayList.get(input));
