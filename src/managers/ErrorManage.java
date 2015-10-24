@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class ErrorManage {
 
+    //skriv javaDoc om denna boolean
     public <T> boolean catchArrayListNullPointerException(ArrayList<T> t) {
         if (t == null) {
             return true;

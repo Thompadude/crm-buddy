@@ -27,7 +27,7 @@ public class MyCompany extends Company {
     }
 
     public void createMeetings() {
-        this.meetings = new ArrayList<Meeting>();
+        this.meetings = new ArrayList<>();
     }
 
     public ArrayList<Associate> getEmployees() {
@@ -41,6 +41,10 @@ public class MyCompany extends Company {
     public ArrayList<Associate> getPastContacts() {
 
         return this.pastContacts;
+    }
+
+    public void createPastContacts() {
+        this.pastContacts = new ArrayList<>();
     }
 
     public void addPastContact(Associate contact) {
