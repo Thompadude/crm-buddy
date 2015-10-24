@@ -64,7 +64,7 @@ public class TestKlassREMOVE {
         Associate associateH = new Associate("EmployeeTest Sigurd", LocalDate.now(), telia, "Skurk",
                 new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
 
-        myCompany.addEmployee(associateA);
+        myCompany.addBusinessAssociate(associateA);
 
         ArrayList<FamilyMember> familyMembers = new ArrayList<>();
         FamilyMember frugan = new FamilyMember("test Fru", LocalDate.now(), Family.SPOUSE);

@@ -3,7 +3,7 @@ package managers;
 import companies.Journal;
 import companies.Meeting;
 import companies.MyCompany;
-import menysystem.ConsoleMenu;
+import userinterface.ConsoleMenu;
 import persons.Associate;
 
 import java.time.LocalDateTime;

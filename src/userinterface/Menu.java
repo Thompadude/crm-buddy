@@ -1,4 +1,4 @@
-package menysystem;
+package userinterface;
 
 import java.util.ArrayList;
 import java.util.Scanner;

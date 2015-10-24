@@ -8,6 +8,7 @@ import persons.Family;
 import persons.FamilyMember;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PersonManage {
@@ -84,6 +85,22 @@ public class PersonManage {
         LocalDate localDate = objectManage.getDateManage().getBirthDateFromUserInput();
         FamilyMember familyMember = new FamilyMember(name, localDate, family);
         return familyMember;
+    }
+
+    public void removePerson(MyCompany myCompany, int userInputPersonChoice, ArrayList<Associate> associate, Scanner intScanner) {
+        ObjectManage objectManage = new ObjectManage();
+        System.out.print("Are you sure you want to remove " + associate.get(userInputPersonChoice).getName() + "? [1]Yes/[2]No: ");
+        int isUserSure = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
+        if (isUserSure == 1) {
+            if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getPastContacts())) {
+                myCompany.createPastContacts();
+            }
+            System.out.println(associate.get(userInputPersonChoice).getName() + " removed!");
+            myCompany.addPastContact(associate.get(userInputPersonChoice));
+            associate.remove(userInputPersonChoice);
+        } else {
+            System.out.print("Cancelled. ");
+        }
     }
 
     private String getNameFromUserInput(Scanner stringScanner) {

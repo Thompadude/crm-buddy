@@ -2,6 +2,7 @@ package entry;
 
 import companies.MyCompany;
 import contactInfo.ContactInfo;
+import userinterface.MainMenu;
 
 import java.util.Scanner;
 
@@ -24,8 +25,8 @@ public class Program {
         //TODO Load File
 
         welcomeText();
-        UserInterface userInterface = new UserInterface();
-        userInterface.mainMenu(myCompany);
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.mainMenu(myCompany);
 
         //TODO Save File
     }

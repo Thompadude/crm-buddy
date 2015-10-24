@@ -1,18 +1,17 @@
-package entry;
+package userinterface;
 
 import companies.Meeting;
 import companies.MyCompany;
+import entry.TestKlassREMOVE;
 import managers.ObjectManage;
 import managers.PrintManage;
-import menysystem.ConsoleMenu;
-import menysystem.Menu;
 import persons.Associate;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UserInterface {
+public class MainMenu {
 
     Scanner stringScanner = new Scanner(System.in);
     Scanner intScanner = new Scanner(System.in);
@@ -21,7 +20,7 @@ public class UserInterface {
     Menu menu = new ConsoleMenu();
     Menu subMenu = new ConsoleMenu();
     ArrayList<String> mainMenuAlternatives;
-    ArrayList<String> editAndViewPersonMenuAlternatives;
+    ArrayList<String> personManagementMenuAlternatives;
 
     int userInputMenuChoice;
     int userInputPersonChoice;
@@ -95,30 +94,8 @@ public class UserInterface {
                     stringScanner.nextLine();
                     break;
                 }
-                do {
-                    userInputSubMenuChoice = removeOrView();
-
-                    switch (userInputSubMenuChoice) {
-                        case 1:
-                            userInputPersonChoice = promptUserToChoosePerson(myCompany.getEmployees());
-                            removePerson(myCompany, userInputPersonChoice, myCompany.getEmployees());
-                            menuOpen = false;
-                            break;
-                        case 2:
-                            userInputPersonChoice = promptUserToChoosePerson(myCompany.getEmployees());
-                            editAndViewPersonMenu(userInputPersonChoice, myCompany, myCompany.getEmployees());
-                            menuOpen = false;
-                            break;
-                        case 3:
-                            // this option takes you back to the main menu. Leave blank.
-                            menuOpen = false;
-                            break;
-                        default:
-                            System.out.println("Wrong choice! Try again!");
-                            menuOpen = true;
-                            break;
-                    }
-                } while (menuOpen);
+                userInputPersonChoice = promptUserToChoosePerson(myCompany.getEmployees());
+                personManagementMenu(userInputPersonChoice, myCompany, myCompany.getEmployees());
                 break;
             case 5:
                 menuOpen = false;
@@ -129,30 +106,8 @@ public class UserInterface {
                     stringScanner.nextLine();
                     break;
                 }
-                do {
-                    userInputSubMenuChoice = removeOrView();
-
-                    switch (userInputSubMenuChoice) {
-                        case 1:
-                            userInputPersonChoice = promptUserToChoosePerson(myCompany.getBusinessAssociates());
-                            removePerson(myCompany, userInputPersonChoice, myCompany.getBusinessAssociates());
-                            menuOpen = false;
-                            break;
-                        case 2:
-                            userInputPersonChoice = promptUserToChoosePerson(myCompany.getBusinessAssociates());
-                            editAndViewPersonMenu(userInputPersonChoice, myCompany, myCompany.getBusinessAssociates());
-                            menuOpen = false;
-                            break;
-                        case 3:
-                            // this option takes you back to the main menu. Leave blank.
-                            menuOpen = false;
-                            break;
-                        default:
-                            System.out.println("Wrong choice! Try again!");
-                            menuOpen = true;
-                            break;
-                    }
-                } while (menuOpen);
+                userInputPersonChoice = promptUserToChoosePerson(myCompany.getBusinessAssociates());
+                personManagementMenu(userInputPersonChoice, myCompany, myCompany.getBusinessAssociates());
                 break;
             case 6:
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getMeetings())) {
@@ -161,20 +116,20 @@ public class UserInterface {
                     stringScanner.nextLine();
                     break;
                 }
-                userInputSubMenuChoice = removeOrView();
-                if (userInputSubMenuChoice == 1) {
-                    // TODO här skall ett möte tas bort
-                    System.out.println("Här ska vi koda hur ett möte tas bort");
-                    break;
-                }
-                if (userInputSubMenuChoice == 2) {
-                    objectManage.getMeetingManage().editAndViewMeeting(myCompany, intScanner, stringScanner);
-                    break;
-                }
-                if (userInputSubMenuChoice == 3) {
-                    // this option takes you back to the main menu. Leave blank.
-                    break;
-                }
+//                userInputSubMenuChoice = removeOrView();
+//                if (userInputSubMenuChoice == 1) {
+//                    // TODO här skall ett möte tas bort
+//                    System.out.println("Här ska vi koda hur ett möte tas bort");
+//                    break;
+//                }
+//                if (userInputSubMenuChoice == 2) {
+//                    objectManage.getMeetingManage().editAndViewMeeting(myCompany, intScanner, stringScanner);
+//                    break;
+//                }
+//                if (userInputSubMenuChoice == 3) {
+//                    // this option takes you back to the main menu. Leave blank.
+//                    break;
+//                }
                 break;
             case 7:
                 System.out.println("Saving and logging off");
@@ -185,71 +140,75 @@ public class UserInterface {
         }
     }
 
-    public void editAndViewPersonMenu(int userInputPersonChoice, MyCompany myCompany, ArrayList<Associate> persons) {
-        Associate currentPerson = persons.get(userInputPersonChoice);
+    public void personManagementMenu(int userInputPersonChoice, MyCompany myCompany, ArrayList<Associate> associate) {
 
-        // SUB MENU ALTERNATIVES
-        editAndViewPersonMenuAlternatives = new ArrayList<String>();
-        editAndViewPersonMenuAlternatives.add("Edit name");
-        editAndViewPersonMenuAlternatives.add("Edit birthdate");
-        editAndViewPersonMenuAlternatives.add("Edit address");
-        editAndViewPersonMenuAlternatives.add("Edit e-mail");
-        editAndViewPersonMenuAlternatives.add("Edit phonenumber");
-        editAndViewPersonMenuAlternatives.add("Edit position");
-        editAndViewPersonMenuAlternatives.add("Create familymembers");
-        editAndViewPersonMenuAlternatives.add("Back to main menu");
+        personManagementMenuAlternatives = new ArrayList<>();
+        personManagementMenuAlternatives.add("Edit name");
+        personManagementMenuAlternatives.add("Edit birthdate");
+        personManagementMenuAlternatives.add("Edit address");
+        personManagementMenuAlternatives.add("Edit e-mail");
+        personManagementMenuAlternatives.add("Edit phone number");
+        personManagementMenuAlternatives.add("Edit position");
+        personManagementMenuAlternatives.add("Create family member");
+        personManagementMenuAlternatives.add("Remove this person");
+        personManagementMenuAlternatives.add("Back to main menu");
 
         do {
-            printManage.getPrintPerson().printInfo(currentPerson);
+            printManage.getPrintPerson().printInfo(associate.get(userInputPersonChoice));
             subMenu.setMenuTitle("---Edit and View---");
-            subMenu.printMenu(editAndViewPersonMenuAlternatives);
+            subMenu.printMenu(personManagementMenuAlternatives);
             System.out.print("Choose option: ");
             userInputSubMenuChoice = menu.getInput(intScanner);
-            editAndViewPersonSwitch(userInputSubMenuChoice, currentPerson);
-        } while (userInputSubMenuChoice != editAndViewPersonMenuAlternatives.size());
+            personManagementSwitch(myCompany, userInputPersonChoice, userInputSubMenuChoice, associate);
+        } while (userInputSubMenuChoice != personManagementMenuAlternatives.size());
 
     }
 
-    public void editAndViewPersonSwitch(int userInputSubMenuChoice, Associate currentPerson) {
-
+    public void personManagementSwitch(MyCompany myCompany, int userInputPersonChoice, int userInputSubMenuChoice, ArrayList<Associate> associate) {
         switch (userInputSubMenuChoice) {
             case 1:
                 System.out.print("Set new name: ");
                 String name = stringScanner.nextLine();
-                currentPerson.setName(name);
+                associate.get(userInputPersonChoice).setName(name);
                 break;
             case 2:
                 LocalDate birthDate = objectManage.getDateManage().getBirthDateFromUserInput();
-                currentPerson.setBirthDate(birthDate);
+                associate.get(userInputPersonChoice).setBirthDate(birthDate);
                 break;
             case 3:
                 System.out.print("Set new address: ");
                 String address = stringScanner.nextLine();
-                currentPerson.getContactInfo().setAddress(address);
+                associate.get(userInputPersonChoice).getContactInfo().setAddress(address);
                 break;
             case 4:
                 System.out.print("Set new email: ");
                 String email = stringScanner.nextLine();
                 email = objectManage.getContactInfoManage().setEmail(email, stringScanner);
-                currentPerson.getContactInfo().setEmail(email);
+                associate.get(userInputPersonChoice).getContactInfo().setEmail(email);
                 break;
             case 5:
                 System.out.print("Set new phone number: ");
                 String phoneNumber = stringScanner.nextLine();
-                currentPerson.getContactInfo().setPhoneNumber(phoneNumber);
+                associate.get(userInputPersonChoice).getContactInfo().setPhoneNumber(phoneNumber);
                 break;
             case 6:
                 System.out.println("Edit position");
                 String position = stringScanner.nextLine();
-                currentPerson.setPosition(position);
+                associate.get(userInputPersonChoice).setPosition(position);
                 break;
             case 7:
-                if (objectManage.getErrorManage().catchArrayListNullPointerException(currentPerson.getFamilyMembers())) {
-                    currentPerson.setFamilyMembers(new ArrayList<>());
+                if (objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getFamilyMembers())) {
+                    associate.get(userInputPersonChoice).setFamilyMembers(new ArrayList<>());
                 }
-                currentPerson.getFamilyMembers().add(objectManage.getPersonManage().createFamilyMember(stringScanner));
+                associate.get(userInputPersonChoice).getFamilyMembers().add(objectManage.getPersonManage().createFamilyMember(stringScanner));
                 break;
             case 8:
+                objectManage.getPersonManage().removePerson(myCompany, userInputPersonChoice, associate, intScanner);
+                System.out.println("Press any key to continue...");
+                stringScanner.nextLine();
+                mainMenu(myCompany);
+                break;
+            case 9:
                 // this option takes you back to the main menu. Leave blank.
                 break;
             default:
@@ -262,25 +221,6 @@ public class UserInterface {
         printManage.getPrintPerson().printPersonList(persons);
         System.out.print("Choose person: ");
         return menu.getInput(intScanner) - 1;
-    }
-
-    public void removePerson(MyCompany myCompany, int userInputPersonChoice, ArrayList<Associate> person) {
-        if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getPastContacts())) {
-            myCompany.createPastContacts();
-        }
-        System.out.println(person.get(userInputPersonChoice).getName() + " removed!");
-        myCompany.addPastContact(person.get(userInputPersonChoice));
-        person.remove(userInputPersonChoice);
-
-    }
-
-    public int removeOrView() {
-        System.out.println("1. Remove");
-        System.out.println("2. Edit and View");
-        System.out.println("3. Go Back");
-        System.out.print("Choose option: ");
-        userInputMenuChoice = menu.getInput(intScanner);
-        return userInputMenuChoice;
     }
 
 }
