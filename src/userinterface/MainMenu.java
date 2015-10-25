@@ -45,6 +45,10 @@ public class MainMenu {
             mainMenuAlternatives.add("Save & Quit system");
 
             menu.printMenu(mainMenuAlternatives);
+
+            printManage.getPrintPerson().printBirthDateAllPersons(myCompany.getEmployees());
+            printManage.getPrintPerson().printBirthDateAllPersons(myCompany.getBusinessAssociates());
+
             System.out.print("Choose option: ");
             userInputMenuChoice = menu.getInput(intScanner);
             mainMenuSwitch(userInputMenuChoice, myCompany);
