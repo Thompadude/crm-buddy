@@ -47,7 +47,7 @@ public class MainMenu {
             mainMenuAlternatives.add("Save & Quit system");
 
             menu.printMenu(mainMenuAlternatives);
-            System.out.println("Thompa bösar");
+            
             ArrayList<Associate> allAssociates = new ArrayList<>();
             if(!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
                 allAssociates.addAll(myCompany.getEmployees());
