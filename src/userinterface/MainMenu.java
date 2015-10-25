@@ -27,6 +27,7 @@ public class MainMenu {
 
     public void mainMenu(MyCompany myCompany) {
 
+        System.out.println("Patrik Testar");
         // TODO RADERA DENNA KOD INNAN INLÄMNING! VÅRA TESTPERSONER LIGGER I
         // TESTKLASSEN! RADERA ÄVEN KLASS!(RADERA FRÅN MAPP ÅXÅ)
         TestKlassREMOVE testklassRemove = new TestKlassREMOVE();
