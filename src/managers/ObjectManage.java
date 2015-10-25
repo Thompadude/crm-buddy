@@ -11,6 +11,7 @@ public class ObjectManage {
     private ContactInfoManage contactInfoManage = new ContactInfoManage();
     private ErrorManage errorManage = new ErrorManage();
     private DateManage dateManage = new DateManage();
+    private WaitingMechanics waitingMechanics = new WaitingMechanics();
 
     public CompanyManage getCompanyManage() {
         return companyManage;
@@ -34,6 +35,10 @@ public class ObjectManage {
 
     public DateManage getDateManage() {
         return dateManage;
+    }
+
+    public WaitingMechanics getWaitingMechanics() {
+        return waitingMechanics;
     }
 
 }
