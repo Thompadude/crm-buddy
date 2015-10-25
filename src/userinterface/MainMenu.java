@@ -47,7 +47,7 @@ public class MainMenu {
             mainMenuAlternatives.add("Save & Quit system");
 
             menu.printMenu(mainMenuAlternatives);
-            
+
             ArrayList<Associate> allAssociates = new ArrayList<>();
             if(!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
                 allAssociates.addAll(myCompany.getEmployees());
