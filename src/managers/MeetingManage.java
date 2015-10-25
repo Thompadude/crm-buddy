@@ -63,16 +63,32 @@ public class MeetingManage {
         ObjectManage objectManage = new ObjectManage();
         int input;
         boolean menuOpen;
-
-        do {
-            System.out.print("Add person: ");
-            input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
-            menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(currentArrayList, input);
+        boolean goAgain = true;
+        boolean addMoreFail;
+        while (goAgain) {
+            do {
+                System.out.print("Add person: ");
+                input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+                menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(currentArrayList, input);
+            } while (menuOpen);
+            tempParticipants.add(currentArrayList.get(input));
             System.out.print("Do you want to add another person? [1]Yes/[2]No: ");
-        } while (menuOpen);
-        tempParticipants.add(currentArrayList.get(input));
 
-
+            do {
+                input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
+                if (input == 1) {
+                    addMoreFail = false;
+                    goAgain = true;
+                } else if (input == 2) {
+                    addMoreFail = false;
+                    goAgain = false;
+                } else {
+                    System.out.print("Wrong choice. Try again: ");
+                    addMoreFail = true;
+                    goAgain = false;
+                }
+            } while (addMoreFail);
+        }
     }
 
     protected void removeParticipant(Meeting meeting, String searchName) {
