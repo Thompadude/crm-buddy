@@ -61,6 +61,10 @@ public class Associate extends Person {
         return meetings;
     }
 
+    public void addMeeting(Meeting meeting) {
+        this.meetings.add(meeting);
+    }
+
     public void setMeetings(ArrayList<Meeting> meetings) {
         this.meetings = meetings;
     }

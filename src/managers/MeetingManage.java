@@ -3,8 +3,8 @@ package managers;
 import companies.Journal;
 import companies.Meeting;
 import companies.MyCompany;
-import userinterface.ConsoleMenu;
 import persons.Associate;
+import userinterface.ConsoleMenu;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,17 +32,13 @@ public class MeetingManage {
             System.out.println("NOTE: No business associates available for this meeting.");
         }
 
-        /**
-         * Prompt user to input a start date of the meeting.
-         */
+        // Prompt user to input a start date of the meeting.
         System.out.println("Set the desired start time: ");
         LocalDateTime startDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
         System.out.println(startDate.toString());
 
-        /**
-         * Prompt user to input an end date of the meeting.
-         * Restart if user tries to put in an end date before a start date.
-         */
+        // Prompt user to input an end date of the meeting.
+        // Restart if user tries to put in an end date before a start date.
         System.out.println("Set the desired end time: ");
         LocalDateTime endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
         if (endDate.isBefore(startDate)) {
@@ -50,9 +46,16 @@ public class MeetingManage {
             endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
         }
 
-        // TODO magic för att lägga till möten i varje deltagare
+        // TODO Detta är eventuellt fulkod. Det verkar fungera men ser inte klokt ut.
+        Meeting tempMeeting = new Meeting(topic, tempParticipants, startDate, endDate);
 
-        return new Meeting(topic, tempParticipants, startDate, endDate);
+        for (int i = 0; i < tempParticipants.size(); i++) {
+            if (tempParticipants.get(i).getMeetings() == null) {
+                tempParticipants.get(i).setMeetings(new ArrayList<>());
+            }
+            tempParticipants.get(i).addMeeting(tempMeeting);
+        }
+        return tempMeeting;
     }
 
     protected void addParticipant(MyCompany myCompany, Scanner intScanner, ArrayList<Associate> tempParticipants, ArrayList<Associate> currentArrayList) {
@@ -84,17 +87,12 @@ public class MeetingManage {
         }
     }
 
-    // TODO if-statements for journal rules
-    protected void createJournal(Meeting meeting, ArrayList<String> protocol) {
-        meeting.setJournal(new Journal(protocol));
-    }
-
     public ArrayList<String> createProtocol(Scanner stringScanner, Scanner intScanner) {
         ArrayList<String> protocol = new ArrayList<String>();
         int itemCounter = 1;
         boolean addMore = true;
         do {
-            System.out.println("Type item number " + itemCounter + " :");
+            System.out.print("Type item number " + itemCounter + " : ");
             protocol.add(stringScanner.nextLine());
             boolean wrongInput = false;
             do {
@@ -117,31 +115,38 @@ public class MeetingManage {
         return protocol;
     }
 
-    public void editAndViewMeeting(MyCompany myCompany, Scanner intScanner, Scanner stringScanner) {
+    public void editAndViewMeeting(MyCompany myCompany, ObjectManage objectManage, Scanner intScanner, Scanner stringScanner) {
         boolean wrongChoice;
+        int userInputMeetingChoice;
         printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
         System.out.print("Choose meeting: ");
-        ConsoleMenu menu = new ConsoleMenu();
-        int userInput = menu.getInput(intScanner) - 1;
-        Meeting currentMeeting = myCompany.getMeetings().get(userInput);
-        printManage.getPrintMeeting().printInfo(currentMeeting);
         do {
-            System.out.print("Do you want to create a journal? (1)Yes/(2)No: ");
-            userInput = menu.getInput(intScanner);
-            switch (userInput) {
+            userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+            if (userInputMeetingChoice < 0 || userInputMeetingChoice > myCompany.getMeetings().size() - 1) {
+                System.out.print("Wrong choice! Try again: ");
+                wrongChoice = true;
+            } else {
+                myCompany.getMeetings().get(userInputMeetingChoice);
+                wrongChoice = false;
+            }
+        } while (wrongChoice);
+        printManage.getPrintMeeting().printInfo(myCompany.getMeetings().get(userInputMeetingChoice));
+        do {
+            System.out.print("Do you want to create a journal? [1]Yes/[2]No: ");
+            int userInputCreateJournalPrompt = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
+            switch (userInputCreateJournalPrompt) {
                 case 1:
-                    ObjectManage objectManage = new ObjectManage();
                     ArrayList<String> protocol = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);
                     Journal tempJournal = new Journal(protocol);
-                    currentMeeting.setJournal(tempJournal);
+                    myCompany.getMeetings().get(userInputMeetingChoice).setJournal(tempJournal);
                     wrongChoice = false;
                     break;
                 case 2:
-                    // this option takes you back to the main menu. Leave blank.
+                    // This option takes you back to the main menu. Leave blank.
                     wrongChoice = false;
                     break;
                 default:
-                    System.out.println("Wrong choice! Try again!");
+                    System.out.print("Wrong choice! Try again: ");
                     wrongChoice = true;
                     break;
             }

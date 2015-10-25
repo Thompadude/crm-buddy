@@ -139,11 +139,11 @@ public class TestKlassREMOVE {
         myCompany.getMeetings().add(meetingC);
         myCompany.getMeetings().add(meetingD);
         myCompany.getMeetings().add(meetingE);
-        associateA.setMeetings(arrayListAvMeetings);
+//        associateA.setMeetings(arrayListAvMeetings);
 
         // todo DENNA FUNKAR!
-        boolean test = associateA.isAvailableForMeeting(testDate);
-        System.out.println(test);
+//        boolean test = associateA.isAvailableForMeeting(testDate);
+//        System.out.println(test);
         // todo END TESTING. DELETE THESE!
     }
 

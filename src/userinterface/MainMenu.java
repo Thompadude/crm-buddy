@@ -55,8 +55,7 @@ public class MainMenu {
 
         switch (userInputMenuChoice) {
             case 1:
-                myCompany
-                        .addEmployee(objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner));
+                myCompany.addEmployee(objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner));
                 break;
             case 2:
                 myCompany.addBusinessAssociate(objectManage.getPersonManage().createBusinessAssociate(myCompany,
@@ -69,13 +68,12 @@ public class MainMenu {
                 // men INTE business associate?
                 // TODO SLUT
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
-                    System.out.println("You dont have any employees yet.");
+                    System.out.println("You don't have any employees yet.");
                     System.out.println("Press any key to continue...");
                     stringScanner.nextLine();
                     break;
                 }
-                Meeting tempMeeting = objectManage.getMeetingManage().createMeeting(myCompany, objectManage, stringScanner,
-                        intScanner);
+                Meeting tempMeeting = objectManage.getMeetingManage().createMeeting(myCompany, objectManage, stringScanner, intScanner);
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getMeetings())) {
                     myCompany.createMeetings();
                 }
@@ -86,7 +84,7 @@ public class MainMenu {
                 menuOpen = false;
 
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
-                    System.out.println("You dont have any employees yet");
+                    System.out.println("You don't have any employees yet");
                     System.out.println("Press any key to continue...");
                     stringScanner.nextLine();
                     break;
@@ -98,7 +96,7 @@ public class MainMenu {
                 menuOpen = false;
 
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
-                    System.out.println("You dont have any business associets yet");
+                    System.out.println("You don't have any business associates yet");
                     System.out.println("Press any key to continue...");
                     stringScanner.nextLine();
                     break;
@@ -108,11 +106,12 @@ public class MainMenu {
                 break;
             case 6:
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getMeetings())) {
-                    System.out.println("You dont have any meetings yet");
+                    System.out.println("You don't have any meetings yet");
                     System.out.println("Press any key to continue...");
                     stringScanner.nextLine();
                     break;
                 }
+                objectManage.getMeetingManage().editAndViewMeeting(myCompany, objectManage, intScanner, stringScanner);
 //                userInputSubMenuChoice = removeOrView();
 //                if (userInputSubMenuChoice == 1) {
 //                    // TODO här skall ett möte tas bort
