@@ -19,7 +19,7 @@ public class PrintCompany implements Printable {
     /**
      * Prints a list of all companies connected to MyCompany.
      */
-    public void printListOfAllCompanies(MyCompany myCompany) {
+    public boolean printListOfAllCompanies(MyCompany myCompany) {
         int lister = 1;
         if (!(myCompany.getAssociatedCompanies() == null)) {
             System.out.println();
@@ -27,8 +27,10 @@ public class PrintCompany implements Printable {
                 System.out.println(lister + ". " + company.getName());
                 lister++;
             }
+            return true;
         } else {
             System.out.println("No companies to connect to.");
+            return false;
         }
     }
 

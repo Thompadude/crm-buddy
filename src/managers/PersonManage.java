@@ -27,37 +27,53 @@ public class PersonManage {
     }
 
     public Associate createBusinessAssociate(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
-        System.out.print("You have chosen to create a new business associate.");
+        System.out.print("Create a new business associate.");
         String name = getNameFromUserInput(stringScanner);
         ObjectManage objectManage = new ObjectManage();
         LocalDate birthDate = objectManage.getDateManage().getBirthDateFromUserInput();
         System.out.print("Enter position: ");
         String position = stringScanner.nextLine();
         ContactInfo contactInfo = objManage.getContactInfoManage().createContactInfo(stringScanner);
+
+        Company company = new Company(null, null);
+        boolean wrongInput;
         System.out.println("\nDo you want to add " + name + " to a existing company or create a new one?");
+        do {
         System.out.println("\n1. Existing");
         System.out.println("2. Create New");
         System.out.print("\nChoose an option: ");
-        int input = objManage.getErrorManage().catchUserInputMismatchException(intScanner);
-        Company company;
-        if (input == 1) {
-            PrintManage printManage = new PrintManage();
-            printManage.getPrintCompany().printListOfAllCompanies(myCompany);
-            System.out.print("\nChoose company ID: ");
-            while (true) {
-                input = objManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
-                if (input >= myCompany.getAssociatedCompanies().size()) {
-                    System.out.print("Wrong input. Try again: ");
+
+            int input = objManage.getErrorManage().catchUserInputMismatchException(intScanner);
+
+            if (input == 1) {
+                PrintManage printManage = new PrintManage();
+                if(printManage.getPrintCompany().printListOfAllCompanies(myCompany)) {
+                    System.out.print("\nChoose company: ");
+                    while (true) {
+                        input = objManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+                        if (input >= myCompany.getAssociatedCompanies().size()) {
+                            System.out.print("Wrong input. Try again: ");
+                        } else {
+                            company = myCompany.getAssociatedCompanies().get(input);
+                            System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
+                            wrongInput = false;
+                            break;
+                        }
+                    }
                 } else {
-                    company = myCompany.getAssociatedCompanies().get(input);
-                    break;
+                    wrongInput = true;
                 }
+            } else if (input == 2){
+                company = objManage.getCompanyManage().createCompany(myCompany, objManage, stringScanner, name);
+                myCompany.addAssociatedCompany(company);
+                System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
+                wrongInput = false;
+            } else {
+                System.out.print("Wrong input. Try again: ");
+                wrongInput = true;
             }
-        } else {
-            company = objManage.getCompanyManage().createCompany(myCompany, objManage, stringScanner, name);
-            myCompany.addAssociatedCompany(company);
-        }
-        System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
+        } while (wrongInput);
+
         return new Associate(name, birthDate, company, position, contactInfo);
     }
 

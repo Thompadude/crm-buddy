@@ -20,7 +20,7 @@ public class ErrorManage {
                 int input = intScanner.nextInt();
                 return input;
             } catch (Exception ex) {
-                System.out.print("Wrong input. Enter a new number: ");
+                System.out.print("Wrong input. You must enter a number: ");
             }
         }
     }

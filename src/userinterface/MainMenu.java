@@ -48,8 +48,17 @@ public class MainMenu {
 
             menu.printMenu(mainMenuAlternatives);
 
-            printManage.getPrintPerson().printBirthDateAllPersons(myCompany.getEmployees());
-            printManage.getPrintPerson().printBirthDateAllPersons(myCompany.getBusinessAssociates());
+            ArrayList<Associate> allAssociates = new ArrayList<>();
+            if(!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
+                allAssociates.addAll(myCompany.getEmployees());
+            }
+            if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
+                allAssociates.addAll(myCompany.getBusinessAssociates());
+
+            }
+            if(!objectManage.getErrorManage().catchArrayListNullPointerException(allAssociates)) {
+                printManage.getPrintPerson().printBirthDateAllPersons(allAssociates);
+            }
 
             System.out.print("Choose option: ");
             userInputMenuChoice = menu.getInput(intScanner);

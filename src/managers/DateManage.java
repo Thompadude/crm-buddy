@@ -147,10 +147,11 @@ public class DateManage {
                 sortedPersons.add(p);
             }
         }
-        // nu ska vi sortera sortedPersons....
+
+        // Birthday bubble sort
         for (int i = 0; i < sortedPersons.size()-1; i++) {
             for (int j = 0; j < sortedPersons.size() - 1; j++) {
-                Associate tempPerson = new Associate(null, null, null, null, null);
+                Associate tempPerson;
                 if (sortedPersons.get(j).birthDateCompareIndex > sortedPersons.get(j + 1).birthDateCompareIndex) {
                     tempPerson = sortedPersons.get(j);
                     sortedPersons.set(j, sortedPersons.get(j + 1));
