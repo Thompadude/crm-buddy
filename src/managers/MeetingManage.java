@@ -17,15 +17,15 @@ public class MeetingManage {
     public Meeting createMeeting(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         ArrayList<Associate> tempParticipants = new ArrayList<>();
 
-        System.out.print("Enter the topic of the meeting: ");
+        System.out.print("\nEnter the topic of the meeting: ");
         String topic = stringScanner.nextLine();
 
-        System.out.println("Employees");
+        System.out.println("\n--- Employees ---");
         printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
         addParticipant(myCompany, intScanner, tempParticipants, myCompany.getEmployees());
 
         if (!objManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
-            System.out.println("Business associates");
+            System.out.println("\n--- Business associates ---");
             printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
             addParticipant(myCompany, intScanner, tempParticipants, myCompany.getBusinessAssociates());
         } else {
@@ -33,13 +33,12 @@ public class MeetingManage {
         }
 
         // Prompt user to input a start date of the meeting.
-        System.out.println("Set the desired start time: ");
+        System.out.println("\nSet the desired start time: ");
         LocalDateTime startDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
-        System.out.println(startDate.toString());
 
         // Prompt user to input an end date of the meeting.
         // Restart if user tries to put in an end date before a start date.
-        System.out.println("Set the desired end time: ");
+        System.out.println("\nSet the desired end time: ");
         LocalDateTime endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
         if (endDate.isBefore(startDate)) {
             System.out.println("The meeting ends before it begins. Enter correct date.");
@@ -48,6 +47,7 @@ public class MeetingManage {
 
         // TODO Detta är eventuellt fulkod. Det verkar fungera men ser inte klokt ut.
         Meeting tempMeeting = new Meeting(topic, tempParticipants, startDate, endDate);
+        printManage.getPrintMeeting().printNewlyCreatedMeeting(tempMeeting, stringScanner);
 
         for (int i = 0; i < tempParticipants.size(); i++) {
             if (tempParticipants.get(i).getMeetings() == null) {
@@ -64,7 +64,7 @@ public class MeetingManage {
         do {
             System.out.print("Add person (press 0 for exit): ");
             input = intScanner.nextInt() - 1;
-            if (input < myCompany.getEmployees().size()) {
+            if (input < currentArrayList.size()) {
                 tempParticipants.add(currentArrayList.get(input));
             } else {
                 System.out.println("Person does not exists!");
