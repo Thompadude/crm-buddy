@@ -129,30 +129,30 @@ public class DateManage {
         }
     }
 
-    public ArrayList<Associate> sortAllBirthdaysWithinSevenDays(ArrayList<Associate> person) {
+    public ArrayList<Associate> sortAllBirthdaysWithinFiveDays(ArrayList<Associate> associates) {
         ArrayList<Associate> sortedPersons = new ArrayList<>();
-        for(Associate p : person) {
-            long pDate = p.getBirthday().getLong(ChronoField.DAY_OF_YEAR);
-            if (p.getBirthday().isLeapYear()) {
-                pDate--;
+        for (Associate person : associates) {
+            long dayOfYearOfPersonBirthday = person.getBirthday().getLong(ChronoField.DAY_OF_YEAR);
+            if (person.getBirthday().isLeapYear()) {
+                dayOfYearOfPersonBirthday--;
             }
-            long nowDate = LocalDate.now().getLong(ChronoField.DAY_OF_YEAR);
-            long diff = pDate-nowDate;
-            if (diff == 0) {
-                p.birthDateCompareIndex = diff;
-                sortedPersons.add(p);
+            long todaysDayOfYear = LocalDate.now().getLong(ChronoField.DAY_OF_YEAR);
+            long daysUntilBirthday = dayOfYearOfPersonBirthday - todaysDayOfYear;
+            if (daysUntilBirthday == 0) {
+                person.setBirthDateCompareIndex(daysUntilBirthday);
+                sortedPersons.add(person);
             }
-            if (diff < 7 && diff > 0) {
-                p.birthDateCompareIndex = diff;
-                sortedPersons.add(p);
+            if (daysUntilBirthday <= 5 && daysUntilBirthday > 0) {
+                person.setBirthDateCompareIndex(daysUntilBirthday);
+                sortedPersons.add(person);
             }
         }
 
         // Birthday bubble sort
-        for (int i = 0; i < sortedPersons.size()-1; i++) {
+        for (int i = 0; i < sortedPersons.size() - 1; i++) {
             for (int j = 0; j < sortedPersons.size() - 1; j++) {
                 Associate tempPerson;
-                if (sortedPersons.get(j).birthDateCompareIndex > sortedPersons.get(j + 1).birthDateCompareIndex) {
+                if (sortedPersons.get(j).getBirthDateCompareIndex() > sortedPersons.get(j + 1).getBirthDateCompareIndex()) {
                     tempPerson = sortedPersons.get(j);
                     sortedPersons.set(j, sortedPersons.get(j + 1));
                     sortedPersons.set(j + 1, tempPerson);

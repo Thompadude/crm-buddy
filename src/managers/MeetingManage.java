@@ -22,12 +22,13 @@ public class MeetingManage {
 
         System.out.println("\n--- Employees ---");
         printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
-        addParticipant(myCompany, intScanner, tempParticipants, myCompany.getEmployees());
+
+        addParticipant(intScanner, tempParticipants, myCompany.getEmployees());
 
         if (!objManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
             System.out.println("\n--- Business associates ---");
             printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
-            addParticipant(myCompany, intScanner, tempParticipants, myCompany.getBusinessAssociates());
+            addParticipant(intScanner, tempParticipants, myCompany.getBusinessAssociates());
         } else {
             System.out.println("NOTE: No business associates available for this meeting.");
         }
@@ -58,25 +59,20 @@ public class MeetingManage {
         return tempMeeting;
     }
 
-    protected void addParticipant(MyCompany myCompany, Scanner intScanner, ArrayList<Associate> tempParticipants, ArrayList<Associate> currentArrayList) {
+    protected void addParticipant(Scanner intScanner, ArrayList<Associate> tempParticipants, ArrayList<Associate> currentArrayList) {
+        ObjectManage objectManage = new ObjectManage();
         int input;
-        boolean exitInput;
+        boolean menuOpen;
+
         do {
-            System.out.print("Add person (press 0 for exit): ");
-            input = intScanner.nextInt() - 1;
-            if (input < currentArrayList.size()) {
-                tempParticipants.add(currentArrayList.get(input));
-            } else {
-                System.out.println("Person does not exists!");
-            }
-            System.out.print("Do you want to add another person? [1]yes/[2]no: ");
-            input = intScanner.nextInt();
-            if (input == 1) {
-                exitInput = false;
-            } else {
-                exitInput = true;
-            }
-        } while (!exitInput);
+            System.out.print("Add person: ");
+            input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+            menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(currentArrayList, input);
+            System.out.print("Do you want to add another person? [1]Yes/[2]No: ");
+        } while (menuOpen);
+        tempParticipants.add(currentArrayList.get(input));
+
+
     }
 
     protected void removeParticipant(Meeting meeting, String searchName) {

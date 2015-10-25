@@ -17,7 +17,7 @@ public class Associate extends Person {
     // TODO För att kunna lista vilka möten en person har varit på samt för att undvika dubbelbokning.
     private ArrayList<Meeting> meetings;
     private ArrayList<FamilyMember> familyMembers;
-    public long birthDateCompareIndex;
+    private long birthDateCompareIndex;
 
     public Associate(String name, LocalDate birthDate, Company company,
                      String position, ContactInfo contactInfo) {
@@ -87,5 +87,11 @@ public class Associate extends Person {
         this.familyMembers = familyMembers;
     }
 
+    public long getBirthDateCompareIndex() {
+        return birthDateCompareIndex;
+    }
 
+    public void setBirthDateCompareIndex(long birthDateCompareIndex) {
+        this.birthDateCompareIndex = birthDateCompareIndex;
+    }
 }

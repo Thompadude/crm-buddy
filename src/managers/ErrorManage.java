@@ -25,4 +25,14 @@ public class ErrorManage {
         }
     }
 
+    // 0-based. -1 cause of UI.
+    public <T> boolean catchArrayIndexOutOfBoundsException(ArrayList<T> t, int choice) {
+        if (choice > t.size() - 1 || choice < 0) {
+            System.out.println("Wrong choice. Try again.");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

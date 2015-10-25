@@ -8,7 +8,6 @@ import managers.PrintManage;
 import persons.Associate;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -25,9 +24,11 @@ public class MainMenu {
     int userInputPersonChoice;
     boolean menuOpen;
 
+    String wrongChoice = "Wrong choice. Try again.";
+
     public void mainMenu(MyCompany myCompany) {
 
-        
+
         // TODO RADERA DENNA KOD INNAN INLÄMNING! VÅRA TESTPERSONER LIGGER I
         // TESTKLASSEN! RADERA ÄVEN KLASS!(RADERA FRÅN MAPP ÅXÅ)
         TestKlassREMOVE testklassRemove = new TestKlassREMOVE();
@@ -137,15 +138,19 @@ public class MainMenu {
                 System.out.println("Saving and logging off");
                 break;
             default:
-                System.out.println("Wrong choice! Please try again!");
+                System.out.println(wrongChoice);
                 break;
         }
     }
 
     public int promptUserToChoosePerson(ArrayList<Associate> persons) {
         printManage.getPrintPerson().printPersonList(persons);
-        System.out.print("Choose person: ");
-        return menu.getInput(intScanner) - 1;
+        do {
+            System.out.print("Choose person: ");
+            userInputPersonChoice = menu.getInput(intScanner) - 1;
+            menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(persons, userInputPersonChoice);
+        } while (menuOpen);
+        return userInputPersonChoice;
     }
 
 }

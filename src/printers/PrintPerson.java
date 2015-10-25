@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class PrintPerson implements Printable {
 
-    public void printBirthDatesFromSortAllBirthdaysWithinSevenDaysMethod(ArrayList<Associate> person, ObjectManage objectManage) {
-        for (Associate sortedPerson : objectManage.getDateManage().sortAllBirthdaysWithinSevenDays(person)) {
-            if (sortedPerson.birthDateCompareIndex == 0) {
+    public void printBirthDatesFromSortAllBirthdaysWithinFiveDaysMethod(ArrayList<Associate> person, ObjectManage objectManage) {
+        for (Associate sortedPerson : objectManage.getDateManage().sortAllBirthdaysWithinFiveDays(person)) {
+            if (sortedPerson.getBirthDateCompareIndex() == 0) {
                 objectManage.getWaitingMechanics().waitFor1Second();
                 System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
                         + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
@@ -23,7 +23,7 @@ public class PrintPerson implements Printable {
                 objectManage.getWaitingMechanics().waitFor1Second();
                 System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
                         + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
-                        + " in " + sortedPerson.birthDateCompareIndex + " days!");
+                        + " in " + sortedPerson.getBirthDateCompareIndex() + " days!");
             }
         }
         objectManage.getWaitingMechanics().waitFor2Seconds();
@@ -40,7 +40,7 @@ public class PrintPerson implements Printable {
 
         }
         if (!objectManage.getErrorManage().catchArrayListNullPointerException(allAssociates)) {
-            printBirthDatesFromSortAllBirthdaysWithinSevenDaysMethod(allAssociates, objectManage);
+            printBirthDatesFromSortAllBirthdaysWithinFiveDaysMethod(allAssociates, objectManage);
         }
     }
 
