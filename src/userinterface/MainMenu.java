@@ -34,6 +34,9 @@ public class MainMenu {
         testklassRemove.TestKlass(myCompany);
         // TODO SLUT PÅ RADERING
 
+        // Print persons with birthday within 7 days (sorted).
+        printManage.getPrintPerson().collectAllPersonsInAListAndSendToPrintBirthDates(myCompany, objectManage);
+
         do {
             // MAIN MENU ALTERNATIVES
             menu.setMenuTitle("Main Menu");
@@ -47,18 +50,6 @@ public class MainMenu {
             mainMenuAlternatives.add("Save & Quit system");
 
             menu.printMenu(mainMenuAlternatives);
-
-            ArrayList<Associate> allAssociates = new ArrayList<>();
-            if(!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
-                allAssociates.addAll(myCompany.getEmployees());
-            }
-            if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
-                allAssociates.addAll(myCompany.getBusinessAssociates());
-
-            }
-            if(!objectManage.getErrorManage().catchArrayListNullPointerException(allAssociates)) {
-                printManage.getPrintPerson().printBirthDateAllPersons(allAssociates);
-            }
 
             System.out.print("Choose option: ");
             userInputMenuChoice = menu.getInput(intScanner);

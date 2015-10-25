@@ -2,7 +2,7 @@ package managers;
 
 public class WaitingMechanics {
 
-    public void forHalfASecond() {
+    public void waitForHalfASecond() {
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -10,7 +10,7 @@ public class WaitingMechanics {
         }
     }
 
-    public void for1Seconds() {
+    public void waitFor1Second() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -18,7 +18,7 @@ public class WaitingMechanics {
         }
     }
 
-    public void for2Seconds() {
+    public void waitFor2Seconds() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -26,7 +26,7 @@ public class WaitingMechanics {
         }
     }
 
-    public void for3Seconds() {
+    public void waitFor3Seconds() {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -35,5 +35,3 @@ public class WaitingMechanics {
     }
 
 }
-
-//

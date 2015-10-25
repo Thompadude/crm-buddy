@@ -1,34 +1,49 @@
 package printers;
 
 import companies.Meeting;
+import companies.MyCompany;
 import managers.ObjectManage;
 import persons.Associate;
 import persons.Family;
 
 import java.time.LocalDate;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class PrintPerson implements Printable {
 
-    public void printBirthDateAllPersons(ArrayList<Associate> person) {
-        ObjectManage objectManage = new ObjectManage();
-
+    public void printBirthDatesFromSortAllBirthdaysWithinSevenDaysMethod(ArrayList<Associate> person, ObjectManage objectManage) {
         for (Associate sortedPerson : objectManage.getDateManage().sortAllBirthdaysWithinSevenDays(person)) {
             if (sortedPerson.birthDateCompareIndex == 0) {
+                objectManage.getWaitingMechanics().waitFor1Second();
                 System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
-                                    + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
-                                    + " today!");
+                        + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
+                        + " today!");
             } else {
+                objectManage.getWaitingMechanics().waitFor1Second();
                 System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
-                                    + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
-                                    + " in " + sortedPerson.birthDateCompareIndex + " days!" );
+                        + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
+                        + " in " + sortedPerson.birthDateCompareIndex + " days!");
             }
+        }
+        objectManage.getWaitingMechanics().waitFor2Seconds();
+        System.out.println();
+    }
+
+    public void collectAllPersonsInAListAndSendToPrintBirthDates(MyCompany myCompany, ObjectManage objectManage) {
+        ArrayList<Associate> allAssociates = new ArrayList<>();
+        if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
+            allAssociates.addAll(myCompany.getEmployees());
+        }
+        if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
+            allAssociates.addAll(myCompany.getBusinessAssociates());
+
+        }
+        if (!objectManage.getErrorManage().catchArrayListNullPointerException(allAssociates)) {
+            printBirthDatesFromSortAllBirthdaysWithinSevenDaysMethod(allAssociates, objectManage);
         }
     }
 
-    //for future sub-classes, input else if instanceof
     @Override
     public <T> void printInfo(T t) {
         ObjectManage objectManage = new ObjectManage();
@@ -67,14 +82,14 @@ public class PrintPerson implements Printable {
                 System.out.println("\n- Tags: " + ((Associate) t).getTags());
             }
             if (!objectManage.getErrorManage().catchArrayListNullPointerException(((Associate) t).getMeetings())) {
-                    System.out.println("\n- Meetings Planned");
+                System.out.println("\n- Meetings Planned");
                 for (Meeting meetings : ((Associate) t).getMeetings()) {
                     if (meetings.getEndDate().isAfter(LocalDateTime.now())) {
                         System.out.println("Start Date: " + meetings.getStartDate()
                                 + ". Topic: " + meetings.getTopic());
                     }
                 }
-                    System.out.println("\n- Past Meetings");
+                System.out.println("\n- Past Meetings");
                 for (Meeting meetings : ((Associate) t).getMeetings()) {
                     if (meetings.getEndDate().isBefore(LocalDateTime.now())) {
                         System.out.println("Start Date: " + meetings.getStartDate()
@@ -93,7 +108,5 @@ public class PrintPerson implements Printable {
             lister++;
         }
     }
-
-    // TODO fixa print för family.
 
 }
