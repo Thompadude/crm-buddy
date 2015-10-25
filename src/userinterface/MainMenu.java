@@ -31,8 +31,8 @@ public class MainMenu {
 
         // TODO RADERA DENNA KOD INNAN INLÄMNING! VÅRA TESTPERSONER LIGGER I
         // TESTKLASSEN! RADERA ÄVEN KLASS!(RADERA FRÅN MAPP ÅXÅ)
-//        TestKlassREMOVE testklassRemove = new TestKlassREMOVE();
-//        testklassRemove.TestKlass(myCompany);
+        TestKlassREMOVE testklassRemove = new TestKlassREMOVE();
+        testklassRemove.TestKlass(myCompany);
         // TODO SLUT PÅ RADERING
 
         // Print persons with birthday within 7 days (sorted).

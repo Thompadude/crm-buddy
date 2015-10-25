@@ -14,13 +14,12 @@ import java.util.Scanner;
 public class PersonManage {
 
     public Associate createEmployee(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner) {
-        System.out.println("You have chosen to create a new employee.");
+        System.out.println("Create a new employee.");
         String name = getNameFromUserInput(stringScanner);
         ObjectManage objectManage = new ObjectManage();
         LocalDate birthDate = objectManage.getDateManage().getBirthDateFromUserInput();
         Company tempCompany = new Company(myCompany.getName(), myCompany.getContactInfo());
-        System.out.print("Enter position: ");
-        String position = stringScanner.nextLine();
+        String position = getPositionFromUserInput(stringScanner);
         ContactInfo contactInfo = objManage.getContactInfoManage().createContactInfo(stringScanner);
         System.out.println("\nNew employee " + name + " created!\n");
         return new Associate(name, birthDate, tempCompany, position, contactInfo);
@@ -31,8 +30,7 @@ public class PersonManage {
         String name = getNameFromUserInput(stringScanner);
         ObjectManage objectManage = new ObjectManage();
         LocalDate birthDate = objectManage.getDateManage().getBirthDateFromUserInput();
-        System.out.print("Enter position: ");
-        String position = stringScanner.nextLine();
+        String position = getPositionFromUserInput(stringScanner);
         ContactInfo contactInfo = objManage.getContactInfoManage().createContactInfo(stringScanner);
 
         Company company = new Company(null, null);
@@ -64,7 +62,7 @@ public class PersonManage {
                     wrongInput = true;
                 }
             } else if (input == 2){
-                company = objManage.getCompanyManage().createCompany(myCompany, objManage, stringScanner, name);
+                company = objManage.getCompanyManage().createCompany(myCompany, objManage, stringScanner, intScanner, name);
                 myCompany.addAssociatedCompany(company);
                 System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
                 wrongInput = false;
@@ -121,6 +119,11 @@ public class PersonManage {
 
     private String getNameFromUserInput(Scanner stringScanner) {
         System.out.print("\nEnter name: ");
+        return stringScanner.nextLine();
+    }
+
+    private String getPositionFromUserInput(Scanner stringScanner) {
+        System.out.print("Enter position: ");
         return stringScanner.nextLine();
     }
 
