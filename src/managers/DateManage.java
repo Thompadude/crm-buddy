@@ -1,8 +1,12 @@
 package managers;
 
+import persons.Associate;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoField;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -125,4 +129,35 @@ public class DateManage {
         }
     }
 
+    public ArrayList<Associate> sortAllBirthdaysWithinSevenDays(ArrayList<Associate> person) {
+        ArrayList<Associate> sortedPersons = new ArrayList<>();
+        for(Associate p : person) {
+            long pDate = p.getBirthday().getLong(ChronoField.DAY_OF_YEAR);
+            if (p.getBirthday().isLeapYear()) {
+                pDate--;
+            }
+            long nowDate = LocalDate.now().getLong(ChronoField.DAY_OF_YEAR);
+            long diff = pDate-nowDate;
+            if (diff == 0) {
+                p.birthDateCompareIndex = diff;
+                sortedPersons.add(p);
+            }
+            if (diff < 7 && diff > 0) {
+                p.birthDateCompareIndex = diff;
+                sortedPersons.add(p);
+            }
+        }
+        // nu ska vi sortera sortedPersons....
+        for (int i = 0; i < sortedPersons.size()-1; i++) {
+            for (int j = 0; j < sortedPersons.size() - 1; j++) {
+                Associate tempPerson = new Associate(null, null, null, null, null);
+                if (sortedPersons.get(j).birthDateCompareIndex > sortedPersons.get(j + 1).birthDateCompareIndex) {
+                    tempPerson = sortedPersons.get(j);
+                    sortedPersons.set(j, sortedPersons.get(j + 1));
+                    sortedPersons.set(j + 1, tempPerson);
+                }
+            }
+        }
+        return sortedPersons;
+    }
 }

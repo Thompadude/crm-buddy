@@ -8,6 +8,7 @@ import managers.PrintManage;
 import persons.Associate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -46,8 +47,11 @@ public class MainMenu {
 
             menu.printMenu(mainMenuAlternatives);
 
-            printManage.getPrintPerson().printBirthDateAllPersons(myCompany.getEmployees());
-            printManage.getPrintPerson().printBirthDateAllPersons(myCompany.getBusinessAssociates());
+            System.out.println();
+            ArrayList<Associate> allAssociates = myCompany.getEmployees();
+            allAssociates.addAll(myCompany.getBusinessAssociates());
+            printManage.getPrintPerson().printBirthDateAllPersons(allAssociates);
+            System.out.println();
 
             System.out.print("Choose option: ");
             userInputMenuChoice = menu.getInput(intScanner);

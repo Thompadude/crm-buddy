@@ -17,6 +17,7 @@ public class Associate extends Person {
     // TODO För att kunna lista vilka möten en person har varit på samt för att undvika dubbelbokning.
     private ArrayList<Meeting> meetings;
     private ArrayList<FamilyMember> familyMembers;
+    public long birthDateCompareIndex;
 
     public Associate(String name, LocalDate birthDate, Company company,
                      String position, ContactInfo contactInfo) {

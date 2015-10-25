@@ -4,31 +4,26 @@ import companies.Meeting;
 import managers.ObjectManage;
 import persons.Associate;
 import persons.Family;
-import persons.Person;
 
 import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.chrono.ChronoLocalDate;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
 
 public class PrintPerson implements Printable {
 
-
-    protected <T extends Person> void printName(T person) {
-        System.out.println("Name: " + person.getName());
-    }
-
-    protected <T extends Person> void printBirthday(T person) {
-        System.out.println("Birthday: " + person.getBirthday());
-    }
-
     public void printBirthDateAllPersons(ArrayList<Associate> person) {
-        for(Associate p : person) {
-            Period compareTwoLocalDates = Period.between(p.getBirthday(), LocalDate.now());
-            if (compareTwoLocalDates.getDays() < 7 && compareTwoLocalDates.getDays() > 0) {
-                System.out.println("Note: It's [" + p.getCompany().getName() + "]" + p.getName() + "'s birtday in " + compareTwoLocalDates.getDays() + " days!");
+        ObjectManage objectManage = new ObjectManage();
+
+        for (Associate sortedPerson : objectManage.getDateManage().sortAllBirthdaysWithinSevenDays(person)) {
+            if (sortedPerson.birthDateCompareIndex == 0) {
+                System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
+                                    + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
+                                    + " today!");
+            } else {
+                System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
+                                    + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
+                                    + " in " + sortedPerson.birthDateCompareIndex + " days!" );
             }
         }
     }

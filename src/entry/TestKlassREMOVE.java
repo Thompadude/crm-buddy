@@ -32,6 +32,7 @@ public class TestKlassREMOVE {
 
         Associate associateA = new Associate("Brad Pitt(has a family)", LocalDate.of(1963, 12, 18), telia, "Front man",
                 new ContactInfo("pitt@telia.se", "Fury Street", "010-131313"));
+        myCompany.addBusinessAssociate(associateA);
 
         // Created temporay Business associates
         myCompany.addBusinessAssociate(new Associate("Jürgen Klinsman", LocalDate.of(1973, 10, 25), telia, "CEO",
