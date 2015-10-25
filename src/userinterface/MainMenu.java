@@ -27,7 +27,7 @@ public class MainMenu {
 
     public void mainMenu(MyCompany myCompany) {
 
-        System.out.println("Patrik Testar");
+        
         // TODO RADERA DENNA KOD INNAN INLÄMNING! VÅRA TESTPERSONER LIGGER I
         // TESTKLASSEN! RADERA ÄVEN KLASS!(RADERA FRÅN MAPP ÅXÅ)
         TestKlassREMOVE testklassRemove = new TestKlassREMOVE();
@@ -48,11 +48,8 @@ public class MainMenu {
 
             menu.printMenu(mainMenuAlternatives);
 
-            System.out.println();
-            ArrayList<Associate> allAssociates = myCompany.getEmployees();
-            allAssociates.addAll(myCompany.getBusinessAssociates());
-            printManage.getPrintPerson().printBirthDateAllPersons(allAssociates);
-            System.out.println();
+            printManage.getPrintPerson().printBirthDateAllPersons(myCompany.getEmployees());
+            printManage.getPrintPerson().printBirthDateAllPersons(myCompany.getBusinessAssociates());
 
             System.out.print("Choose option: ");
             userInputMenuChoice = menu.getInput(intScanner);
