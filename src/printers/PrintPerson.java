@@ -6,6 +6,10 @@ import persons.Associate;
 import persons.Family;
 import persons.Person;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
 
 public class PrintPerson implements Printable {
@@ -39,7 +43,7 @@ public class PrintPerson implements Printable {
                             System.out.println("- Spouse ");
                         }
                         System.out.print(((Associate) t).getFamilyMembers().get(i).getName() + ", born "
-                        + ((Associate) t).getFamilyMembers().get(i).getBirthday());
+                                + ((Associate) t).getFamilyMembers().get(i).getBirthday());
                     }
 
                 }
@@ -58,10 +62,19 @@ public class PrintPerson implements Printable {
                 System.out.println("\n- Tags: " + ((Associate) t).getTags());
             }
             if (!objectManage.getErrorManage().catchArrayListNullPointerException(((Associate) t).getMeetings())) {
-                System.out.println("\n- Meetings Planned");
+                    System.out.println("\n- Meetings Planned");
                 for (Meeting meetings : ((Associate) t).getMeetings()) {
-                    System.out.println("Start Date: " + meetings.getStartDate()
-                            + ". Topic: " + meetings.getTopic());
+                    if (meetings.getEndDate().isAfter(LocalDateTime.now())) {
+                        System.out.println("Start Date: " + meetings.getStartDate()
+                                + ". Topic: " + meetings.getTopic());
+                    }
+                }
+                    System.out.println("\n- Past Meetings");
+                for (Meeting meetings : ((Associate) t).getMeetings()) {
+                    if (meetings.getEndDate().isBefore(LocalDateTime.now())) {
+                        System.out.println("Start Date: " + meetings.getStartDate()
+                                + ". Topic: " + meetings.getTopic());
+                    }
                 }
             }
         }
