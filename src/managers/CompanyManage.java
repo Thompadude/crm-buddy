@@ -40,6 +40,8 @@ public class CompanyManage {
                         goAgain = false;
                     }
                 }
+            } else {
+                goAgain = false;
             }
         } while (goAgain);
         ContactInfo tempContactInfo = objManage.getContactInfoManage().createContactInfo(stringScanner);
