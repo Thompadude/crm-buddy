@@ -27,7 +27,6 @@ public class Program {
         ReadFromFile readFromFile = new ReadFromFile("D:/Java/IntelliJ/crm/myCompany.dat");
         myCompany = readFromFile.readCompany();
 
-
         welcomeText();
         MainMenu mainMenu = new MainMenu();
         mainMenu.mainMenu(myCompany);
@@ -36,11 +35,13 @@ public class Program {
         //TODO Save File
     }
 
-    private void welcomeText() {
-        System.out.println("\n\t*************************************************\t\t\n\t*"
-                + "\t\t\t\t\t\t\t\t\t\t\t\t*\n\t*\t\t\tWELCOME to CRM Buddy 2.0\t\t\t*"
-                + "\n\t*\t\t\t\t\t\t\t\t\t\t\t\t*\n\t************************************************"
-                + "*\n\n\t\t\tPress ENTER to continue...");
+    private void welcomeText(){
+        System.out.println("\n\t* * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("\t*" + "\t\t\t\t\t\t\t\t\t\t*");
+        System.out.println("\t*\t\tWELCOME to CRM Buddy v3.0\t\t*");
+        System.out.println("\t*" + "\t\t\t\t\t\t\t\t\t\t*");
+        System.out.println("\t* * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("\n\tPress ENTER to continue...");
         reader.nextLine();
     }
 
