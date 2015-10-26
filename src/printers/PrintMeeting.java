@@ -2,18 +2,23 @@ package printers;
 
 import companies.Meeting;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PrintMeeting implements Printable {
 
+    String meetingStartDate, meetingEndDate;
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
     public void printMeetingList(ArrayList<Meeting> meetings) {
-        System.out.println("Date\t\t\t\t\t\tTopic");
-        System.out.println("----\t\t\t\t\t\t-----");
+        System.out.println("\nDate & start time\t\tTopic");
+        System.out.println("-------------------\t\t-----");
         int lister = 1;
         for (Meeting meeting : meetings) {
-            System.out.println(lister + ". " + meeting.getStartDate() +
-                    "   " + meeting.getTopic());
+            meetingStartDate = meeting.getStartDate().format(dateTimeFormatter);
+            System.out.println(lister + ". " + meetingStartDate +
+                    "\t\t" + meeting.getTopic());
             lister++;
         }
     }
@@ -21,17 +26,17 @@ public class PrintMeeting implements Printable {
     @Override
     public <T> void printInfo(T t) {
         if (t instanceof Meeting) {
-            System.out.println("Date: " + ((Meeting) t).getStartDate().toString() + " - " +
-                    ((Meeting) t).getEndDate().toString());
-            System.out.println("Topic: " + ((Meeting) t).getTopic());
-            System.out.print("---Participants--- ");
+            meetingStartDate = ((Meeting) t).getStartDate().format(dateTimeFormatter);
+            meetingEndDate = ((Meeting) t).getEndDate().format(dateTimeFormatter);
+            System.out.println("\n-Topic-\n" + ((Meeting) t).getTopic());
+            System.out.println("\n-Length-\n" + meetingStartDate + " - " + meetingEndDate);
+            System.out.print("\n-Participants-");
             printParticipants(((Meeting) t));
-            System.out.println("\n------------------");
-            System.out.println("Journal :");
+            System.out.println("\n\n-Journal-");
             if (((Meeting) t).getJournal() != null) {
                 printProtocol(((Meeting) t));
             } else {
-                System.out.println("---No journal---");
+                System.out.println("* No journal created yet.");
             }
         }
     }

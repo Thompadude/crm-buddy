@@ -8,6 +8,7 @@ import persons.Family;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PrintPerson implements Printable {
@@ -85,19 +86,21 @@ public class PrintPerson implements Printable {
             if (!objectManage.getErrorManage().catchArrayListNullPointerException(((Associate) t).getTags())) {
                 System.out.println("\n- Tags: " + ((Associate) t).getTags());
             }
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String meetingStartDate;
             if (!objectManage.getErrorManage().catchArrayListNullPointerException(((Associate) t).getMeetings())) {
                 System.out.println("\n- Meetings Planned");
                 for (Meeting meetings : ((Associate) t).getMeetings()) {
                     if (meetings.getEndDate().isAfter(LocalDateTime.now())) {
-                        System.out.println("Start Date: " + meetings.getStartDate()
-                                + ". Topic: " + meetings.getTopic());
+                        meetingStartDate = meetings.getStartDate().format(dateTimeFormatter);
+                        System.out.println("Start Date: " + meetingStartDate + ". Topic: " + meetings.getTopic());
                     }
                 }
                 System.out.println("\n- Past Meetings");
                 for (Meeting meetings : ((Associate) t).getMeetings()) {
                     if (meetings.getEndDate().isBefore(LocalDateTime.now())) {
-                        System.out.println("Start Date: " + meetings.getStartDate()
-                                + ". Topic: " + meetings.getTopic());
+                        meetingStartDate = meetings.getStartDate().format(dateTimeFormatter);
+                        System.out.println("Start Date: " + meetingStartDate + ". Topic: " + meetings.getTopic());
                     }
                 }
             }

@@ -191,7 +191,7 @@ public class MeetingManage {
         } while (wrongChoice);
         printManage.getPrintMeeting().printInfo(myCompany.getMeetings().get(userInputMeetingChoice));
         do {
-            System.out.print("Do you want to create a journal? [1]Yes/[2]No: ");
+            System.out.print("\nDo you want to create a journal? [1]Yes/[2]No: ");
             int userInputCreateJournalPrompt = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
             switch (userInputCreateJournalPrompt) {
                 case 1:
