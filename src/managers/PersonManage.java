@@ -93,7 +93,7 @@ public class PersonManage {
                     family = Family.CHILD;
                     break;
                 default:
-                    System.out.println("Invalid choice.");
+                    System.out.print("Invalid choice. Choose if it is your spouse or child: ");
                     break;
             }
         }
