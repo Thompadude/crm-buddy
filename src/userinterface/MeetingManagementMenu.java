@@ -27,10 +27,11 @@ public class MeetingManagementMenu {
         meetingManagementMenuAlternatives.add("Back to main menu");
 
         do {
-            subMenu.setMenuTitle("---Edit and View---");
+            subMenu.setMenuTitle("--- Edit and View ---");
             subMenu.printMenu(meetingManagementMenuAlternatives);
-            System.out.print("Choose option: ");
+            System.out.print("\n\tChoose option: ");
             userInputSubMenuChoice = subMenu.getInput(intScanner);
+            System.out.println();
             meetingManagementSwitch(myCompany, userInputMenuChoice, userInputSubMenuChoice);
             if (userInputSubMenuChoice == meetingManagementMenuAlternatives.size() - 1) {
                 userInputSubMenuChoice++;
@@ -51,7 +52,7 @@ public class MeetingManagementMenu {
                     break;
                 }
                 do {
-                    System.out.print("Choose meeting: ");
+                    System.out.print("\n\tChoose meeting: ");
                     userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
 
                     if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(meetingsContainingSearchedWord, userInputMeetingChoice - 1)) {

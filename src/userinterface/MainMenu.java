@@ -43,7 +43,7 @@ public class MainMenu {
 
         do {
             // MAIN MENU ALTERNATIVES
-            menu.setMenuTitle("Main Menu");
+            menu.setMenuTitle("--- Main Menu ---");
             mainMenuAlternatives = new ArrayList<>();
             mainMenuAlternatives.add("Create employee");
             mainMenuAlternatives.add("Create business contact");
@@ -55,8 +55,9 @@ public class MainMenu {
 
             menu.printMenu(mainMenuAlternatives);
 
-            System.out.print("Choose option: ");
+            System.out.print("\n\tChoose option: ");
             userInputMenuChoice = menu.getInput(intScanner);
+            System.out.println();
             mainMenuSwitch(userInputMenuChoice, myCompany);
         } while (userInputMenuChoice != mainMenuAlternatives.size());
     }
@@ -149,7 +150,7 @@ public class MainMenu {
     public int promptUserToChoosePerson(ArrayList<Associate> persons) {
         printManage.getPrintPerson().printPersonList(persons);
         do {
-            System.out.print("Choose person: ");
+            System.out.print("\n\tChoose person: ");
             userInputPersonChoice = menu.getInput(intScanner) - 1;
             menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(persons, userInputPersonChoice);
         } while (menuOpen);

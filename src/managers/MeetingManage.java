@@ -17,7 +17,7 @@ public class MeetingManage {
     public Meeting createMeeting(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         ArrayList<Associate> tempParticipants = new ArrayList<>();
 
-        System.out.print("\nEnter the topic of the meeting: ");
+        System.out.print("Enter the topic of the meeting: ");
         String topic = stringScanner.nextLine();
 
         System.out.println("\n--- Employees ---");
@@ -45,8 +45,6 @@ public class MeetingManage {
             System.out.println("The meeting ends before it begins. Enter correct date.");
             endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
         }
-
-        // TODO Detta är eventuellt fulkod. Det verkar fungera men ser inte klokt ut.
         Meeting tempMeeting = new Meeting(topic, tempParticipants, startDate, endDate);
         printManage.getPrintMeeting().printNewlyCreatedMeeting(tempMeeting, stringScanner);
 
@@ -106,7 +104,7 @@ public class MeetingManage {
     public void completelyDeleteMeeting(MyCompany myCompany, ObjectManage objectManage, int userInputMeetingChoice, Scanner stringScanner, Scanner intScanner) {
         printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
         do {
-            System.out.print("Choose meeting: ");
+            System.out.print("\n\tChoose meeting: ");
             userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
             if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(myCompany.getMeetings(), userInputMeetingChoice)) {
                 System.out.println("The meeting with topic: " + myCompany.getMeetings().get(userInputMeetingChoice).getTopic()
@@ -178,7 +176,7 @@ public class MeetingManage {
         boolean wrongChoice;
         int userInputMeetingChoice;
         printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
-        System.out.print("Choose meeting: ");
+        System.out.print("\n\tChoose meeting: ");
         do {
             userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
             if (userInputMeetingChoice < 0 || userInputMeetingChoice > myCompany.getMeetings().size() - 1) {
@@ -193,6 +191,7 @@ public class MeetingManage {
         do {
             System.out.print("\nDo you want to create a journal? [1]Yes/[2]No: ");
             int userInputCreateJournalPrompt = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
+            System.out.println();
             switch (userInputCreateJournalPrompt) {
                 case 1:
                     ArrayList<String> protocol = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);

@@ -9,7 +9,7 @@ import userinterface.MainMenu;
 import java.util.Scanner;
 
 /**
- * Out customer "MyCompany" is hard coded depending on who want to use the program.
+ * Our customer "MyCompany" is hard coded depending on who want to use the program.
  * All other objects are stored in the MyCompany object.
  */
 public class Program {

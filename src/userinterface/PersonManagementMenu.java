@@ -40,8 +40,9 @@ public class PersonManagementMenu {
             printManage.getPrintPerson().printInfo(associate.get(userInputPersonChoice));
             subMenu.setMenuTitle("---Edit and View---");
             subMenu.printMenu(personManagementMenuAlternatives);
-            System.out.print("Choose option: ");
+            System.out.print("\n\tChoose option: ");
             userInputSubMenuChoice = subMenu.getInput(intScanner);
+            System.out.println();
             personManagementSwitch(myCompany, userInputPersonChoice, userInputSubMenuChoice, associate);
 
             // To prevent index out of bounds when removing last person from last index.
@@ -110,7 +111,7 @@ public class PersonManagementMenu {
             case 10:
                 if (!objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getMeetings())) {
                     printManage.getPrintMeeting().printMeetingList(associate.get(userInputPersonChoice).getMeetings());
-                    System.out.print("Choose meeting: ");
+                    System.out.print("\n\tChoose meeting: ");
                     userInputSubMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
                 } else {
                     System.out.println(associate.get(userInputPersonChoice).getName() + " has no meetings!");

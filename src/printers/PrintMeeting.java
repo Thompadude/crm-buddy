@@ -58,9 +58,11 @@ public class PrintMeeting implements Printable {
     }
 
     public void printNewlyCreatedMeeting(Meeting newMeeting, Scanner stringScanner) {
+        meetingStartDate = newMeeting.getStartDate().format(dateTimeFormatter);
+        meetingEndDate = newMeeting.getEndDate().format(dateTimeFormatter);
         System.out.println("\nNew meeting created with topic: " + newMeeting.getTopic()
-                + "\nStart Date: " + newMeeting.getStartDate().toString()
-                + "\nEnd Date: " + newMeeting.getEndDate().toString()
+                + "\nStart Date: " + meetingStartDate
+                + "\nEnd Date: " + meetingEndDate
                 + "\n\nPress any key to continue...");
         stringScanner.nextLine();
     }

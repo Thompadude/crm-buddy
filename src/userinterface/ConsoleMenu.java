@@ -19,10 +19,10 @@ public class ConsoleMenu implements Menu {
     @Override
     public void printMenu(ArrayList<String> list) {
         int i = 0;
-        System.out.println(menuTitle);
+        System.out.println("\t" + menuTitle);
         for (String line : list) {
             i++;
-            System.out.println(i + ". " + line);
+            System.out.println("\t" + i + ". " + line);
         }
     }
 

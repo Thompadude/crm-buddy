@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class PersonManage {
 
     public Associate createEmployee(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner) {
-        System.out.println("Create a new employee.");
+        System.out.println("You've chosen to create a new employee.");
         String name = getNameFromUserInput(stringScanner);
         ObjectManage objectManage = new ObjectManage();
         LocalDate birthDate = objectManage.getDateManage().getBirthDateFromUserInput();
@@ -26,7 +26,7 @@ public class PersonManage {
     }
 
     public Associate createBusinessAssociate(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
-        System.out.print("Create a new business associate.");
+        System.out.print("You've chosen to create a new business associate.");
         String name = getNameFromUserInput(stringScanner);
         ObjectManage objectManage = new ObjectManage();
         LocalDate birthDate = objectManage.getDateManage().getBirthDateFromUserInput();
@@ -49,6 +49,7 @@ public class PersonManage {
                     System.out.print("\nChoose company: ");
                     while (true) {
                         input = objManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+                        System.out.println();
                         if (input >= myCompany.getAssociatedCompanies().size()) {
                             System.out.print("Wrong input. Try again: ");
                         } else {
