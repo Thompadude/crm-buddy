@@ -36,6 +36,8 @@ public class CompanyManage {
                             i = 0;
                             goAgain = false;
                         }
+                    } else {
+                        goAgain = false;
                     }
                 }
             }
