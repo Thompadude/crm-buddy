@@ -87,8 +87,8 @@ public class PersonManagementMenu {
                 associate.get(userInputPersonChoice).setPosition(position);
                 break;
             case 7:
-                    ArrayList<String> newTags = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);
-                if(!objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getTags())) {
+                ArrayList<String> newTags = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);
+                if (!objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getTags())) {
                     associate.get(userInputPersonChoice).getTags().addAll(newTags);
                 } else {
                     associate.get(userInputPersonChoice).setTags(newTags);
@@ -103,26 +103,25 @@ public class PersonManagementMenu {
                 break;
             case 9:
                 String currentNote = "";
-
-
                 System.out.println("Type in the desired family note:");
                 currentNote += " " + stringScanner.nextLine();
                 associate.get(userInputPersonChoice).addFamilyNote(currentNote);
-
                 break;
-
             case 10:
-                printManage.getPrintMeeting().printMeetingList(associate.get(userInputPersonChoice).getMeetings());
-
-                System.out.print("Choose meeting: ");
-                userInputSubMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner)-1;
-
-                if(!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(associate.get(userInputPersonChoice).getMeetings(), userInputSubMenuChoice)){
-
-                printManage.getPrintMeeting().printInfo(associate.get(userInputPersonChoice).getMeetings().get(userInputSubMenuChoice));
+                if (!objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getMeetings())) {
+                    printManage.getPrintMeeting().printMeetingList(associate.get(userInputPersonChoice).getMeetings());
+                    System.out.print("Choose meeting: ");
+                    userInputSubMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+                } else {
+                    System.out.println(associate.get(userInputPersonChoice).getName() + " has no meetings!");
+                    System.out.println("Press any key to continue...");
+                    stringScanner.nextLine();
                     break;
                 }
-
+                if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(associate.get(userInputPersonChoice).getMeetings(), userInputSubMenuChoice)) {
+                    printManage.getPrintMeeting().printInfo(associate.get(userInputPersonChoice).getMeetings().get(userInputSubMenuChoice));
+                    break;
+                }
                 break;
             case 11:
                 objectManage.getPersonManage().removePerson(myCompany, userInputPersonChoice, associate, intScanner);
