@@ -41,13 +41,16 @@ public class MeetingManage {
         // Restart if user tries to put in an end date before a start date.
         System.out.println("\nSet the desired end time: ");
         LocalDateTime endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
-        if (endDate.isBefore(startDate)) {
-            System.out.println("The meeting ends before it begins. Enter correct date.");
-            endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
+        Meeting tempMeeting = null;
+        while (tempMeeting == null) {
+            if (endDate.isBefore(startDate)) {
+                System.out.println("The meeting ends before it begins. Enter correct date.");
+                endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
+            } else {
+                tempMeeting = new Meeting(topic, tempParticipants, startDate, endDate);
+            }
         }
-        Meeting tempMeeting = new Meeting(topic, tempParticipants, startDate, endDate);
         printManage.getPrintMeeting().printNewlyCreatedMeeting(tempMeeting, stringScanner);
-
         for (int i = 0; i < tempParticipants.size(); i++) {
             if (tempParticipants.get(i).getMeetings() == null) {
                 tempParticipants.get(i).setMeetings(new ArrayList<>());
@@ -142,7 +145,7 @@ public class MeetingManage {
     }
 
     /**
-     * Takes an arraylist of strings and create a protocol to put in Journal.
+     * Takes an array list of strings and create a protocol to put in Journal.
      */
     public ArrayList<String> createProtocol(Scanner stringScanner, Scanner intScanner) {
         ArrayList<String> items = new ArrayList<String>();
