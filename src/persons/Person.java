@@ -2,7 +2,7 @@ package persons;
 
 import java.time.LocalDate;
 
-public class Person {
+public class Person implements java.io.Serializable {
 
     LocalDate birthDate;
     private String name;

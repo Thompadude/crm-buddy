@@ -1,5 +1,7 @@
 package entry;
 
+import FileManage.ReadFromFile;
+import FileManage.SaveToFile;
 import companies.MyCompany;
 import contactInfo.ContactInfo;
 import userinterface.MainMenu;
@@ -11,7 +13,6 @@ import java.util.Scanner;
  * All other objects are stored in the MyCompany object.
  */
 public class Program {
-    // TODO Skapa factory ist�llet (interface)
 
     Scanner reader = new Scanner(System.in);
     String companyName = "Apple Computers Inc.";
@@ -22,12 +23,16 @@ public class Program {
     MyCompany myCompany = new MyCompany(companyName, new ContactInfo(email, streetAddress, phoneNumber));
 
     protected void runProgram() {
-        //TODO Load File
+        //Load File
+        ReadFromFile readFromFile = new ReadFromFile("D:/Java/IntelliJ/crm/myCompany.dat");
+        myCompany = readFromFile.readCompany();
+
 
         welcomeText();
         MainMenu mainMenu = new MainMenu();
         mainMenu.mainMenu(myCompany);
 
+        SaveToFile saveToFile = new SaveToFile(myCompany, "D:/Java/IntelliJ/crm/myCompany.dat");
         //TODO Save File
     }
 

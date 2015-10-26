@@ -5,7 +5,7 @@ import persons.Associate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Meeting {
+public class Meeting implements java.io.Serializable {
 
     private Journal journal;
     private ArrayList<Associate> participants;

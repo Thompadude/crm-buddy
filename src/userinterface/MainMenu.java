@@ -32,8 +32,8 @@ public class MainMenu {
 
         // TODO RADERA DENNA KOD INNAN INL�MNING! V�RA TESTPERSONER LIGGER I
         // TESTKLASSEN! RADERA �VEN KLASS!(RADERA FR�N MAPP �X�)
-        TestKlassREMOVE testklassRemove = new TestKlassREMOVE();
-        testklassRemove.TestKlass(myCompany);
+//        TestKlassREMOVE testklassRemove = new TestKlassREMOVE();
+//        testklassRemove.TestKlass(myCompany);
         // TODO SLUT P� RADERING
 
         // Print persons with birthday within 5 days (sorted).

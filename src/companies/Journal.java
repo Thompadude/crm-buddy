@@ -2,7 +2,7 @@ package companies;
 
 import java.util.ArrayList;
 
-public class Journal {
+public class Journal implements java.io.Serializable {
 
     private ArrayList<String> protocol;
 

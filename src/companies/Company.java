@@ -2,7 +2,7 @@ package companies;
 
 import contactInfo.ContactInfo;
 
-public class Company {
+public class Company implements java.io.Serializable {
 
 	private String name;
 	private ContactInfo contactInfo;

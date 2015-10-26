@@ -12,19 +12,18 @@ public class SaveToFile {
     private FileOutputStream fileout;
     private ObjectOutputStream objout;
 
-    public SaveToFile(MyCompany mycompany, String filePath){
+    public SaveToFile(MyCompany myCompany, String filePath){
 
         this.filePath = filePath;
 
         //Denna är just nu satt till den här datorns location och skall ändras (kanske universiell metod)
-        filePath = "C:/mycompany/mycompany.dat";
 
 
         try{
             fileout = new FileOutputStream(filePath);
             objout = new ObjectOutputStream(fileout);
 
-            objout.writeObject(mycompany);
+            objout.writeObject(myCompany);
 
         }catch(Exception ex){
 

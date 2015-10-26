@@ -1,7 +1,7 @@
 package contactInfo;
 
 
-public class ContactInfo {
+public class ContactInfo implements java.io.Serializable {
 
     private String email;
     private String address;

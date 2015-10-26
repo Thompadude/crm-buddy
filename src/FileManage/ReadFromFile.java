@@ -8,16 +8,15 @@ import java.io.ObjectInputStream;
 
 public class ReadFromFile {
 
-    private String currentFilePath;
-    private FileInputStream filein;
-    private ObjectInputStream objin;
+    private String filePath;
+    private FileInputStream fileIn;
+    private ObjectInputStream objIn;
 
 
     public ReadFromFile(String filePath){
 
-        this.currentFilePath = filePath;
+        this.filePath = filePath;
         //Denna är just nu satt till den här datorns location och skall ändras (kanske universiell metod)
-        filePath = "C:/mycompany/mycompany.dat";
 
     }
 
@@ -26,10 +25,10 @@ public class ReadFromFile {
         companies.MyCompany mycompany = new MyCompany(null, null);
 
         try{
-            filein = new FileInputStream(currentFilePath);
-            objin = new ObjectInputStream(filein);
+            fileIn = new FileInputStream(filePath);
+            objIn = new ObjectInputStream(fileIn);
 
-            mycompany = (MyCompany)objin.readObject();
+            mycompany = (MyCompany)objIn.readObject();
 
         }catch(Exception e){
             System.out.println(e);
