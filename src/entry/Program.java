@@ -20,22 +20,28 @@ public class Program {
     String streetAddress = "Pear Street";
     String phoneNumber = "A phone number";
 
-    MyCompany myCompany = new MyCompany(companyName, new ContactInfo(email, streetAddress, phoneNumber));
+    MyCompany myCompany;
+    String filePath = "myCompany.dat";
 
     protected void runProgram() {
         //Load File
-        ReadFromFile readFromFile = new ReadFromFile("D:/Java/IntelliJ/crm/myCompany.dat");
-        myCompany = readFromFile.readCompany();
+        ReadFromFile readFromFile = new ReadFromFile(filePath);
+        myCompany = readFromFile.readCompany(myCompany);
+
+        // If there's no company to load from file, create a new one with hard coded info..
+        if (myCompany == null) {
+            myCompany = new MyCompany(companyName, new ContactInfo(email, streetAddress, phoneNumber));
+        }
 
         welcomeText();
         MainMenu mainMenu = new MainMenu();
         mainMenu.mainMenu(myCompany);
 
-        SaveToFile saveToFile = new SaveToFile(myCompany, "D:/Java/IntelliJ/crm/myCompany.dat");
-        //TODO Save File
+        //Save file
+        SaveToFile saveToFile = new SaveToFile(myCompany, filePath);
     }
 
-    private void welcomeText(){
+    private void welcomeText() {
         System.out.println("\n\t* * * * * * * * * * * * * * * * * * * * *");
         System.out.println("\t*" + "\t\t\t\t\t\t\t\t\t\t*");
         System.out.println("\t*\t\tWELCOME to CRM Buddy v3.0\t\t*");
