@@ -16,15 +16,11 @@ public class MeetingManage {
 
     public Meeting createMeeting(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         ArrayList<Associate> tempParticipants = new ArrayList<>();
-
         System.out.print("Enter the topic of the meeting: ");
         String topic = stringScanner.nextLine();
-
         System.out.println("\n--- Employees ---");
         printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
-
         addParticipant(intScanner, tempParticipants, myCompany.getEmployees());
-
         if (!objManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
             System.out.println("\n--- Business associates ---");
             printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
@@ -118,8 +114,6 @@ public class MeetingManage {
                         for (int j = 0; j < myCompany.getBusinessAssociates().get(i).getMeetings().size(); j++) {
                             if (myCompany.getBusinessAssociates().get(i).getMeetings().get(j) == myCompany.getMeetings().get(userInputMeetingChoice)) {
                                 myCompany.getBusinessAssociates().get(i).getMeetings().remove(j);
-                                //i = myCompany.getBusinessAssociates().size();
-
                                 break;
                             }
                         }
@@ -130,7 +124,6 @@ public class MeetingManage {
                         for (int j = 0; j < myCompany.getEmployees().get(i).getMeetings().size(); j++) {
                             if (myCompany.getEmployees().get(i).getMeetings().get(j) == myCompany.getMeetings().get(userInputMeetingChoice)) {
                                 myCompany.getEmployees().get(i).getMeetings().remove(j);
-                                // i = myCompany.getEmployees().size();
                                 break;
                             }
                         }
@@ -159,7 +152,6 @@ public class MeetingManage {
                 System.out.print("Do you want to type another item? [1]Yes/[2]No: ");
                 ConsoleMenu consoleMenu = new ConsoleMenu();
                 int choice = consoleMenu.getInput(intScanner);
-
                 if (choice == 1) {
                     itemCounter++;
                     wrongInput = false;
@@ -197,9 +189,13 @@ public class MeetingManage {
             System.out.println();
             switch (userInputCreateJournalPrompt) {
                 case 1:
-                    ArrayList<String> protocol = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);
-                    Journal tempJournal = new Journal(protocol);
-                    myCompany.getMeetings().get(userInputMeetingChoice).setJournal(tempJournal);
+                    if (myCompany.getMeetings().get(userInputMeetingChoice).getJournal() == null) {
+                        ArrayList<String> protocol = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);
+                        Journal tempJournal = new Journal(protocol);
+                        myCompany.getMeetings().get(userInputMeetingChoice).setJournal(tempJournal);
+                    } else {
+                        System.out.println("Journal is already created. It is permanent. No changed allowed!");
+                    }
                     wrongChoice = false;
                     break;
                 case 2:
