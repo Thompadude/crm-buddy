@@ -30,11 +30,11 @@ public class Person implements java.io.Serializable {
         this.name = name;
     }
 
-    public void addFamilyNote(String familyNote){
-        this.familyNote += familyNote + "\n";
+    public void addFamilyNote(String familyNote) {
+        this.familyNote += "\n" + familyNote;
     }
 
-    public String getFamilyNote(){
+    public String getFamilyNote() {
         return this.familyNote;
     }
 

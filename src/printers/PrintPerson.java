@@ -66,7 +66,6 @@ public class PrintPerson implements Printable {
                         System.out.print(((Associate) t).getFamilyMembers().get(i).getName() + ", born "
                                 + ((Associate) t).getFamilyMembers().get(i).getBirthday());
                     }
-
                 }
                 for (int i = 0; i < (((Associate) t).getFamilyMembers().size()); i++) {
                     if (i == 0) {
@@ -77,10 +76,8 @@ public class PrintPerson implements Printable {
                                 + ((Associate) t).getFamilyMembers().get(i).getBirthday());
                     }
                 }
-
-                System.out.println("-Notes");
+                System.out.print("- Notes");
                 System.out.println(((Associate) t).getFamilyNote());
-
                 System.out.println("-------------");
             }
             if (!objectManage.getErrorManage().catchArrayListNullPointerException(((Associate) t).getTags())) {

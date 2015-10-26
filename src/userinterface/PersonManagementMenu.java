@@ -103,7 +103,7 @@ public class PersonManagementMenu {
                 break;
             case 9:
                 String currentNote = "";
-                System.out.println("Type in the desired family note:");
+                System.out.print("Type in the desired family note: ");
                 currentNote += " " + stringScanner.nextLine();
                 associate.get(userInputPersonChoice).addFamilyNote(currentNote);
                 break;
