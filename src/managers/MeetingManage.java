@@ -99,6 +99,52 @@ public class MeetingManage {
         }
     }
 
+    /**
+     * Completely removes a meeting from the program. Before removing the meeting from myCompany,
+     * search all persons to check if the meeting exists in them, and then delete it.
+     */
+    public void completelyDeleteMeeting(MyCompany myCompany, ObjectManage objectManage, int userInputMeetingChoice, Scanner stringScanner, Scanner intScanner) {
+        printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
+        do {
+            System.out.print("Choose meeting: ");
+            userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+            if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(myCompany.getMeetings(), userInputMeetingChoice)) {
+                System.out.println("The meeting with topic: " + myCompany.getMeetings().get(userInputMeetingChoice).getTopic()
+                        + " removed!");
+                for (int i = 0; i < myCompany.getBusinessAssociates().size(); i++) {
+                    if (!(myCompany.getBusinessAssociates().get(i).getMeetings() == null)) {
+
+                        for (int j = 0; j < myCompany.getBusinessAssociates().get(i).getMeetings().size(); j++) {
+                            if (myCompany.getBusinessAssociates().get(i).getMeetings().get(j) == myCompany.getMeetings().get(userInputMeetingChoice)) {
+                                myCompany.getBusinessAssociates().get(i).getMeetings().remove(j);
+                                i = myCompany.getBusinessAssociates().size();
+                                break;
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < myCompany.getEmployees().size(); i++) {
+                    if (!(myCompany.getEmployees().get(i).getMeetings() == null)) {
+                        for (int j = 0; j < myCompany.getEmployees().get(i).getMeetings().size(); j++) {
+                            if (myCompany.getEmployees().get(i).getMeetings().get(j) == myCompany.getMeetings().get(userInputMeetingChoice)) {
+                                myCompany.getEmployees().get(i).getMeetings().remove(j);
+                                i = myCompany.getEmployees().size();
+                                break;
+                            }
+                        }
+                    }
+                }
+                myCompany.getMeetings().remove(userInputMeetingChoice);
+                System.out.print("Press any key to continue...");
+                stringScanner.nextLine();
+                break;
+            }
+        } while (true);
+    }
+
+    /**
+     * Takes an arraylist of strings and create a protocol to put in Journal.
+     */
     public ArrayList<String> createProtocol(Scanner stringScanner, Scanner intScanner) {
         ArrayList<String> protocol = new ArrayList<String>();
         int itemCounter = 1;
