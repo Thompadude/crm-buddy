@@ -66,6 +66,7 @@ public class PersonManage {
                 myCompany.addAssociatedCompany(company);
                 System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
                 wrongInput = false;
+                break;
             } else {
                 System.out.print("Wrong input. Try again: ");
                 wrongInput = true;

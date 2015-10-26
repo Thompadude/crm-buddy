@@ -46,6 +46,10 @@ public class MeetingManagementMenu {
             case 2:
                 ArrayList<Meeting> meetingsContainingSearchedWord = objectManage.getSearchManage().searchProtocol(myCompany, stringScanner);
                 printManage.getPrintMeeting().printMeetingList(meetingsContainingSearchedWord);
+                if(meetingsContainingSearchedWord.size() == 0){
+
+                    break;
+                }
                 do {
                     System.out.print("Choose meeting: ");
                     userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);

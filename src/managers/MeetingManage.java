@@ -117,7 +117,8 @@ public class MeetingManage {
                         for (int j = 0; j < myCompany.getBusinessAssociates().get(i).getMeetings().size(); j++) {
                             if (myCompany.getBusinessAssociates().get(i).getMeetings().get(j) == myCompany.getMeetings().get(userInputMeetingChoice)) {
                                 myCompany.getBusinessAssociates().get(i).getMeetings().remove(j);
-                                i = myCompany.getBusinessAssociates().size();
+                                //i = myCompany.getBusinessAssociates().size();
+
                                 break;
                             }
                         }
@@ -128,7 +129,7 @@ public class MeetingManage {
                         for (int j = 0; j < myCompany.getEmployees().get(i).getMeetings().size(); j++) {
                             if (myCompany.getEmployees().get(i).getMeetings().get(j) == myCompany.getMeetings().get(userInputMeetingChoice)) {
                                 myCompany.getEmployees().get(i).getMeetings().remove(j);
-                                i = myCompany.getEmployees().size();
+                                // i = myCompany.getEmployees().size();
                                 break;
                             }
                         }

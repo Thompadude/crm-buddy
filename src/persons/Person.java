@@ -6,6 +6,7 @@ public class Person {
 
     LocalDate birthDate;
     private String name;
+    private String familyNote = "";
 
     public Person(String name, LocalDate birthday) {
         this.name = name;
@@ -24,11 +25,17 @@ public class Person {
         this.birthDate = birthDate;
     }
 
-    public void setId(int id) {
-    }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void addFamilyNote(String familyNote){
+        this.familyNote += familyNote + "\n";
+    }
+
+    public String getFamilyNote(){
+        return this.familyNote;
     }
 
 }

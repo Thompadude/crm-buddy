@@ -49,7 +49,7 @@ public class PrintPerson implements Printable {
         ObjectManage objectManage = new ObjectManage();
         if (t instanceof Associate) {
             System.out.println("\n" + ((Associate) t).getName() + " Contact Info: ");
-            System.out.println("- Birthdate: " + ((Associate) t).getBirthday());
+            System.out.println("- Birth date: " + ((Associate) t).getBirthday());
             System.out.println("- Email: " + ((Associate) t).getContactInfo().getEmail());
             System.out.println("- Address: " + ((Associate) t).getContactInfo().getAddress());
             System.out.println("- Phone Number: " + ((Associate) t).getContactInfo().getPhoneNumber());
@@ -76,6 +76,10 @@ public class PrintPerson implements Printable {
                                 + ((Associate) t).getFamilyMembers().get(i).getBirthday());
                     }
                 }
+
+                System.out.println("-Notes");
+                System.out.println(((Associate) t).getFamilyNote());
+
                 System.out.println("-------------");
             }
             if (!objectManage.getErrorManage().catchArrayListNullPointerException(((Associate) t).getTags())) {

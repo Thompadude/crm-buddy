@@ -32,6 +32,7 @@ public class PersonManagementMenu {
         personManagementMenuAlternatives.add("Add tags");
         personManagementMenuAlternatives.add("Create family member");
         personManagementMenuAlternatives.add("Add family note");
+        personManagementMenuAlternatives.add("View meeting");
         personManagementMenuAlternatives.add("Remove this person");
         personManagementMenuAlternatives.add("Back to main menu");
 
@@ -93,7 +94,6 @@ public class PersonManagementMenu {
                     associate.get(userInputPersonChoice).setTags(newTags);
                 }
 
-                // läggas till i den person vi jobbar med
                 break;
             case 8:
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getFamilyMembers())) {
@@ -102,14 +102,34 @@ public class PersonManagementMenu {
                 associate.get(userInputPersonChoice).getFamilyMembers().add(objectManage.getPersonManage().createFamilyMember(stringScanner));
                 break;
             case 9:
-                // add family note
+                String currentNote = "";
+
+
+                System.out.println("Type in the desired family note:");
+                currentNote += " " + stringScanner.nextLine();
+                associate.get(userInputPersonChoice).addFamilyNote(currentNote);
+
                 break;
+
             case 10:
+                printManage.getPrintMeeting().printMeetingList(associate.get(userInputPersonChoice).getMeetings());
+
+                System.out.print("Choose meeting: ");
+                userInputSubMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner)-1;
+
+                if(!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(associate.get(userInputPersonChoice).getMeetings(), userInputSubMenuChoice)){
+
+                printManage.getPrintMeeting().printInfo(associate.get(userInputPersonChoice).getMeetings().get(userInputSubMenuChoice));
+                    break;
+                }
+
+                break;
+            case 11:
                 objectManage.getPersonManage().removePerson(myCompany, userInputPersonChoice, associate, intScanner);
                 System.out.println("Press any key to continue...");
                 stringScanner.nextLine();
                 break;
-            case 11:
+            case 12:
                 // This option takes you back to the main menu. Leave blank.
                 break;
             default:
