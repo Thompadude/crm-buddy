@@ -103,7 +103,7 @@ public class MeetingManage {
     public void completelyDeleteMeeting(MyCompany myCompany, ObjectManage objectManage, int userInputMeetingChoice, Scanner stringScanner, Scanner intScanner) {
         printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
         do {
-            System.out.print("\n\tChoose meeting: ");
+            System.out.print("\nChoose meeting: ");
             userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
             if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(myCompany.getMeetings(), userInputMeetingChoice)) {
                 System.out.println("The meeting with topic: " + myCompany.getMeetings().get(userInputMeetingChoice).getTopic()
@@ -132,6 +132,7 @@ public class MeetingManage {
                 myCompany.getMeetings().remove(userInputMeetingChoice);
                 System.out.print("Press any key to continue...");
                 stringScanner.nextLine();
+                System.out.println();
                 break;
             }
         } while (true);
@@ -145,13 +146,14 @@ public class MeetingManage {
         int itemCounter = 1;
         boolean addMore = true;
         do {
-            System.out.print("Type item number " + itemCounter + " : ");
+            System.out.print("Type item number " + itemCounter + ": ");
             items.add(stringScanner.nextLine());
             boolean wrongInput = false;
             do {
                 System.out.print("Do you want to type another item? [1]Yes/[2]No: ");
                 ConsoleMenu consoleMenu = new ConsoleMenu();
                 int choice = consoleMenu.getInput(intScanner);
+                System.out.println();
                 if (choice == 1) {
                     itemCounter++;
                     wrongInput = false;
@@ -171,7 +173,7 @@ public class MeetingManage {
         boolean wrongChoice;
         int userInputMeetingChoice;
         printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
-        System.out.print("\n\tChoose meeting: ");
+        System.out.print("\nChoose meeting: ");
         do {
             userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
             if (userInputMeetingChoice < 0 || userInputMeetingChoice > myCompany.getMeetings().size() - 1) {
@@ -194,7 +196,7 @@ public class MeetingManage {
                         Journal tempJournal = new Journal(protocol);
                         myCompany.getMeetings().get(userInputMeetingChoice).setJournal(tempJournal);
                     } else {
-                        System.out.println("Journal is already created. It is permanent. No changed allowed!");
+                        System.out.println("Journal is already created. It is permanent. No changed allowed!\n");
                     }
                     wrongChoice = false;
                     break;

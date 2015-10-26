@@ -12,8 +12,10 @@ public class PrintMeeting implements Printable {
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public void printMeetingList(ArrayList<Meeting> meetings) {
-        System.out.println("Date & start time\t\tTopic");
-        System.out.println("-------------------\t\t-----");
+        if (!(meetings.isEmpty())) {
+            System.out.println("Date & start time\t\tTopic");
+            System.out.println("-------------------\t\t-----");
+        }
         int lister = 1;
         for (Meeting meeting : meetings) {
             meetingStartDate = meeting.getStartDate().format(dateTimeFormatter);

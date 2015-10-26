@@ -15,6 +15,7 @@ public class SearchManage {
 
         System.out.print("Type word to search for: ");
         String wordToSearchFor = stringScanner.nextLine();
+        System.out.println();
         for (int i = 0; i < myCompany.getMeetings().size(); i++) {
             if (!(myCompany.getMeetings().get(i).getJournal() == null)) {
                 for (int j = 0; j < myCompany.getMeetings().get(i).getJournal().getProtocol().size(); j++) {

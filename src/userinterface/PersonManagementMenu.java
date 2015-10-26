@@ -38,9 +38,9 @@ public class PersonManagementMenu {
 
         do {
             printManage.getPrintPerson().printInfo(associate.get(userInputPersonChoice));
-            subMenu.setMenuTitle("---Edit and View---");
+            subMenu.setMenuTitle("---Edit and View " + associate.get(userInputPersonChoice).getName() + "---");
             subMenu.printMenu(personManagementMenuAlternatives);
-            System.out.print("\n\tChoose option: ");
+            System.out.print("\nChoose option: ");
             userInputSubMenuChoice = subMenu.getInput(intScanner);
             System.out.println();
             personManagementSwitch(myCompany, userInputPersonChoice, userInputSubMenuChoice, associate);
@@ -111,7 +111,7 @@ public class PersonManagementMenu {
             case 10:
                 if (!objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getMeetings())) {
                     printManage.getPrintMeeting().printMeetingList(associate.get(userInputPersonChoice).getMeetings());
-                    System.out.print("\n\tChoose meeting: ");
+                    System.out.print("\nChoose meeting: ");
                     userInputSubMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
                 } else {
                     System.out.println(associate.get(userInputPersonChoice).getName() + " has no meetings!");

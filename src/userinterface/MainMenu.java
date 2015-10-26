@@ -2,7 +2,6 @@ package userinterface;
 
 import companies.Meeting;
 import companies.MyCompany;
-import entry.TestKlassREMOVE;
 import managers.ObjectManage;
 import managers.PrintManage;
 import persons.Associate;
@@ -40,7 +39,6 @@ public class MainMenu {
         printManage.getPrintPerson().collectAllPersonsInAListAndSendToPrintBirthDates(myCompany, objectManage);
 
 
-
         do {
             // MAIN MENU ALTERNATIVES
             menu.setMenuTitle("--- Main Menu ---");
@@ -55,7 +53,7 @@ public class MainMenu {
 
             menu.printMenu(mainMenuAlternatives);
 
-            System.out.print("\n\tChoose option: ");
+            System.out.print("\nChoose option: ");
             userInputMenuChoice = menu.getInput(intScanner);
             System.out.println();
             mainMenuSwitch(userInputMenuChoice, myCompany);
@@ -150,7 +148,7 @@ public class MainMenu {
     public int promptUserToChoosePerson(ArrayList<Associate> persons) {
         printManage.getPrintPerson().printPersonList(persons);
         do {
-            System.out.print("\n\tChoose person: ");
+            System.out.print("\nChoose person: ");
             userInputPersonChoice = menu.getInput(intScanner) - 1;
             menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(persons, userInputPersonChoice);
         } while (menuOpen);

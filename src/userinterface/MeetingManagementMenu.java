@@ -27,9 +27,9 @@ public class MeetingManagementMenu {
         meetingManagementMenuAlternatives.add("Back to main menu");
 
         do {
-            subMenu.setMenuTitle("--- Edit and View ---");
+            subMenu.setMenuTitle("--- Edit and View Meetings ---");
             subMenu.printMenu(meetingManagementMenuAlternatives);
-            System.out.print("\n\tChoose option: ");
+            System.out.print("\nChoose option: ");
             userInputSubMenuChoice = subMenu.getInput(intScanner);
             System.out.println();
             meetingManagementSwitch(myCompany, userInputMenuChoice, userInputSubMenuChoice);
@@ -47,17 +47,17 @@ public class MeetingManagementMenu {
             case 2:
                 ArrayList<Meeting> meetingsContainingSearchedWord = objectManage.getSearchManage().searchProtocol(myCompany, stringScanner);
                 printManage.getPrintMeeting().printMeetingList(meetingsContainingSearchedWord);
-                if(meetingsContainingSearchedWord.size() == 0){
-
+                if (meetingsContainingSearchedWord.size() == 0) {
                     break;
                 }
                 do {
-                    System.out.print("\n\tChoose meeting: ");
+                    System.out.print("\nChoose meeting: ");
                     userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
 
                     if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(meetingsContainingSearchedWord, userInputMeetingChoice - 1)) {
 
                         printManage.getPrintMeeting().printInfo(meetingsContainingSearchedWord.get(userInputMeetingChoice - 1));
+                        System.out.println();
                         break;
                     }
                 } while (true);
