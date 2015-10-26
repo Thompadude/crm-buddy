@@ -35,7 +35,7 @@ public class TestKlassREMOVE {
         myCompany.addBusinessAssociate(associateA);
 
         // Created temporay Business associates
-        myCompany.addBusinessAssociate(new Associate("Jürgen Klinsman", LocalDate.of(1973, 10, 25), telia, "CEO",
+        myCompany.addBusinessAssociate(new Associate("Jï¿½rgen Klinsman", LocalDate.of(1973, 10, 25), telia, "CEO",
                 new ContactInfo("ceo@telia.se", "Skurkgatan 2", "031-665544")));
         myCompany.addBusinessAssociate(new Associate("Alicia Vikander", LocalDate.of(1988, 10, 30), telia, "Economics",
                 new ContactInfo("alicia@telia.se", "Machinastreet 2", "010-282828")));
@@ -43,7 +43,7 @@ public class TestKlassREMOVE {
 //                new ContactInfo("pitt@telia.se", "Fury Street", "010-131313")));
         myCompany.addBusinessAssociate(new Associate("Dolph Lundgren", LocalDate.of(1957, 11, 03), volvo, "CEO",
                 new ContactInfo("doffe@volvo.com", "Hansgatan 1", "020-101010")));
-        myCompany.addBusinessAssociate(new Associate("Beyoncé Knowles-Carter", LocalDate.of(1981, 9, 04), volvo, "Staff",
+        myCompany.addBusinessAssociate(new Associate("Beyoncï¿½ Knowles-Carter", LocalDate.of(1981, 9, 04), volvo, "Staff",
                 new ContactInfo("singleLady@volvi.com", "Broadway 10", "031-202022")));
         myCompany.addBusinessAssociate(new Associate("Kim Kardashian", LocalDate.of(1980, 10, 21), volvo, "Support",
                 new ContactInfo("kim@volvo.com", "Californialane 11", "066-884422")));
@@ -82,76 +82,76 @@ public class TestKlassREMOVE {
 
 
 
-//
-//        Associate associateB = new Associate("EmployeeTEST Martin", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate associateC = new Associate("EmployeeTest Niklas", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate associateD = new Associate("EmployeeTest Olof", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate associateE = new Associate("EmployeeTest Petter", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate associateF = new Associate("EmployeeTest Quitus", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate associateG = new Associate("EmployeeTest Rudolf", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate associateH = new Associate("EmployeeTest Sigurd", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
 
-//        myCompany.addBusinessAssociate(associateA);
+        Associate associateB = new Associate("EmployeeTEST Martin", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate associateC = new Associate("EmployeeTest Niklas", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate associateD = new Associate("EmployeeTest Olof", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate associateE = new Associate("EmployeeTest Petter", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate associateF = new Associate("EmployeeTest Quitus", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate associateG = new Associate("EmployeeTest Rudolf", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate associateH = new Associate("EmployeeTest Sigurd", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
 
-
+        myCompany.addBusinessAssociate(associateA);
 
 
-//        Associate businessAssA = new Associate("hmm1", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate businessAssB = new Associate("hmm2", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate businessAssC = new Associate("hmm3", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate businessAssD = new Associate("hmm4", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate businessAssE = new Associate("hmm5", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate businessAssF = new Associate("hmm6", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate businessAssG = new Associate("hmm7", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
-//        Associate businessAssH = new Associate("hmm8", LocalDate.now(), telia, "Skurk",
-//                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
 
-//        ArrayList<Associate> tempEmployeee = new ArrayList<Associate>();
-//        tempEmployeee.add(associateA);
-//        tempEmployeee.add(associateB);
-//        tempEmployeee.add(businessAssA);
-//        tempEmployeee.add(businessAssD);
-//        tempEmployeee.add(businessAssD);
-//        tempEmployeee.add(businessAssD);
-//        tempEmployeee.add(associateG);
-//        tempEmployeee.add(associateH);
 
-//        LocalDateTime startDate = LocalDateTime.of(2015, 10, 10, 10, 10);
-//        LocalDateTime endDate = LocalDateTime.of(2015, 12, 10, 10, 10);
-//        LocalDateTime testDate = LocalDateTime.of(2015, 9, 10, 10, 10);
-//
-//        Meeting meetingA = new Meeting("TestMöte1", tempEmployeee, startDate, endDate);
-//        Meeting meetingB = new Meeting("TestMöte2", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
-//        Meeting meetingC = new Meeting("TestMöte3", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
-//        Meeting meetingD = new Meeting("TestMöte4", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
-//        Meeting meetingE = new Meeting("TestMöte5", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
-//        ArrayList<Meeting> arrayListAvMeetings = new ArrayList<>();
-//        arrayListAvMeetings.add(meetingA);
-//        arrayListAvMeetings.add(meetingB);
-//        arrayListAvMeetings.add(meetingC);
-//        arrayListAvMeetings.add(meetingD);
-//        arrayListAvMeetings.add(meetingE);
-//        myCompany.createMeetings();
-//        myCompany.getMeetings().add(meetingA);
-//        myCompany.getMeetings().add(meetingB);
-//        myCompany.getMeetings().add(meetingC);
-//        myCompany.getMeetings().add(meetingD);
-//        myCompany.getMeetings().add(meetingE);
-//        associateA.setMeetings(arrayListAvMeetings);
+        Associate businessAssA = new Associate("hmm1", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate businessAssB = new Associate("hmm2", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate businessAssC = new Associate("hmm3", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate businessAssD = new Associate("hmm4", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate businessAssE = new Associate("hmm5", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate businessAssF = new Associate("hmm6", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate businessAssG = new Associate("hmm7", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+        Associate businessAssH = new Associate("hmm8", LocalDate.now(), telia, "Skurk",
+                new ContactInfo("skurk@skurk.com", "Skrukgatan", "123"));
+
+        ArrayList<Associate> tempEmployeee = new ArrayList<Associate>();
+        tempEmployeee.add(associateA);
+        tempEmployeee.add(associateB);
+        tempEmployeee.add(businessAssA);
+        tempEmployeee.add(businessAssD);
+        tempEmployeee.add(businessAssD);
+        tempEmployeee.add(businessAssD);
+        tempEmployeee.add(associateG);
+        tempEmployeee.add(associateH);
+
+        LocalDateTime startDate = LocalDateTime.of(2015, 10, 10, 10, 10);
+        LocalDateTime endDate = LocalDateTime.of(2015, 12, 10, 10, 10);
+        LocalDateTime testDate = LocalDateTime.of(2015, 9, 10, 10, 10);
+
+        Meeting meetingA = new Meeting("TestMï¿½te1", tempEmployeee, startDate, endDate);
+        Meeting meetingB = new Meeting("TestMï¿½te2", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
+        Meeting meetingC = new Meeting("TestMï¿½te3", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
+        Meeting meetingD = new Meeting("TestMï¿½te4", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
+        Meeting meetingE = new Meeting("TestMï¿½te5", tempEmployeee, LocalDateTime.now(), LocalDateTime.now());
+        ArrayList<Meeting> arrayListAvMeetings = new ArrayList<>();
+        arrayListAvMeetings.add(meetingA);
+        arrayListAvMeetings.add(meetingB);
+        arrayListAvMeetings.add(meetingC);
+        arrayListAvMeetings.add(meetingD);
+        arrayListAvMeetings.add(meetingE);
+        myCompany.createMeetings();
+        myCompany.getMeetings().add(meetingA);
+        myCompany.getMeetings().add(meetingB);
+        myCompany.getMeetings().add(meetingC);
+        myCompany.getMeetings().add(meetingD);
+        myCompany.getMeetings().add(meetingE);
+        associateA.setMeetings(arrayListAvMeetings);
 
         // todo DENNA FUNKAR!
 //        boolean test = associateA.isAvailableForMeeting(testDate);

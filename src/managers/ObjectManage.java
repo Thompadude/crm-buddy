@@ -12,6 +12,7 @@ public class ObjectManage {
     private ErrorManage errorManage = new ErrorManage();
     private DateManage dateManage = new DateManage();
     private WaitingMechanics waitingMechanics = new WaitingMechanics();
+    private SearchManage searchManage = new SearchManage();
 
     public CompanyManage getCompanyManage() {
         return companyManage;
@@ -39,6 +40,10 @@ public class ObjectManage {
 
     public WaitingMechanics getWaitingMechanics() {
         return waitingMechanics;
+    }
+
+    public SearchManage getSearchManage() {
+        return searchManage;
     }
 
 }

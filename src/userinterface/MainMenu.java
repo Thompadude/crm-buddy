@@ -18,6 +18,7 @@ public class MainMenu {
     PrintManage printManage = new PrintManage();
     Menu menu = new ConsoleMenu();
     PersonManagementMenu personManagementMenu = new PersonManagementMenu();
+    MeetingManagementMenu meetingManagementMenu = new MeetingManagementMenu();
     ArrayList<String> mainMenuAlternatives;
 
     int userInputMenuChoice;
@@ -29,11 +30,11 @@ public class MainMenu {
     public void mainMenu(MyCompany myCompany) {
 
 
-        // TODO RADERA DENNA KOD INNAN INLÄMNING! VÅRA TESTPERSONER LIGGER I
-        // TESTKLASSEN! RADERA ÄVEN KLASS!(RADERA FRÅN MAPP ÅXÅ)
+        // TODO RADERA DENNA KOD INNAN INLï¿½MNING! Vï¿½RA TESTPERSONER LIGGER I
+        // TESTKLASSEN! RADERA ï¿½VEN KLASS!(RADERA FRï¿½N MAPP ï¿½Xï¿½)
         TestKlassREMOVE testklassRemove = new TestKlassREMOVE();
         testklassRemove.TestKlass(myCompany);
-        // TODO SLUT PÅ RADERING
+        // TODO SLUT Pï¿½ RADERING
 
         // Print persons with birthday within 7 days (sorted).
         printManage.getPrintPerson().collectAllPersonsInAListAndSendToPrintBirthDates(myCompany, objectManage);
@@ -70,7 +71,7 @@ public class MainMenu {
                 break;
             case 3:
                 // TODO
-                // Det ska inte vara möjligt att skapa ett möte om man har minst en
+                // Det ska inte vara mï¿½jligt att skapa ett mï¿½te om man har minst en
                 // employee,
                 // men INTE business associate?
                 // TODO SLUT
@@ -118,11 +119,11 @@ public class MainMenu {
                     stringScanner.nextLine();
                     break;
                 }
-                objectManage.getMeetingManage().editAndViewMeeting(myCompany, objectManage, intScanner, stringScanner);
+                meetingManagementMenu.meetingManagementMenu(userInputMenuChoice, myCompany);
 //                userInputSubMenuChoice = removeOrView();
 //                if (userInputSubMenuChoice == 1) {
-//                    // TODO här skall ett möte tas bort
-//                    System.out.println("Här ska vi koda hur ett möte tas bort");
+//                    // TODO hï¿½r skall ett mï¿½te tas bort
+//                    System.out.println("Hï¿½r ska vi koda hur ett mï¿½te tas bort");
 //                    break;
 //                }
 //                if (userInputSubMenuChoice == 2) {
