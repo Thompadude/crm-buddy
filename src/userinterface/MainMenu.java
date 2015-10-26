@@ -36,8 +36,10 @@ public class MainMenu {
         testklassRemove.TestKlass(myCompany);
         // TODO SLUT P� RADERING
 
-        // Print persons with birthday within 7 days (sorted).
+        // Print persons with birthday within 5 days (sorted).
         printManage.getPrintPerson().collectAllPersonsInAListAndSendToPrintBirthDates(myCompany, objectManage);
+
+
 
         do {
             // MAIN MENU ALTERNATIVES

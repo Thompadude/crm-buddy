@@ -146,12 +146,12 @@ public class MeetingManage {
      * Takes an arraylist of strings and create a protocol to put in Journal.
      */
     public ArrayList<String> createProtocol(Scanner stringScanner, Scanner intScanner) {
-        ArrayList<String> protocol = new ArrayList<String>();
+        ArrayList<String> items = new ArrayList<String>();
         int itemCounter = 1;
         boolean addMore = true;
         do {
             System.out.print("Type item number " + itemCounter + " : ");
-            protocol.add(stringScanner.nextLine());
+            items.add(stringScanner.nextLine());
             boolean wrongInput = false;
             do {
                 System.out.print("Do you want to type another item? [1]Yes/[2]No: ");
@@ -170,7 +170,7 @@ public class MeetingManage {
                 }
             } while (wrongInput);
         } while (addMore);
-        return protocol;
+        return items;
     }
 
     public void editAndViewMeeting(MyCompany myCompany, ObjectManage objectManage, Scanner intScanner, Scanner stringScanner) {

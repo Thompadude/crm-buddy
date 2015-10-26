@@ -29,7 +29,9 @@ public class PersonManagementMenu {
         personManagementMenuAlternatives.add("Edit e-mail");
         personManagementMenuAlternatives.add("Edit phone number");
         personManagementMenuAlternatives.add("Edit position");
+        personManagementMenuAlternatives.add("Add tags");
         personManagementMenuAlternatives.add("Create family member");
+        personManagementMenuAlternatives.add("Add family note");
         personManagementMenuAlternatives.add("Remove this person");
         personManagementMenuAlternatives.add("Back to main menu");
 
@@ -84,17 +86,30 @@ public class PersonManagementMenu {
                 associate.get(userInputPersonChoice).setPosition(position);
                 break;
             case 7:
+                    ArrayList<String> newTags = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);
+                if(!objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getTags())) {
+                    associate.get(userInputPersonChoice).getTags().addAll(newTags);
+                } else {
+                    associate.get(userInputPersonChoice).setTags(newTags);
+                }
+
+                // läggas till i den person vi jobbar med
+                break;
+            case 8:
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getFamilyMembers())) {
                     associate.get(userInputPersonChoice).setFamilyMembers(new ArrayList<>());
                 }
                 associate.get(userInputPersonChoice).getFamilyMembers().add(objectManage.getPersonManage().createFamilyMember(stringScanner));
                 break;
-            case 8:
+            case 9:
+                // add family note
+                break;
+            case 10:
                 objectManage.getPersonManage().removePerson(myCompany, userInputPersonChoice, associate, intScanner);
                 System.out.println("Press any key to continue...");
                 stringScanner.nextLine();
                 break;
-            case 9:
+            case 11:
                 // This option takes you back to the main menu. Leave blank.
                 break;
             default:

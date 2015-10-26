@@ -43,17 +43,13 @@ public class Associate extends Person {
         return tags;
     }
 
-/*    public void setTags(String... tags) {
-        for (String tag : tags) {
-            this.tags.add(tag);
-        }
-    }
-*/
-
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
 
+    public void addTag(String tag) {
+        this.tags.add(tag);
+    }
     public void setPosition(String position) {
         this.position = position;
     }
