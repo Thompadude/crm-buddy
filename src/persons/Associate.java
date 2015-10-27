@@ -14,13 +14,11 @@ public class Associate extends Person {
     private Company company;
     private String position;
     private ArrayList<String> tags;
-    // TODO För att kunna lista vilka möten en person har varit på samt för att undvika dubbelbokning.
     private ArrayList<Meeting> meetings;
     private ArrayList<FamilyMember> familyMembers;
     private long birthDateCompareIndex;
 
-    public Associate(String name, LocalDate birthDate, Company company,
-                     String position, ContactInfo contactInfo) {
+    public Associate(String name, LocalDate birthDate, Company company, String position, ContactInfo contactInfo) {
         super(name, birthDate);
         this.company = company;
         this.position = position;
@@ -50,6 +48,7 @@ public class Associate extends Person {
     public void addTag(String tag) {
         this.tags.add(tag);
     }
+
     public void setPosition(String position) {
         this.position = position;
     }
@@ -66,6 +65,9 @@ public class Associate extends Person {
         this.meetings = meetings;
     }
 
+    /**
+     * For later development. Checks if user is available when creating a new meeting.
+     */
     public boolean isAvailableForMeeting(LocalDateTime preferedStartDate) {
         for (Meeting meeting : meetings) {
             if (preferedStartDate.isBefore(meeting.getEndDate()) && preferedStartDate.isAfter(meeting.getStartDate())) {
@@ -90,4 +92,5 @@ public class Associate extends Person {
     public void setBirthDateCompareIndex(long birthDateCompareIndex) {
         this.birthDateCompareIndex = birthDateCompareIndex;
     }
+
 }
