@@ -1,7 +1,7 @@
 package entry;
 
-import FileManage.ReadFromFile;
-import FileManage.SaveToFile;
+import saveload.ReadFromFile;
+import saveload.SaveToFile;
 import companies.MyCompany;
 import contactInfo.ContactInfo;
 import userinterface.MainMenu;
@@ -10,21 +10,20 @@ import java.util.Scanner;
 
 /**
  * Our customer "MyCompany" is hard coded depending on who want to use the program.
- * All other objects are stored in the MyCompany object.
+ * All objects are stored in the MyCompany object.
  */
 public class Program {
 
     Scanner reader = new Scanner(System.in);
-    String companyName = "Apple Computers Inc.";
-    String email = "apple@apple.com";
-    String streetAddress = "Pear Street";
-    String phoneNumber = "A phone number";
+    String companyName = "APPLE";
+    String email = "info@apple.com";
+    String streetAddress = "Banana Lane 65, LA";
+    String phoneNumber = "+1 555-PINEAPPLE";
 
     MyCompany myCompany;
     String filePath = "myCompany.dat";
 
     protected void runProgram() {
-        //Load File
         ReadFromFile readFromFile = new ReadFromFile(filePath);
         myCompany = readFromFile.readCompany(myCompany);
 
@@ -34,10 +33,10 @@ public class Program {
         }
 
         welcomeText();
+
         MainMenu mainMenu = new MainMenu();
         mainMenu.mainMenu(myCompany);
 
-        //Save file
         SaveToFile saveToFile = new SaveToFile(myCompany, filePath);
     }
 

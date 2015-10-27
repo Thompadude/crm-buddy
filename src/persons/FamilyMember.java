@@ -15,8 +15,4 @@ public class FamilyMember extends Person {
         return family;
     }
 
-    public void setFamily(Family family) {
-        this.family = family;
-    }
-
 }

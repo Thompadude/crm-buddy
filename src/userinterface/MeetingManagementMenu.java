@@ -29,9 +29,11 @@ public class MeetingManagementMenu {
         do {
             subMenu.setMenuTitle("--- Edit and View Meetings ---");
             subMenu.printMenu(meetingManagementMenuAlternatives);
+
             System.out.print("\nChoose option: ");
             userInputSubMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
             System.out.println();
+
             meetingManagementSwitch(myCompany, userInputMenuChoice, userInputSubMenuChoice);
             if (userInputSubMenuChoice == meetingManagementMenuAlternatives.size() - 1) {
                 userInputSubMenuChoice++;
@@ -47,9 +49,11 @@ public class MeetingManagementMenu {
             case 2:
                 ArrayList<Meeting> meetingsContainingSearchedWord = objectManage.getSearchManage().searchProtocol(myCompany, stringScanner);
                 printManage.getPrintMeeting().printMeetingList(meetingsContainingSearchedWord);
+
                 if (meetingsContainingSearchedWord.size() == 0) {
                     break;
                 }
+
                 do {
                     System.out.print("\nChoose meeting: ");
                     userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
@@ -61,9 +65,9 @@ public class MeetingManagementMenu {
                         break;
                     }
                 } while (true);
+
                 break;
             case 3:
-                // Completely removes a meeting from program.
                 objectManage.getMeetingManage().completelyDeleteMeeting(myCompany, objectManage, userInputMeetingChoice, stringScanner, intScanner);
             case 4:
                 // This option takes you back to the main menu. Leave blank.

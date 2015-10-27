@@ -16,11 +16,14 @@ public class MeetingManage {
 
     public Meeting createMeeting(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
         ArrayList<Associate> tempParticipants = new ArrayList<>();
+
         System.out.print("Enter the topic of the meeting: ");
         String topic = stringScanner.nextLine();
+
         System.out.println("\n--- Employees ---");
         printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
         addParticipant(intScanner, tempParticipants, myCompany.getEmployees());
+
         if (!objManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
             System.out.println("\n--- Business associates ---");
             printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
@@ -29,23 +32,14 @@ public class MeetingManage {
             System.out.println("NOTE: No business associates available for this meeting.");
         }
 
-        // Prompt user to input a start date of the meeting.
         System.out.println("\nSet the desired start time: ");
         LocalDateTime startDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
 
-        // Prompt user to input an end date of the meeting.
-        // Restart if user tries to put in an end date before a start date.
         System.out.println("\nSet the desired end time: ");
         LocalDateTime endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
-        Meeting tempMeeting = null;
-        while (tempMeeting == null) {
-            if (endDate.isBefore(startDate)) {
-                System.out.println("The meeting ends before it begins. Enter correct date.");
-                endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
-            } else {
-                tempMeeting = new Meeting(topic, tempParticipants, startDate, endDate);
-            }
-        }
+
+        Meeting tempMeeting = checkIfEndDateIsBeforeStartDate(objManage, endDate, startDate, topic, tempParticipants);
+
         printManage.getPrintMeeting().printNewlyCreatedMeeting(tempMeeting, stringScanner);
         for (int i = 0; i < tempParticipants.size(); i++) {
             if (tempParticipants.get(i).getMeetings() == null) {
@@ -53,6 +47,7 @@ public class MeetingManage {
             }
             tempParticipants.get(i).addMeeting(tempMeeting);
         }
+
         return tempMeeting;
     }
 
@@ -62,12 +57,15 @@ public class MeetingManage {
         boolean menuOpen;
         boolean goAgain = true;
         boolean addMoreFail;
+
         while (goAgain) {
+
             do {
                 System.out.print("Add person: ");
                 input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
                 menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(currentArrayList, input);
             } while (menuOpen);
+
             tempParticipants.add(currentArrayList.get(input));
             System.out.print("Do you want to add another person? [1]Yes/[2]No: ");
 
@@ -88,27 +86,23 @@ public class MeetingManage {
         }
     }
 
-    protected void removeParticipant(Meeting meeting, String searchName) {
-        for (int i = 0; i < meeting.getParticipants().size(); i++) {
-            if (searchName.toLowerCase().equals(meeting.getParticipants().get(i).getName().toLowerCase())) {
-                meeting.getParticipants().remove(i);
-            }
-        }
-    }
-
     /**
      * Completely removes a meeting from the program. Before removing the meeting from myCompany,
      * search all persons to check if the meeting exists in them, and then delete it.
      */
     public void completelyDeleteMeeting(MyCompany myCompany, ObjectManage objectManage, int userInputMeetingChoice, Scanner stringScanner, Scanner intScanner) {
         printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
+
         do {
             System.out.print("\nChoose meeting: ");
             userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+
             if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(myCompany.getMeetings(), userInputMeetingChoice)) {
                 System.out.println("The meeting with topic: " + myCompany.getMeetings().get(userInputMeetingChoice).getTopic()
                         + " removed!");
+
                 if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
+
                     for (int i = 0; i < myCompany.getBusinessAssociates().size(); i++) {
                         if (!(myCompany.getBusinessAssociates().get(i).getMeetings() == null)) {
 
@@ -121,6 +115,7 @@ public class MeetingManage {
                         }
                     }
                 }
+
                 for (int i = 0; i < myCompany.getEmployees().size(); i++) {
                     if (!(myCompany.getEmployees().get(i).getMeetings() == null)) {
                         for (int j = 0; j < myCompany.getEmployees().get(i).getMeetings().size(); j++) {
@@ -131,7 +126,9 @@ public class MeetingManage {
                         }
                     }
                 }
+
                 myCompany.getMeetings().remove(userInputMeetingChoice);
+
                 System.out.print("Press any key to continue...");
                 stringScanner.nextLine();
                 System.out.println();
@@ -147,6 +144,7 @@ public class MeetingManage {
         ArrayList<String> items = new ArrayList<String>();
         int itemCounter = 1;
         boolean addMore = true;
+
         do {
             System.out.print("Type item number " + itemCounter + ": ");
             items.add(stringScanner.nextLine());
@@ -168,14 +166,17 @@ public class MeetingManage {
                 }
             } while (wrongInput);
         } while (addMore);
+
         return items;
     }
 
     public void editAndViewMeeting(MyCompany myCompany, ObjectManage objectManage, Scanner intScanner, Scanner stringScanner) {
         boolean wrongChoice;
         int userInputMeetingChoice;
+
         printManage.getPrintMeeting().printMeetingList(myCompany.getMeetings());
         System.out.print("\nChoose meeting: ");
+
         do {
             userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
             if (userInputMeetingChoice < 0 || userInputMeetingChoice > myCompany.getMeetings().size() - 1) {
@@ -186,11 +187,14 @@ public class MeetingManage {
                 wrongChoice = false;
             }
         } while (wrongChoice);
+
         printManage.getPrintMeeting().printInfo(myCompany.getMeetings().get(userInputMeetingChoice));
+
         do {
             System.out.print("\nDo you want to create a journal? [1]Yes/[2]No: ");
             int userInputCreateJournalPrompt = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
             System.out.println();
+
             switch (userInputCreateJournalPrompt) {
                 case 1:
                     if (myCompany.getMeetings().get(userInputMeetingChoice).getJournal() == null) {
@@ -211,7 +215,24 @@ public class MeetingManage {
                     wrongChoice = true;
                     break;
             }
+
         } while (wrongChoice);
+    }
+
+    private Meeting checkIfEndDateIsBeforeStartDate(ObjectManage objectManage, LocalDateTime endDate,
+                                                    LocalDateTime startDate, String topic,
+                                                    ArrayList<Associate> tempParticipants) {
+        // Fix for bug: able to create an end date before a start date during leap year.
+        Meeting tempMeeting = null;
+        while (tempMeeting == null) {
+            if (endDate.isBefore(startDate)) {
+                System.out.println("The meeting ends before it begins. Enter correct date.");
+                endDate = objectManage.getDateManage().getPlannedMeetingTimeFromUserInput();
+            } else {
+                tempMeeting = new Meeting(topic, tempParticipants, startDate, endDate);
+            }
+        }
+        return tempMeeting;
     }
 
 }

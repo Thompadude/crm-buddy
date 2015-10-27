@@ -1,8 +1,8 @@
 package userinterface;
 
+import companies.Company;
 import companies.Meeting;
 import companies.MyCompany;
-import companies.Company;
 import managers.ObjectManage;
 import managers.PrintManage;
 import persons.Associate;
@@ -29,19 +29,12 @@ public class MainMenu {
 
     public void mainMenu(MyCompany myCompany) {
 
-
-        // TODO RADERA DENNA KOD INNAN INL�MNING! V�RA TESTPERSONER LIGGER I
-        // TESTKLASSEN! RADERA �VEN KLASS!(RADERA FR�N MAPP �X�)
-//        TestKlassREMOVE testklassRemove = new TestKlassREMOVE();
-//        testklassRemove.TestKlass(myCompany);
-        // TODO SLUT P� RADERING
-
         // Print persons with birthday within 5 days (sorted).
         printManage.getPrintPerson().collectAllPersonsInAListAndSendToPrintBirthDates(myCompany, objectManage);
+        // Print meetings planned today.
         printManage.getPrintMeeting().printTodaysMeetings(myCompany.getMeetings(), objectManage);
 
         do {
-            // MAIN MENU ALTERNATIVES
             menu.setMenuTitle("--- Main Menu ---");
             mainMenuAlternatives = new ArrayList<>();
             mainMenuAlternatives.add("Create employee");
@@ -58,12 +51,12 @@ public class MainMenu {
             System.out.print("\nChoose option: ");
             userInputMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
             System.out.println();
+
             mainMenuSwitch(userInputMenuChoice, myCompany);
         } while (userInputMenuChoice != mainMenuAlternatives.size());
     }
 
     public void mainMenuSwitch(int userInputMenuChoice, MyCompany myCompany) {
-
         switch (userInputMenuChoice) {
             case 1:
                 myCompany.addEmployee(objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner));
@@ -73,18 +66,15 @@ public class MainMenu {
                         objectManage, stringScanner, intScanner));
                 break;
             case 3:
-                // TODO
-                // Det ska inte vara m�jligt att skapa ett m�te om man har minst en
-                // employee,
-                // men INTE business associate?
-                // TODO SLUT
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
                     System.out.println("You don't have any employees yet.");
                     System.out.println("Press any key to continue...");
                     stringScanner.nextLine();
                     break;
                 }
+
                 Meeting tempMeeting = objectManage.getMeetingManage().createMeeting(myCompany, objectManage, stringScanner, intScanner);
+
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getMeetings())) {
                     myCompany.createMeetings();
                 }
@@ -101,6 +91,7 @@ public class MainMenu {
                     stringScanner.nextLine();
                     break;
                 }
+
                 userInputPersonChoice = promptUserToChoosePerson(myCompany.getEmployees());
                 personManagementMenu.personManagementMenu(userInputPersonChoice, myCompany, myCompany.getEmployees());
                 break;
@@ -114,6 +105,7 @@ public class MainMenu {
                     stringScanner.nextLine();
                     break;
                 }
+
                 userInputPersonChoice = promptUserToChoosePerson(myCompany.getBusinessAssociates());
                 personManagementMenu.personManagementMenu(userInputPersonChoice, myCompany, myCompany.getBusinessAssociates());
                 break;
@@ -125,10 +117,12 @@ public class MainMenu {
                     stringScanner.nextLine();
                     break;
                 }
+
                 meetingManagementMenu.meetingManagementMenu(userInputMenuChoice, myCompany);
                 break;
             case 7:
-                if(!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getAssociatedCompanies())) {
+                if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getAssociatedCompanies())) {
+
                     for (Company company : myCompany.getAssociatedCompanies()) {
                         printManage.getPrintCompany().printInfo(company);
                     }
@@ -148,11 +142,13 @@ public class MainMenu {
 
     public int promptUserToChoosePerson(ArrayList<Associate> persons) {
         printManage.getPrintPerson().printPersonList(persons);
+
         do {
             System.out.print("\nChoose person: ");
             userInputPersonChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
             menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(persons, userInputPersonChoice);
         } while (menuOpen);
+
         return userInputPersonChoice;
     }
 

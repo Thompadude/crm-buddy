@@ -60,35 +60,42 @@ public class PersonManagementMenu {
             case 1:
                 System.out.print("Set new name: ");
                 String name = stringScanner.nextLine();
+
                 associate.get(userInputPersonChoice).setName(name);
                 break;
             case 2:
                 LocalDate birthDate = objectManage.getDateManage().getBirthDateFromUserInput();
+
                 associate.get(userInputPersonChoice).setBirthDate(birthDate);
                 break;
             case 3:
                 System.out.print("Set new address: ");
                 String address = stringScanner.nextLine();
+
                 associate.get(userInputPersonChoice).getContactInfo().setAddress(address);
                 break;
             case 4:
                 System.out.print("Set new email: ");
                 String email = stringScanner.nextLine();
+
                 email = objectManage.getContactInfoManage().setEmail(email, stringScanner);
                 associate.get(userInputPersonChoice).getContactInfo().setEmail(email);
                 break;
             case 5:
                 System.out.print("Set new phone number: ");
                 String phoneNumber = stringScanner.nextLine();
+
                 associate.get(userInputPersonChoice).getContactInfo().setPhoneNumber(phoneNumber);
                 break;
             case 6:
                 System.out.println("Edit position");
                 String position = stringScanner.nextLine();
+
                 associate.get(userInputPersonChoice).setPosition(position);
                 break;
             case 7:
                 ArrayList<String> newTags = objectManage.getMeetingManage().createProtocol(objectManage, stringScanner, intScanner);
+
                 if (!objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getTags())) {
                     associate.get(userInputPersonChoice).getTags().addAll(newTags);
                 } else {
@@ -100,12 +107,14 @@ public class PersonManagementMenu {
                 if (objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getFamilyMembers())) {
                     associate.get(userInputPersonChoice).setFamilyMembers(new ArrayList<>());
                 }
+
                 associate.get(userInputPersonChoice).getFamilyMembers().add(objectManage.getPersonManage().createFamilyMember(stringScanner));
                 break;
             case 9:
                 String currentNote = "";
                 System.out.print("Type in the desired family note: ");
                 currentNote += " " + stringScanner.nextLine();
+
                 associate.get(userInputPersonChoice).addFamilyNote(currentNote);
                 break;
             case 10:
@@ -119,6 +128,7 @@ public class PersonManagementMenu {
                     stringScanner.nextLine();
                     break;
                 }
+
                 if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(associate.get(userInputPersonChoice).getMeetings(), userInputSubMenuChoice)) {
                     printManage.getPrintMeeting().printInfo(associate.get(userInputPersonChoice).getMeetings().get(userInputSubMenuChoice));
                     break;
@@ -126,6 +136,7 @@ public class PersonManagementMenu {
                 break;
             case 11:
                 objectManage.getPersonManage().removePerson(myCompany, userInputPersonChoice, associate, intScanner);
+
                 System.out.println("Press any key to continue...");
                 stringScanner.nextLine();
                 break;

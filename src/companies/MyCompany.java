@@ -14,12 +14,7 @@ public class MyCompany extends Company {
     private ArrayList<Company> associatedCompanies;
 
     public MyCompany(String name, ContactInfo contactInfo) {
-        // TODO i UI:t måste temporär ContactInfo skapas och skickas in i
-        // denna konstruktor.
         super(name, contactInfo);
-        // TODO Eager loading! (Vi kanske byter till lazy loading)
-        // detta ska tas bort
-        // this.meetings = new ArrayList<Meeting>();
     }
 
     public ArrayList<Meeting> getMeetings() {
@@ -39,7 +34,6 @@ public class MyCompany extends Company {
     }
 
     public ArrayList<Associate> getPastContacts() {
-
         return this.pastContacts;
     }
 
@@ -48,22 +42,19 @@ public class MyCompany extends Company {
     }
 
     public void addPastContact(Associate contact) {
-
         this.pastContacts.add(contact);
     }
 
     public void addEmployee(Associate associate) {
-        // Lazy loading
         if (employees == null) {
-            employees = new ArrayList<Associate>();
+            employees = new ArrayList<>();
         }
         employees.add(associate);
     }
 
     public void addBusinessAssociate(Associate associate) {
-        // Lazy loading
         if (businessAssociates == null) {
-            businessAssociates = new ArrayList<Associate>();
+            businessAssociates = new ArrayList<>();
         }
         businessAssociates.add(associate);
     }
@@ -76,8 +67,10 @@ public class MyCompany extends Company {
         if ((this.associatedCompanies == null)) {
             this.associatedCompanies = new ArrayList<>();
         }
+
         boolean companyAlreadyAdded = false;
-        for (int i = 0; i < this.associatedCompanies.size(); i++)
+        for (int i = 0; i < this.associatedCompanies.size(); i++) // Why no clams here?
+
             if (this.associatedCompanies.get(i).getName().equals(associatedCompanies.getName())) {
                 companyAlreadyAdded = true;
                 break;

@@ -25,6 +25,7 @@ public class DateManage {
         LocalDate localDate;
         year = getYearFromUserInput();
         month = getMonthFromUserInput();
+
         while (true) {
             day = getDayFromUserInput();
             try {
@@ -35,6 +36,7 @@ public class DateManage {
                 System.out.println(dateTimeExceptionErrorMessage);
             }
         }
+
         return localDate;
     }
 
@@ -43,6 +45,7 @@ public class DateManage {
         LocalDateTime localDateTime;
         year = getYearFromUserInput();
         month = getMonthFromUserInput();
+
         while (true) {
             day = getDayFromUserInput();
             if (hour == 0) {
@@ -56,6 +59,7 @@ public class DateManage {
                 System.out.println(dateTimeExceptionErrorMessage);
             }
         }
+
         return localDateTime;
     }
 
@@ -74,6 +78,7 @@ public class DateManage {
                 System.out.print(wrongInput);
             }
         }
+
         return year;
     }
 
@@ -92,6 +97,7 @@ public class DateManage {
                 System.out.print(wrongInput);
             }
         }
+
         return month;
     }
 
@@ -131,17 +137,22 @@ public class DateManage {
 
     public ArrayList<Associate> sortAllBirthdaysWithinFiveDays(ArrayList<Associate> associates) {
         ArrayList<Associate> sortedPersons = new ArrayList<>();
+
         for (Associate person : associates) {
             long dayOfYearOfPersonBirthday = person.getBirthday().getLong(ChronoField.DAY_OF_YEAR);
+
             if (person.getBirthday().isLeapYear()) {
                 dayOfYearOfPersonBirthday--;
             }
+
             long todaysDayOfYear = LocalDate.now().getLong(ChronoField.DAY_OF_YEAR);
             long daysUntilBirthday = dayOfYearOfPersonBirthday - todaysDayOfYear;
+
             if (daysUntilBirthday == 0) {
                 person.setBirthDateCompareIndex(daysUntilBirthday);
                 sortedPersons.add(person);
             }
+
             if (daysUntilBirthday <= 5 && daysUntilBirthday > 0) {
                 person.setBirthDateCompareIndex(daysUntilBirthday);
                 sortedPersons.add(person);
@@ -150,8 +161,10 @@ public class DateManage {
 
         // Birthday bubble sort
         for (int i = 0; i < sortedPersons.size() - 1; i++) {
+
             for (int j = 0; j < sortedPersons.size() - 1; j++) {
                 Associate tempPerson;
+
                 if (sortedPersons.get(j).getBirthDateCompareIndex() > sortedPersons.get(j + 1).getBirthDateCompareIndex()) {
                     tempPerson = sortedPersons.get(j);
                     sortedPersons.set(j, sortedPersons.get(j + 1));
@@ -159,6 +172,8 @@ public class DateManage {
                 }
             }
         }
+
         return sortedPersons;
     }
+
 }

@@ -1,4 +1,4 @@
-package FileManage;
+package saveload;
 
 
 import companies.MyCompany;
@@ -12,18 +12,16 @@ public class SaveToFile {
     private FileOutputStream fileOut;
     private ObjectOutputStream objOut;
 
-    public SaveToFile(MyCompany myCompany, String filePath){
-
+    public SaveToFile(MyCompany myCompany, String filePath) {
         this.filePath = filePath;
 
-        try{
+        try {
             fileOut = new FileOutputStream(filePath);
             objOut = new ObjectOutputStream(fileOut);
-
             objOut.writeObject(myCompany);
-
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("Couldn't save to file!");
         }
     }
+
 }

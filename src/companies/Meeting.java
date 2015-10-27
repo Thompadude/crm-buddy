@@ -25,18 +25,14 @@ public class Meeting implements java.io.Serializable {
     }
 
     public void setJournal(Journal journal) {
-		this.journal = journal;
-	}
+        this.journal = journal;
+    }
 
-	public ArrayList<Associate> getParticipants() {
+    public ArrayList<Associate> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(ArrayList<Associate> participants) {
-		this.participants = participants;
-	}
-
-	public String getTopic() {
+    public String getTopic() {
         return topic;
     }
 
@@ -47,4 +43,5 @@ public class Meeting implements java.io.Serializable {
     public LocalDateTime getEndDate() {
         return this.endDate;
     }
+
 }

@@ -1,7 +1,7 @@
 package managers;
 
 /**
- * A placeholder for all object management classes.
+ * A placeholder for all object management classes. (Except print classes.)
  */
 public class ObjectManage {
 

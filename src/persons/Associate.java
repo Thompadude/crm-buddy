@@ -16,6 +16,7 @@ public class Associate extends Person {
     private ArrayList<String> tags;
     private ArrayList<Meeting> meetings;
     private ArrayList<FamilyMember> familyMembers;
+    // Used for sorting to be able to print upcoming birthdays within five days.
     private long birthDateCompareIndex;
 
     public Associate(String name, LocalDate birthDate, Company company, String position, ContactInfo contactInfo) {
@@ -43,10 +44,6 @@ public class Associate extends Person {
 
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
-    }
-
-    public void addTag(String tag) {
-        this.tags.add(tag);
     }
 
     public void setPosition(String position) {
