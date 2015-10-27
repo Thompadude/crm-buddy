@@ -1,6 +1,5 @@
 package userinterface;
 
-import companies.Company;
 import companies.Meeting;
 import companies.MyCompany;
 import managers.ObjectManage;
@@ -12,20 +11,18 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    Scanner stringScanner = new Scanner(System.in);
-    Scanner intScanner = new Scanner(System.in);
-    ObjectManage objectManage = new ObjectManage();
-    PrintManage printManage = new PrintManage();
-    Menu menu = new ConsoleMenu();
-    PersonManagementMenu personManagementMenu = new PersonManagementMenu();
-    MeetingManagementMenu meetingManagementMenu = new MeetingManagementMenu();
-    ArrayList<String> mainMenuAlternatives;
+    private Scanner stringScanner = new Scanner(System.in);
+    private Scanner intScanner = new Scanner(System.in);
+    private ObjectManage objectManage = new ObjectManage();
+    private PrintManage printManage = new PrintManage();
+    private Menu menu = new ConsoleMenu();
+    private PersonManagementMenu personManagementMenu = new PersonManagementMenu();
+    private MeetingManagementMenu meetingManagementMenu = new MeetingManagementMenu();
+    private ArrayList<String> mainMenuAlternatives;
 
-    int userInputMenuChoice;
-    int userInputPersonChoice;
-    boolean menuOpen;
-
-    String wrongChoice = "Wrong choice. Try again.";
+    private int userInputMenuChoice;
+    private int userInputPersonChoice;
+    private boolean menuOpen;
 
     public void mainMenu(MyCompany myCompany) {
 
@@ -56,7 +53,7 @@ public class MainMenu {
         } while (userInputMenuChoice != mainMenuAlternatives.size());
     }
 
-    public void mainMenuSwitch(int userInputMenuChoice, MyCompany myCompany) {
+    private void mainMenuSwitch(int userInputMenuChoice, MyCompany myCompany) {
         switch (userInputMenuChoice) {
             case 1:
                 myCompany.addEmployee(objectManage.getPersonManage().createEmployee(myCompany, objectManage, stringScanner));
@@ -154,13 +151,13 @@ public class MainMenu {
                 System.out.println("Saving and logging off");
                 break;
             default:
-                System.out.println(wrongChoice);
+                System.out.println("Wrong choice. Try again.");
                 break;
         }
 
     }
 
-    public int promptUserToChoosePerson(ArrayList<Associate> persons) {
+    private int promptUserToChoosePerson(ArrayList<Associate> persons) {
         printManage.getPrintPerson().printPersonList(persons);
 
         do {
