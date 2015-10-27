@@ -1,7 +1,10 @@
 package printers;
 
 import companies.Meeting;
+import managers.ObjectManage;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -67,6 +70,26 @@ public class PrintMeeting implements Printable {
                 + "\nEnd Date: " + meetingEndDate
                 + "\n\nPress any key to continue...");
         stringScanner.nextLine();
+    }
+
+    public void printTodaysMeetings(ArrayList<Meeting> meetings, ObjectManage objectManage) {
+        LocalDate todaysDate = LocalDate.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDate meetingStartDateLocalDate;
+        for (int i = 0; i < meetings.size(); i++) {
+            meetingStartDate = meetings.get(i).getStartDate().format(dateTimeFormatter);
+            meetingStartDateLocalDate = meetings.get(i).getStartDate().toLocalDate();
+            if (meetingStartDateLocalDate.equals(todaysDate)){
+                objectManage.getWaitingMechanics().wait(1000);
+                System.out.println("\n-------------");
+                System.out.println("Meeting today at " + meetingStartDate + " Topic: "  + meetings.get(i).getTopic());
+                System.out.print("-Participants-");
+                printParticipants(meetings.get(i));
+                System.out.println("\n-------------");
+            }
+        }
+        objectManage.getWaitingMechanics().wait(2000);
+        System.out.println();
     }
 
 }

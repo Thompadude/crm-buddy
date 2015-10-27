@@ -38,7 +38,7 @@ public class MainMenu {
 
         // Print persons with birthday within 5 days (sorted).
         printManage.getPrintPerson().collectAllPersonsInAListAndSendToPrintBirthDates(myCompany, objectManage);
-
+        printManage.getPrintMeeting().printTodaysMeetings(myCompany.getMeetings(), objectManage);
 
         do {
             // MAIN MENU ALTERNATIVES
