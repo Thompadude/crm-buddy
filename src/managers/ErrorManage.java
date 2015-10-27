@@ -3,9 +3,14 @@ package managers;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles possible crashes caused by null pointers, index out of bounds etc.
+ */
 public class ErrorManage {
 
-    //skriv javaDoc om denna boolean
+    /**
+     * @return true if array list is null, else false
+     */
     public <T> boolean catchArrayListNullPointerException(ArrayList<T> t) {
         if (t == null) {
             return true;
@@ -13,6 +18,9 @@ public class ErrorManage {
         return false;
     }
 
+    /**
+     * Forces user to input an int
+     */
     public int catchUserInputMismatchException(Scanner intScanner) {
         while (true) {
             try {
@@ -25,7 +33,10 @@ public class ErrorManage {
         }
     }
 
-    // 0-based. -1 cause of UI.
+    /**
+     * @param choice User's choice in a menu
+     * @return true if user choose an out of bounds index in an array list, else false
+     */
     public <T> boolean catchArrayIndexOutOfBoundsException(ArrayList<T> t, int choice) {
         if (choice > t.size() - 1 || choice < 0) {
             System.out.println("Wrong choice. Try again.");
