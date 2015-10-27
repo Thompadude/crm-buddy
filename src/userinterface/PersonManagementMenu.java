@@ -41,7 +41,7 @@ public class PersonManagementMenu {
             subMenu.setMenuTitle("---Edit and View " + associate.get(userInputPersonChoice).getName() + "---");
             subMenu.printMenu(personManagementMenuAlternatives);
             System.out.print("\nChoose option: ");
-            userInputSubMenuChoice = subMenu.getInput(intScanner);
+            userInputSubMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
             System.out.println();
             personManagementSwitch(myCompany, userInputPersonChoice, userInputSubMenuChoice, associate);
 
@@ -88,7 +88,7 @@ public class PersonManagementMenu {
                 associate.get(userInputPersonChoice).setPosition(position);
                 break;
             case 7:
-                ArrayList<String> newTags = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);
+                ArrayList<String> newTags = objectManage.getMeetingManage().createProtocol(objectManage, stringScanner, intScanner);
                 if (!objectManage.getErrorManage().catchArrayListNullPointerException(associate.get(userInputPersonChoice).getTags())) {
                     associate.get(userInputPersonChoice).getTags().addAll(newTags);
                 } else {
