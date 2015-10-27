@@ -2,6 +2,7 @@ package userinterface;
 
 import companies.Meeting;
 import companies.MyCompany;
+import companies.Company;
 import managers.ObjectManage;
 import managers.PrintManage;
 import persons.Associate;
@@ -49,6 +50,7 @@ public class MainMenu {
             mainMenuAlternatives.add("Manage employee");
             mainMenuAlternatives.add("Manage business contact");
             mainMenuAlternatives.add("Manage meeting");
+            mainMenuAlternatives.add("List companies");
             mainMenuAlternatives.add("Save & Quit system");
 
             menu.printMenu(mainMenuAlternatives);
@@ -126,6 +128,16 @@ public class MainMenu {
                 meetingManagementMenu.meetingManagementMenu(userInputMenuChoice, myCompany);
                 break;
             case 7:
+                if(!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getAssociatedCompanies())) {
+                    for (Company company : myCompany.getAssociatedCompanies()) {
+                        printManage.getPrintCompany().printInfo(company);
+                    }
+
+                    printManage.getPrintCompany().printInfo(myCompany);
+                }
+                break;
+
+            case 8:
                 System.out.println("Saving and logging off");
                 break;
             default:
