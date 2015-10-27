@@ -14,7 +14,7 @@ public class MeetingManage {
 
     PrintManage printManage = new PrintManage();
 
-    public Meeting createMeeting(MyCompany myCompany, ObjectManage objManage, Scanner stringScanner, Scanner intScanner) {
+    public Meeting createMeeting(MyCompany myCompany, ObjectManage objectManage, Scanner stringScanner, Scanner intScanner) {
         ArrayList<Associate> tempParticipants = new ArrayList<>();
 
         System.out.print("Enter the topic of the meeting: ");
@@ -24,23 +24,20 @@ public class MeetingManage {
         printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
         addParticipant(intScanner, tempParticipants, myCompany.getEmployees());
 
-        // Check if business associate list is null
-        if (!objManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
-            // Check if business associate list is empty
-            if (!myCompany.getBusinessAssociates().isEmpty()) {
-                addBusinessAssociateToMeeting(myCompany, tempParticipants, intScanner);
-            }
+        boolean businessAssociatesAvailable = checkIfBusinessAssociatesAreAvailable(myCompany, objectManage);
+        if (businessAssociatesAvailable) {
+            addBusinessAssociateToMeeting(myCompany, tempParticipants, intScanner);
         } else {
             System.out.println("NOTE: No business associates available for this meeting.");
         }
 
         System.out.println("\nSet the desired start time: ");
-        LocalDateTime startDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
+        LocalDateTime startDate = objectManage.getDateManage().getPlannedMeetingTimeFromUserInput();
 
         System.out.println("\nSet the desired end time: ");
-        LocalDateTime endDate = objManage.getDateManage().getPlannedMeetingTimeFromUserInput();
+        LocalDateTime endDate = objectManage.getDateManage().getPlannedMeetingTimeFromUserInput();
 
-        Meeting tempMeeting = checkIfEndDateIsBeforeStartDate(objManage, endDate, startDate, topic, tempParticipants);
+        Meeting tempMeeting = checkIfEndDateIsBeforeStartDate(objectManage, endDate, startDate, topic, tempParticipants);
 
         printManage.getPrintMeeting().printNewlyCreatedMeeting(tempMeeting, stringScanner);
         for (int i = 0; i < tempParticipants.size(); i++) {
@@ -100,11 +97,13 @@ public class MeetingManage {
             userInputMeetingChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
 
             if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(myCompany.getMeetings(), userInputMeetingChoice)) {
-                System.out.println("The meeting with topic: " + myCompany.getMeetings().get(userInputMeetingChoice).getTopic()
+                System.out.println("The meeting with topic: "
+                        + myCompany.getMeetings().get(userInputMeetingChoice).getTopic()
                         + " removed!");
 
                 if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
 
+                    // Delete the meeting object in all business associates
                     for (int i = 0; i < myCompany.getBusinessAssociates().size(); i++) {
                         if (!(myCompany.getBusinessAssociates().get(i).getMeetings() == null)) {
 
@@ -118,6 +117,7 @@ public class MeetingManage {
                     }
                 }
 
+                // Delete the meeting object in all employees
                 for (int i = 0; i < myCompany.getEmployees().size(); i++) {
                     if (!(myCompany.getEmployees().get(i).getMeetings() == null)) {
                         for (int j = 0; j < myCompany.getEmployees().get(i).getMeetings().size(); j++) {
@@ -227,7 +227,7 @@ public class MeetingManage {
             LocalDateTime startDate,
             String topic,
             ArrayList<Associate> tempParticipants) {
-        // Fix for bug: able to create an end date before a start date during leap year.
+        // tempMeeting = null is a fix for bug: able to create an end date before a start date during leap year.
         Meeting tempMeeting = null;
         while (tempMeeting == null) {
             if (endDate.isBefore(startDate)) {
@@ -244,6 +244,15 @@ public class MeetingManage {
         System.out.println("\n--- Business associates ---");
         printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
         addParticipant(intScanner, tempParticipants, myCompany.getBusinessAssociates());
+    }
+
+    private boolean checkIfBusinessAssociatesAreAvailable(MyCompany myCompany, ObjectManage objectManage) {
+        if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
+            if (!myCompany.getBusinessAssociates().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
