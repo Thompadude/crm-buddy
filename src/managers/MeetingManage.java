@@ -24,10 +24,12 @@ public class MeetingManage {
         printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
         addParticipant(intScanner, tempParticipants, myCompany.getEmployees());
 
+        // Check if business associate list is null
         if (!objManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
-            System.out.println("\n--- Business associates ---");
-            printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
-            addParticipant(intScanner, tempParticipants, myCompany.getBusinessAssociates());
+            // Check if business associate list is empty
+            if (!myCompany.getBusinessAssociates().isEmpty()) {
+                addBusinessAssociateToMeeting(myCompany, tempParticipants, intScanner);
+            }
         } else {
             System.out.println("NOTE: No business associates available for this meeting.");
         }
@@ -219,9 +221,12 @@ public class MeetingManage {
         } while (wrongChoice);
     }
 
-    private Meeting checkIfEndDateIsBeforeStartDate(ObjectManage objectManage, LocalDateTime endDate,
-                                                    LocalDateTime startDate, String topic,
-                                                    ArrayList<Associate> tempParticipants) {
+    private Meeting checkIfEndDateIsBeforeStartDate(
+            ObjectManage objectManage,
+            LocalDateTime endDate,
+            LocalDateTime startDate,
+            String topic,
+            ArrayList<Associate> tempParticipants) {
         // Fix for bug: able to create an end date before a start date during leap year.
         Meeting tempMeeting = null;
         while (tempMeeting == null) {
@@ -233,6 +238,12 @@ public class MeetingManage {
             }
         }
         return tempMeeting;
+    }
+
+    private void addBusinessAssociateToMeeting(MyCompany myCompany, ArrayList<Associate> tempParticipants, Scanner intScanner) {
+        System.out.println("\n--- Business associates ---");
+        printManage.getPrintPerson().printPersonList(myCompany.getBusinessAssociates());
+        addParticipant(intScanner, tempParticipants, myCompany.getBusinessAssociates());
     }
 
 }
