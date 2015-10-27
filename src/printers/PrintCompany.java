@@ -2,19 +2,8 @@ package printers;
 
 import companies.Company;
 import companies.MyCompany;
-import persons.Associate;
 
 public class PrintCompany implements Printable {
-
-    protected void printName(MyCompany company) {
-        System.out.println("Company Name: " + company.getName());
-    }
-
-    protected void printEmployees(MyCompany company) {
-        for (Associate employee : company.getEmployees()) {
-            System.out.println("Birthday: " + employee.getBirthday() + ", Name: " + employee.getName());
-        }
-    }
 
     /**
      * Prints a list of all companies connected to MyCompany.

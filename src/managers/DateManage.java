@@ -40,7 +40,48 @@ public class DateManage {
         return localDate;
     }
 
-    public LocalDateTime getPlannedMeetingTimeFromUserInput() {
+    public ArrayList<Associate> sortAllBirthdaysWithinFiveDays(ArrayList<Associate> associates) {
+        ArrayList<Associate> sortedPersons = new ArrayList<>();
+
+        for (Associate person : associates) {
+            long dayOfYearOfPersonBirthday = person.getBirthday().getLong(ChronoField.DAY_OF_YEAR);
+
+            if (person.getBirthday().isLeapYear()) {
+                dayOfYearOfPersonBirthday--;
+            }
+
+            long todaysDayOfYear = LocalDate.now().getLong(ChronoField.DAY_OF_YEAR);
+            long daysUntilBirthday = dayOfYearOfPersonBirthday - todaysDayOfYear;
+
+            if (daysUntilBirthday == 0) {
+                person.setBirthDateCompareIndex(daysUntilBirthday);
+                sortedPersons.add(person);
+            }
+
+            if (daysUntilBirthday <= 5 && daysUntilBirthday > 0) {
+                person.setBirthDateCompareIndex(daysUntilBirthday);
+                sortedPersons.add(person);
+            }
+        }
+
+        // Birthday bubble sort
+        for (int i = 0; i < sortedPersons.size() - 1; i++) {
+
+            for (int j = 0; j < sortedPersons.size() - 1; j++) {
+                Associate tempPerson;
+
+                if (sortedPersons.get(j).getBirthDateCompareIndex() > sortedPersons.get(j + 1).getBirthDateCompareIndex()) {
+                    tempPerson = sortedPersons.get(j);
+                    sortedPersons.set(j, sortedPersons.get(j + 1));
+                    sortedPersons.set(j + 1, tempPerson);
+                }
+            }
+        }
+
+        return sortedPersons;
+    }
+
+    protected LocalDateTime getPlannedMeetingTimeFromUserInput() {
         hour = 0;
         LocalDateTime localDateTime;
         year = getYearFromUserInput();
@@ -133,47 +174,6 @@ public class DateManage {
                 System.out.println(wrongInput);
             }
         }
-    }
-
-    public ArrayList<Associate> sortAllBirthdaysWithinFiveDays(ArrayList<Associate> associates) {
-        ArrayList<Associate> sortedPersons = new ArrayList<>();
-
-        for (Associate person : associates) {
-            long dayOfYearOfPersonBirthday = person.getBirthday().getLong(ChronoField.DAY_OF_YEAR);
-
-            if (person.getBirthday().isLeapYear()) {
-                dayOfYearOfPersonBirthday--;
-            }
-
-            long todaysDayOfYear = LocalDate.now().getLong(ChronoField.DAY_OF_YEAR);
-            long daysUntilBirthday = dayOfYearOfPersonBirthday - todaysDayOfYear;
-
-            if (daysUntilBirthday == 0) {
-                person.setBirthDateCompareIndex(daysUntilBirthday);
-                sortedPersons.add(person);
-            }
-
-            if (daysUntilBirthday <= 5 && daysUntilBirthday > 0) {
-                person.setBirthDateCompareIndex(daysUntilBirthday);
-                sortedPersons.add(person);
-            }
-        }
-
-        // Birthday bubble sort
-        for (int i = 0; i < sortedPersons.size() - 1; i++) {
-
-            for (int j = 0; j < sortedPersons.size() - 1; j++) {
-                Associate tempPerson;
-
-                if (sortedPersons.get(j).getBirthDateCompareIndex() > sortedPersons.get(j + 1).getBirthDateCompareIndex()) {
-                    tempPerson = sortedPersons.get(j);
-                    sortedPersons.set(j, sortedPersons.get(j + 1));
-                    sortedPersons.set(j + 1, tempPerson);
-                }
-            }
-        }
-
-        return sortedPersons;
     }
 
 }

@@ -49,58 +49,6 @@ public class PersonManage {
         return new Associate(name, birthDate, company, position, contactInfo);
     }
 
-    private Company addBusinessAssociateToCompany(MyCompany myCompany, ObjectManage objectManage, String name, Scanner intScanner, Scanner stringScanner) {
-        boolean wrongInput;
-        Company company = new Company(null, null);
-
-        System.out.println("\nDo you want to add " + name + " to a existing company or create a new one?");
-
-        do {
-            System.out.println("\n1. Existing");
-            System.out.println("2. Create New");
-            System.out.print("\nChoose an option: ");
-            int input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
-
-            if (input == 1) {
-                PrintManage printManage = new PrintManage();
-
-                if (printManage.getPrintCompany().printListOfAllCompanies(myCompany)) {
-                    System.out.print("\nChoose company: ");
-
-                    while (true) {
-                        input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
-                        System.out.println();
-                        if (input >= myCompany.getAssociatedCompanies().size()) {
-                            System.out.print("Wrong input. Try again: ");
-                        } else {
-                            company = myCompany.getAssociatedCompanies().get(input);
-                            System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
-                            wrongInput = false;
-                            break;
-                        }
-                    }
-
-                } else {
-                    wrongInput = true;
-                }
-
-            } else if (input == 2) {
-                company = objectManage.getCompanyManage().createCompany(myCompany, objectManage, stringScanner, intScanner, name);
-                myCompany.addAssociatedCompany(company);
-                System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
-                wrongInput = false;
-                break;
-
-            } else {
-                System.out.print("Wrong input. Try again: ");
-                wrongInput = true;
-            }
-
-        } while (wrongInput);
-
-        return company;
-    }
-
     public FamilyMember createFamilyMember(ObjectManage objectManage, Scanner stringScanner) {
         System.out.println("You have chosen to create a new family member.");
         String name = getNameFromUserInput(stringScanner);
@@ -152,6 +100,58 @@ public class PersonManage {
         } else {
             System.out.print("Cancelled. ");
         }
+    }
+
+    private Company addBusinessAssociateToCompany(MyCompany myCompany, ObjectManage objectManage, String name, Scanner intScanner, Scanner stringScanner) {
+        boolean wrongInput;
+        Company company = new Company(null, null);
+
+        System.out.println("\nDo you want to add " + name + " to a existing company or create a new one?");
+
+        do {
+            System.out.println("\n1. Existing");
+            System.out.println("2. Create New");
+            System.out.print("\nChoose an option: ");
+            int input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
+
+            if (input == 1) {
+                PrintManage printManage = new PrintManage();
+
+                if (printManage.getPrintCompany().printListOfAllCompanies(myCompany)) {
+                    System.out.print("\nChoose company: ");
+
+                    while (true) {
+                        input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+                        System.out.println();
+                        if (input >= myCompany.getAssociatedCompanies().size()) {
+                            System.out.print("Wrong input. Try again: ");
+                        } else {
+                            company = myCompany.getAssociatedCompanies().get(input);
+                            System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
+                            wrongInput = false;
+                            break;
+                        }
+                    }
+
+                } else {
+                    wrongInput = true;
+                }
+
+            } else if (input == 2) {
+                company = objectManage.getCompanyManage().createCompany(myCompany, objectManage, stringScanner, intScanner, name);
+                myCompany.addAssociatedCompany(company);
+                System.out.println("New business associate " + name + " from " + company.getName() + " created!\n");
+                wrongInput = false;
+                break;
+
+            } else {
+                System.out.print("Wrong input. Try again: ");
+                wrongInput = true;
+            }
+
+        } while (wrongInput);
+
+        return company;
     }
 
     private String getNameFromUserInput(Scanner stringScanner) {

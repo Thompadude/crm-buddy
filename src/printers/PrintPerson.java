@@ -13,48 +13,6 @@ import java.util.ArrayList;
 
 public class PrintPerson implements Printable {
 
-    public void printBirthDatesFromSortAllBirthdaysWithinFiveDaysMethod(ArrayList<Associate> person, ObjectManage objectManage) {
-        for (Associate sortedPerson : objectManage.getDateManage().sortAllBirthdaysWithinFiveDays(person)) {
-
-            if (sortedPerson.getBirthDateCompareIndex() == 0) {
-                objectManage.getWaitingMechanics().wait(1000);
-
-                System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
-                        + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
-                        + " today!");
-            } else {
-                objectManage.getWaitingMechanics().wait(1000);
-
-                System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
-                        + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
-                        + " in " + sortedPerson.getBirthDateCompareIndex() + " days!");
-            }
-        }
-
-        objectManage.getWaitingMechanics().wait(2000);
-        System.out.println();
-    }
-
-    /**
-     * Collects all employees and business associates, adds them to a new array list and sends them to PrintBirthDates...()
-     */
-    public void collectAllPersonsInAListAndSendToPrintBirthDates(MyCompany myCompany, ObjectManage objectManage) {
-        ArrayList<Associate> allAssociates = new ArrayList<>();
-
-        if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
-            allAssociates.addAll(myCompany.getEmployees());
-        }
-
-        if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
-            allAssociates.addAll(myCompany.getBusinessAssociates());
-
-        }
-
-        if (!objectManage.getErrorManage().catchArrayListNullPointerException(allAssociates)) {
-            printBirthDatesFromSortAllBirthdaysWithinFiveDaysMethod(allAssociates, objectManage);
-        }
-    }
-
     @Override
     public <T> void printInfo(T t) {
         ObjectManage objectManage = new ObjectManage();
@@ -125,12 +83,54 @@ public class PrintPerson implements Printable {
         System.out.println();
     }
 
+    /**
+     * Collects all employees and business associates, adds them to a new array list and sends them to PrintBirthDates...()
+     */
+    public void collectAllPersonsInAListAndSendToPrintBirthDates(MyCompany myCompany, ObjectManage objectManage) {
+        ArrayList<Associate> allAssociates = new ArrayList<>();
+
+        if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
+            allAssociates.addAll(myCompany.getEmployees());
+        }
+
+        if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
+            allAssociates.addAll(myCompany.getBusinessAssociates());
+
+        }
+
+        if (!objectManage.getErrorManage().catchArrayListNullPointerException(allAssociates)) {
+            printBirthDatesFromSortAllBirthdaysWithinFiveDaysMethod(allAssociates, objectManage);
+        }
+    }
+
     public void printPersonList(ArrayList<Associate> associates) {
         int lister = 0;
         for (Associate person : associates) {
             System.out.println((lister + 1) + ". [" + person.getCompany().getName() + "] " + person.getName());
             lister++;
         }
+    }
+
+    private void printBirthDatesFromSortAllBirthdaysWithinFiveDaysMethod(ArrayList<Associate> person, ObjectManage objectManage) {
+        for (Associate sortedPerson : objectManage.getDateManage().sortAllBirthdaysWithinFiveDays(person)) {
+
+            if (sortedPerson.getBirthDateCompareIndex() == 0) {
+                objectManage.getWaitingMechanics().wait(1000);
+
+                System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
+                        + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
+                        + " today!");
+            } else {
+                objectManage.getWaitingMechanics().wait(1000);
+
+                System.out.println("Note: [" + sortedPerson.getCompany().getName() + "]" + sortedPerson.getName()
+                        + " turns " + (LocalDate.now().getYear() - (sortedPerson.getBirthday().getYear()))
+                        + " in " + sortedPerson.getBirthDateCompareIndex() + " days!");
+            }
+        }
+
+        objectManage.getWaitingMechanics().wait(2000);
+        System.out.println();
     }
 
 }

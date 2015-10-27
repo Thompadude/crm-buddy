@@ -50,41 +50,6 @@ public class MeetingManage {
         return tempMeeting;
     }
 
-    protected void addParticipant(Scanner intScanner, ArrayList<Associate> tempParticipants, ArrayList<Associate> currentArrayList) {
-        ObjectManage objectManage = new ObjectManage();
-        int input;
-        boolean menuOpen;
-        boolean goAgain = true;
-        boolean addMoreFail;
-
-        while (goAgain) {
-
-            do {
-                System.out.print("Add person: ");
-                input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
-                menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(currentArrayList, input);
-            } while (menuOpen);
-
-            tempParticipants.add(currentArrayList.get(input));
-            System.out.print("Do you want to add another person? [1]Yes/[2]No: ");
-
-            do {
-                input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
-                if (input == 1) {
-                    addMoreFail = false;
-                    goAgain = true;
-                } else if (input == 2) {
-                    addMoreFail = false;
-                    goAgain = false;
-                } else {
-                    System.out.print("Wrong choice. Try again: ");
-                    addMoreFail = true;
-                    goAgain = false;
-                }
-            } while (addMoreFail);
-        }
-    }
-
     /**
      * Completely removes a meeting from the program. Before removing the meeting from myCompany,
      * search all persons to check if the meeting exists in them, and then delete it.
@@ -219,6 +184,41 @@ public class MeetingManage {
             }
 
         } while (wrongChoice);
+    }
+
+    protected void addParticipant(Scanner intScanner, ArrayList<Associate> tempParticipants, ArrayList<Associate> currentArrayList) {
+        ObjectManage objectManage = new ObjectManage();
+        int input;
+        boolean menuOpen;
+        boolean goAgain = true;
+        boolean addMoreFail;
+
+        while (goAgain) {
+
+            do {
+                System.out.print("Add person: ");
+                input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+                menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(currentArrayList, input);
+            } while (menuOpen);
+
+            tempParticipants.add(currentArrayList.get(input));
+            System.out.print("Do you want to add another person? [1]Yes/[2]No: ");
+
+            do {
+                input = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
+                if (input == 1) {
+                    addMoreFail = false;
+                    goAgain = true;
+                } else if (input == 2) {
+                    addMoreFail = false;
+                    goAgain = false;
+                } else {
+                    System.out.print("Wrong choice. Try again: ");
+                    addMoreFail = true;
+                    goAgain = false;
+                }
+            } while (addMoreFail);
+        }
     }
 
     private Meeting checkIfEndDateIsBeforeStartDate(

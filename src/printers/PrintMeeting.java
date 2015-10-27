@@ -13,22 +13,6 @@ public class PrintMeeting implements Printable {
     String meetingStartDate, meetingEndDate;
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    public void printMeetingList(ArrayList<Meeting> meetings) {
-        if (!(meetings.isEmpty())) {
-            System.out.println("Date & start time\t\tTopic");
-            System.out.println("-------------------\t\t-----");
-        }
-
-        int lister = 1;
-
-        for (Meeting meeting : meetings) {
-            meetingStartDate = meeting.getStartDate().format(dateTimeFormatter);
-            System.out.println(lister + ". " + meetingStartDate +
-                    "\t\t" + meeting.getTopic());
-            lister++;
-        }
-    }
-
     @Override
     public <T> void printInfo(T t) {
         if (t instanceof Meeting) {
@@ -50,21 +34,19 @@ public class PrintMeeting implements Printable {
         }
     }
 
-    protected void printParticipants(Meeting meeting) {
-        for (int i = 0; i < meeting.getParticipants().size(); i++) {
-
-            if ((i % 3) == 0) {
-                System.out.println();
-            }
-
-            System.out.print("[" + meeting.getParticipants().get(i).getCompany().getName() + "]" +
-                    meeting.getParticipants().get(i).getName() + ", ");
+    public void printMeetingList(ArrayList<Meeting> meetings) {
+        if (!(meetings.isEmpty())) {
+            System.out.println("Date & start time\t\tTopic");
+            System.out.println("-------------------\t\t-----");
         }
-    }
 
-    protected void printProtocol(Meeting meeting) {
-        for (String protocol : meeting.getJournal().getProtocol()) {
-            System.out.println("* " + protocol);
+        int lister = 1;
+
+        for (Meeting meeting : meetings) {
+            meetingStartDate = meeting.getStartDate().format(dateTimeFormatter);
+            System.out.println(lister + ". " + meetingStartDate +
+                    "\t\t" + meeting.getTopic());
+            lister++;
         }
     }
 
@@ -102,6 +84,24 @@ public class PrintMeeting implements Printable {
         }
         objectManage.getWaitingMechanics().wait(2000);
         System.out.println();
+    }
+
+    private void printProtocol(Meeting meeting) {
+        for (String protocol : meeting.getJournal().getProtocol()) {
+            System.out.println("* " + protocol);
+        }
+    }
+
+    private void printParticipants(Meeting meeting) {
+        for (int i = 0; i < meeting.getParticipants().size(); i++) {
+
+            if ((i % 3) == 0) {
+                System.out.println();
+            }
+
+            System.out.print("[" + meeting.getParticipants().get(i).getCompany().getName() + "]" +
+                    meeting.getParticipants().get(i).getName() + ", ");
+        }
     }
 
 }

@@ -10,15 +10,15 @@ import java.util.Scanner;
 
 public class MeetingManagementMenu {
 
-    PrintManage printManage = new PrintManage();
-    ObjectManage objectManage = new ObjectManage();
-    Scanner stringScanner = new Scanner(System.in);
-    Scanner intScanner = new Scanner(System.in);
-    Menu subMenu = new ConsoleMenu();
-    ArrayList<String> meetingManagementMenuAlternatives;
-    int userInputSubMenuChoice;
+    private PrintManage printManage = new PrintManage();
+    private ObjectManage objectManage = new ObjectManage();
+    private Scanner stringScanner = new Scanner(System.in);
+    private Scanner intScanner = new Scanner(System.in);
+    private Menu subMenu = new ConsoleMenu();
+    private ArrayList<String> meetingManagementMenuAlternatives;
+    private int userInputSubMenuChoice;
 
-    public void meetingManagementMenu(int userInputMenuChoice, MyCompany myCompany) {
+    protected void meetingManagementMenu(int userInputMenuChoice, MyCompany myCompany) {
 
         meetingManagementMenuAlternatives = new ArrayList<>();
         meetingManagementMenuAlternatives.add("Edit meeting");
@@ -41,7 +41,7 @@ public class MeetingManagementMenu {
         } while (userInputSubMenuChoice != meetingManagementMenuAlternatives.size());
     }
 
-    public void meetingManagementSwitch(MyCompany myCompany, int userInputMeetingChoice, int userInputSubMenuChoice) {
+    private void meetingManagementSwitch(MyCompany myCompany, int userInputMeetingChoice, int userInputSubMenuChoice) {
         switch (userInputSubMenuChoice) {
             case 1:
                 objectManage.getMeetingManage().editAndViewMeeting(myCompany, objectManage, intScanner, stringScanner);

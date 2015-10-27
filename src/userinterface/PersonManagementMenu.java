@@ -11,14 +11,13 @@ import java.util.Scanner;
 
 public class PersonManagementMenu {
 
-    PrintManage printManage = new PrintManage();
-    ObjectManage objectManage = new ObjectManage();
-    Scanner stringScanner = new Scanner(System.in);
-    Scanner intScanner = new Scanner(System.in);
-
     Menu subMenu = new ConsoleMenu();
     ArrayList<String> personManagementMenuAlternatives;
     int userInputSubMenuChoice;
+    private PrintManage printManage = new PrintManage();
+    private ObjectManage objectManage = new ObjectManage();
+    private Scanner stringScanner = new Scanner(System.in);
+    private Scanner intScanner = new Scanner(System.in);
 
     public void personManagementMenu(int userInputPersonChoice, MyCompany myCompany, ArrayList<Associate> associate) {
 
@@ -55,7 +54,7 @@ public class PersonManagementMenu {
 
     }
 
-    public void personManagementSwitch(MyCompany myCompany, int userInputPersonChoice, int userInputSubMenuChoice, ArrayList<Associate> associate) {
+    private void personManagementSwitch(MyCompany myCompany, int userInputPersonChoice, int userInputSubMenuChoice, ArrayList<Associate> associate) {
         switch (userInputSubMenuChoice) {
             case 1:
                 System.out.print("Set new name: ");
