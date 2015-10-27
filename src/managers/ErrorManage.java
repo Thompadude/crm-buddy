@@ -34,7 +34,7 @@ public class ErrorManage {
     }
 
     /**
-     * @param choice User's choice in a menu
+     * @param choice User's choice in a menu.
      * @return true if user choose an out of bounds index in an array list, else false
      */
     public <T> boolean catchArrayIndexOutOfBoundsException(ArrayList<T> t, int choice) {
