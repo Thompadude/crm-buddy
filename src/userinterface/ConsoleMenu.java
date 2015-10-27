@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class ConsoleMenu implements Menu {
 
-    ObjectManage objectManage = new ObjectManage();
     protected String menuTitle;
 
     @Override
@@ -23,10 +22,5 @@ public class ConsoleMenu implements Menu {
             i++;
             System.out.println("\t" + i + ". " + line);
         }
-    }
-
-    @Override
-    public int getInput(Scanner intScanner) {
-        return objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
     }
 }

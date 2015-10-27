@@ -108,13 +108,15 @@ public class MeetingManage {
             if (!objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(myCompany.getMeetings(), userInputMeetingChoice)) {
                 System.out.println("The meeting with topic: " + myCompany.getMeetings().get(userInputMeetingChoice).getTopic()
                         + " removed!");
-                for (int i = 0; i < myCompany.getBusinessAssociates().size(); i++) {
-                    if (!(myCompany.getBusinessAssociates().get(i).getMeetings() == null)) {
+                if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
+                    for (int i = 0; i < myCompany.getBusinessAssociates().size(); i++) {
+                        if (!(myCompany.getBusinessAssociates().get(i).getMeetings() == null)) {
 
-                        for (int j = 0; j < myCompany.getBusinessAssociates().get(i).getMeetings().size(); j++) {
-                            if (myCompany.getBusinessAssociates().get(i).getMeetings().get(j) == myCompany.getMeetings().get(userInputMeetingChoice)) {
-                                myCompany.getBusinessAssociates().get(i).getMeetings().remove(j);
-                                break;
+                            for (int j = 0; j < myCompany.getBusinessAssociates().get(i).getMeetings().size(); j++) {
+                                if (myCompany.getBusinessAssociates().get(i).getMeetings().get(j) == myCompany.getMeetings().get(userInputMeetingChoice)) {
+                                    myCompany.getBusinessAssociates().get(i).getMeetings().remove(j);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -141,7 +143,7 @@ public class MeetingManage {
     /**
      * Takes an array list of strings and create a protocol to put in Journal.
      */
-    public ArrayList<String> createProtocol(Scanner stringScanner, Scanner intScanner) {
+    public ArrayList<String> createProtocol(ObjectManage objectManage, Scanner stringScanner, Scanner intScanner) {
         ArrayList<String> items = new ArrayList<String>();
         int itemCounter = 1;
         boolean addMore = true;
@@ -152,7 +154,7 @@ public class MeetingManage {
             do {
                 System.out.print("Do you want to type another item? [1]Yes/[2]No: ");
                 ConsoleMenu consoleMenu = new ConsoleMenu();
-                int choice = consoleMenu.getInput(intScanner);
+                int choice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
                 System.out.println();
                 if (choice == 1) {
                     itemCounter++;
@@ -192,11 +194,11 @@ public class MeetingManage {
             switch (userInputCreateJournalPrompt) {
                 case 1:
                     if (myCompany.getMeetings().get(userInputMeetingChoice).getJournal() == null) {
-                        ArrayList<String> protocol = objectManage.getMeetingManage().createProtocol(stringScanner, intScanner);
+                        ArrayList<String> protocol = objectManage.getMeetingManage().createProtocol(objectManage, stringScanner, intScanner);
                         Journal tempJournal = new Journal(protocol);
                         myCompany.getMeetings().get(userInputMeetingChoice).setJournal(tempJournal);
                     } else {
-                        System.out.println("Journal is already created. It is permanent. No changed allowed!\n");
+                        System.out.println("Journal is already created. It is permanent. No changes allowed!\n");
                     }
                     wrongChoice = false;
                     break;

@@ -30,7 +30,7 @@ public class MeetingManagementMenu {
             subMenu.setMenuTitle("--- Edit and View Meetings ---");
             subMenu.printMenu(meetingManagementMenuAlternatives);
             System.out.print("\nChoose option: ");
-            userInputSubMenuChoice = subMenu.getInput(intScanner);
+            userInputSubMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
             System.out.println();
             meetingManagementSwitch(myCompany, userInputMenuChoice, userInputSubMenuChoice);
             if (userInputSubMenuChoice == meetingManagementMenuAlternatives.size() - 1) {

@@ -8,6 +8,4 @@ public interface Menu {
 	void setMenuTitle(String menuTitle);
 	
 	void printMenu(ArrayList<String> list);
-	
-	int getInput(Scanner intScanner);
 }

@@ -54,7 +54,7 @@ public class MainMenu {
             menu.printMenu(mainMenuAlternatives);
 
             System.out.print("\nChoose option: ");
-            userInputMenuChoice = menu.getInput(intScanner);
+            userInputMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
             System.out.println();
             mainMenuSwitch(userInputMenuChoice, myCompany);
         } while (userInputMenuChoice != mainMenuAlternatives.size());
@@ -116,27 +116,14 @@ public class MainMenu {
                 personManagementMenu.personManagementMenu(userInputPersonChoice, myCompany, myCompany.getBusinessAssociates());
                 break;
             case 6:
-                if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getMeetings())) {
+                if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getMeetings())
+                        || myCompany.getMeetings().size() == 0) {
                     System.out.println("You don't have any meetings yet");
                     System.out.println("Press any key to continue...");
                     stringScanner.nextLine();
                     break;
                 }
                 meetingManagementMenu.meetingManagementMenu(userInputMenuChoice, myCompany);
-//                userInputSubMenuChoice = removeOrView();
-//                if (userInputSubMenuChoice == 1) {
-//                    // TODO h�r skall ett m�te tas bort
-//                    System.out.println("H�r ska vi koda hur ett m�te tas bort");
-//                    break;
-//                }
-//                if (userInputSubMenuChoice == 2) {
-//                    objectManage.getMeetingManage().editAndViewMeeting(myCompany, intScanner, stringScanner);
-//                    break;
-//                }
-//                if (userInputSubMenuChoice == 3) {
-//                    // this option takes you back to the main menu. Leave blank.
-//                    break;
-//                }
                 break;
             case 7:
                 System.out.println("Saving and logging off");
@@ -151,7 +138,7 @@ public class MainMenu {
         printManage.getPrintPerson().printPersonList(persons);
         do {
             System.out.print("\nChoose person: ");
-            userInputPersonChoice = menu.getInput(intScanner) - 1;
+            userInputPersonChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
             menuOpen = objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(persons, userInputPersonChoice);
         } while (menuOpen);
         return userInputPersonChoice;
