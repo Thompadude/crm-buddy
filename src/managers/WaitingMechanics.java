@@ -1,34 +1,13 @@
 package managers;
 
+/**
+ * Forces console to wait for given amount of milliseconds before executing next code.
+ */
 public class WaitingMechanics {
 
-    public void waitForHalfASecond() {
+    public void wait(int milliSecondsToWait) {
         try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void waitFor1Second() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void waitFor2Seconds() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void waitFor3Seconds() {
-        try {
-            Thread.sleep(3000);
+            Thread.sleep(milliSecondsToWait);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
