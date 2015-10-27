@@ -28,7 +28,7 @@ public class Program {
         ReadFromFile readFromFile = new ReadFromFile(filePath);
         myCompany = readFromFile.readCompany(myCompany);
 
-        // If there's no company to load from file, create a new one with hard coded info..
+        // If there's no company to load from file, this creates a new one with hard coded info..
         if (myCompany == null) {
             myCompany = new MyCompany(companyName, new ContactInfo(email, streetAddress, phoneNumber));
         }
