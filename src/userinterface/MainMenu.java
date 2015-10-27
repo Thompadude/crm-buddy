@@ -92,7 +92,8 @@ public class MainMenu {
             case 4:
                 menuOpen = false;
 
-                if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())) {
+                if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getEmployees())
+                        || myCompany.getEmployees().size() == 0) {
                     System.out.println("You don't have any employees yet");
                     System.out.println("Press any key to continue...");
                     stringScanner.nextLine();
@@ -104,7 +105,8 @@ public class MainMenu {
             case 5:
                 menuOpen = false;
 
-                if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
+                if (objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())
+                        || myCompany.getBusinessAssociates().size() == 0) {
                     System.out.println("You don't have any business associates yet");
                     System.out.println("Press any key to continue...");
                     stringScanner.nextLine();

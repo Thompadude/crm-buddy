@@ -9,7 +9,6 @@ public class ConsoleMenu implements Menu {
 
     ObjectManage objectManage = new ObjectManage();
     protected String menuTitle;
-    protected ArrayList<String> menuAlternatives = new ArrayList<String>();
 
     @Override
     public void setMenuTitle(String menuTitle) {
@@ -30,5 +29,4 @@ public class ConsoleMenu implements Menu {
     public int getInput(Scanner intScanner) {
         return objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
     }
-
 }
