@@ -24,7 +24,7 @@ public class MeetingManage {
         printManage.getPrintPerson().printPersonList(myCompany.getEmployees());
         addParticipant(intScanner, tempParticipants, myCompany.getEmployees());
 
-        boolean businessAssociatesAvailable = checkIfBusinessAssociatesAreAvailable(myCompany, objectManage);
+        boolean businessAssociatesAvailable = checkIfBusinessAssociatesListHasData(myCompany, objectManage);
         if (businessAssociatesAvailable) {
             addBusinessAssociateToMeeting(myCompany, tempParticipants, intScanner);
         } else {
@@ -246,7 +246,7 @@ public class MeetingManage {
         addParticipant(intScanner, tempParticipants, myCompany.getBusinessAssociates());
     }
 
-    private boolean checkIfBusinessAssociatesAreAvailable(MyCompany myCompany, ObjectManage objectManage) {
+    private boolean checkIfBusinessAssociatesListHasData(MyCompany myCompany, ObjectManage objectManage) {
         if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getBusinessAssociates())) {
             if (!myCompany.getBusinessAssociates().isEmpty()) {
                 return true;
