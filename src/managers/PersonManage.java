@@ -101,7 +101,7 @@ public class PersonManage {
         return company;
     }
 
-    public FamilyMember createFamilyMember(Scanner stringScanner) {
+    public FamilyMember createFamilyMember(ObjectManage objectManage, Scanner stringScanner) {
         System.out.println("You have chosen to create a new family member.");
         String name = getNameFromUserInput(stringScanner);
 
@@ -124,8 +124,6 @@ public class PersonManage {
             }
         }
 
-        ObjectManage objectManage = new ObjectManage();
-
         LocalDate localDate = objectManage.getDateManage().getBirthDateFromUserInput();
 
         FamilyMember familyMember = new FamilyMember(name, localDate, family);
@@ -133,10 +131,15 @@ public class PersonManage {
         return familyMember;
     }
 
-    public void removePerson(MyCompany myCompany, int userInputPersonChoice, ArrayList<Associate> associate, Scanner intScanner) {
-        ObjectManage objectManage = new ObjectManage();
-
-        System.out.print("Are you sure you want to remove " + associate.get(userInputPersonChoice).getName() + "? [1]Yes/[2]No: ");
+    public void removePerson(
+            MyCompany myCompany,
+            ObjectManage objectManage,
+            int userInputPersonChoice,
+            ArrayList<Associate> associate,
+            Scanner intScanner) {
+        System.out.print("Are you sure you want to remove "
+                + associate.get(userInputPersonChoice).getName() +
+                "? [1]Yes/[2]No: ");
         int isUserSure = objectManage.getErrorManage().catchUserInputMismatchException(intScanner);
 
         if (isUserSure == 1) {

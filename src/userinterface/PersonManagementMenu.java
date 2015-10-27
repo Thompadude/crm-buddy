@@ -108,7 +108,7 @@ public class PersonManagementMenu {
                     associate.get(userInputPersonChoice).setFamilyMembers(new ArrayList<>());
                 }
 
-                associate.get(userInputPersonChoice).getFamilyMembers().add(objectManage.getPersonManage().createFamilyMember(stringScanner));
+                associate.get(userInputPersonChoice).getFamilyMembers().add(objectManage.getPersonManage().createFamilyMember(objectManage, stringScanner));
                 break;
             case 9:
                 String currentNote = "";
@@ -135,7 +135,7 @@ public class PersonManagementMenu {
                 }
                 break;
             case 11:
-                objectManage.getPersonManage().removePerson(myCompany, userInputPersonChoice, associate, intScanner);
+                objectManage.getPersonManage().removePerson(myCompany, objectManage, userInputPersonChoice, associate, intScanner);
 
                 System.out.println("Press any key to continue...");
                 stringScanner.nextLine();
