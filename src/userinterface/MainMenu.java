@@ -121,16 +121,35 @@ public class MainMenu {
                 meetingManagementMenu.meetingManagementMenu(userInputMenuChoice, myCompany);
                 break;
             case 7:
+                printManage.getPrintCompany().printInfo(myCompany);
+
                 if (!objectManage.getErrorManage().catchArrayListNullPointerException(myCompany.getAssociatedCompanies())) {
+                    do {
+                        System.out.print("\n--- Managed companies ---");
+                        printManage.getPrintCompany().printListOfAllCompanies(myCompany);
 
-                    for (Company company : myCompany.getAssociatedCompanies()) {
-                        printManage.getPrintCompany().printInfo(company);
+
+                        System.out.print("\nChoose company: ");
+                        userInputMenuChoice = objectManage.getErrorManage().catchUserInputMismatchException(intScanner) - 1;
+                        System.out.println();
                     }
+                    while (objectManage.getErrorManage().catchArrayIndexOutOfBoundsException(myCompany.getAssociatedCompanies(), userInputMenuChoice));
 
-                    printManage.getPrintCompany().printInfo(myCompany);
+                    printManage.getPrintCompany().printInfo(myCompany.getAssociatedCompanies().get(userInputMenuChoice));
+                    System.out.println("--- Added associates ---");
+                    for (int i = 0; i < myCompany.getBusinessAssociates().size(); i++) {
+                        if (myCompany.getAssociatedCompanies().get(userInputMenuChoice).getName().equals(myCompany.getBusinessAssociates().get(i).getCompany().getName())) {
+                            System.out.println("* " + myCompany.getBusinessAssociates().get(i).getName());
+                        }
+                    }
+                    System.out.println("\nPress any key to continue...");
+                    stringScanner.nextLine();
+                } else {
+                    System.out.println("\nYou don't have any business companies yet!");
+                    System.out.println("Press any key to continue...");
+                    stringScanner.nextLine();
                 }
                 break;
-
             case 8:
                 System.out.println("Saving and logging off");
                 break;
@@ -138,6 +157,7 @@ public class MainMenu {
                 System.out.println(wrongChoice);
                 break;
         }
+
     }
 
     public int promptUserToChoosePerson(ArrayList<Associate> persons) {
