@@ -1,0 +1,61 @@
+﻿2015-10-20 tisdag
+Skissade på hur arbetet skulle läggas upp - vilka objekt som skulle finnas och så vidare. Tidsåtgång ca tre timmar.
+Eftermiddagen ägnades åt att parkoda då vi skapade de viktigaste basklasserna, och vi skaffade oss en klar bild av hur vi skulle bygga upp programmet.
+La upp det vi jobbat med via git (BitBucket).
+- Notering: inga direkta problem dök upp.
+- Grupparbete på skolan ca 7 timmar.
+
+2015-10-21 onsdag
+Fortsatte med parkodning.
+Började koda en del klasser som tar hand om printouts, och en del klasser som har hand om objekt (managementklasser).
+Började med testning av det vi kodat hittills via system.out.print.
+Fortsätter använda oss av git och laddar upp projeketet ett par gånger under dagen, men kommer fram till att vi bör göra det innan varje rast för att inte förlora kod i onödan.
+Små justeringar görs individuellt på kvällen och laddas upp med git.
+- Notering 1: bytte tankebane gällande hur vissa objekt skulle fungera vilket tog en del tid från själva kodandet.
+- Notering 2: åtgärdade diverse nullpointers.
+- Grupparbete på skolan ca 6 timmar
+- Individuellt arbete ca 1 timme
+
+2015-10-22 torsdag
+Parkodning under hela dagen.
+Utveckling av klassers funktioner. Testning. Implentering av menysystem från tidigare labb.
+Under dagen och förförallt kvällen använde vi oss av git för diverse justeringar.
+- Notering 1: använde oss av Debug för att lokalisera vissa fel i körning.
+- Notering 2: började smått med att tänka på användarvänlighet, exempelvis ta hänsyn till felinmatningar.
+- Grupparbete på skolan ca 6 timmar
+- Individuellt arbete ca 2 timmar
+
+2015-10-23 fredag
+Diverse buggfixar/finslipning.
+Utvecklade funktion för att kunna skapa familjemedlemmar kopplat till employees och business associates.
+- Grupparbete på skolan ca 7 timmar
+- Individuellt arbete/grupparbete via Skype ca 6 timmar
+
+2015-10-24 lördag
+Diverse buggfixar/finslipning.
+Utvecklade funktion till att kunna lägga till möten.
+- Notering 1: fick några problem med referenser när vi skulle ta bort personer. Fick leta i kod efter alla "lose ends".
+- Grupparbete via Skype ca 13 timmar
+
+2015-10-25 söndag
+Diverse buggfixar/finslipning.
+Utvecklade funktion för påminnelse av födelsedagar.
+Provar oss fram med git och kör olika tester för att se hur en mergekonflikt ser ut.
+- Grupparbete via Skype
+
+2015-11-26 måndag
+Diverse buggfixar/finslipning.
+Utvecklade funktioner för att kunna söka efter protokoll i möten.
+Utveckade funktion för att kunna ta bort ett möte.
+- Notering 1: Ta bort mötes-funktion blev relativt omfattande kodmässigt på grund av att det fanns referenser till mötesobjekt i flera andra objekt, exempelvis employees. Löstes med forloopar och if statements.
+- Grupparbete i skolan ca 7 timmar
+
+2015-11-27 tisdag
+Sista finslipet av kod. "Luftade" metoder samt refaktorerade viss kod.
+- Grupparbete i skolan ca 7 timmar
+- Individuellt arbete ca 1 timme
+
+2015-11-28
+Diskuterade hur vi skulle presentera projektet.
+- Grupparbete ca 7 timmar
+- Grupparbete via Skype ca 1 timme
